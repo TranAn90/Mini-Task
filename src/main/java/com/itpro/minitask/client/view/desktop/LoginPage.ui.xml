@@ -1,0 +1,82 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.from-1 {
+		background-color: #0078bd;
+		height: 500px;
+	}
+	
+	.from-2-image {
+		padding-top: 20px;
+	}
+	
+	.from-1-label1 {
+		font-family: "jaf-facitweb", "Helvetica Neue", Arial, sans-serif;
+		color: white;
+		font-size: 2.5em;
+		font-weight: bold;
+		line-height: 2.5em;
+		padding-top: 20px;
+	}
+	
+	.from-1-label2 {
+		font-size: 20px;
+		font-family: "jaf-facitweb", "Helvetica Neue", Arial, sans-serif;
+		color: white;
+		font-weight: 300;
+		line-height: 1.44em;
+	}
+	
+	.from-1-buttongreen {
+		-webkit-appearance: button;
+		background: #48b512;
+		box-shadow: 0 2px 0 #4d4d4d;
+		color: #fff;
+		cursor: pointer;
+		font-size: 18px;
+		font-weight: bold;
+		margin-top: 30px;
+	}
+	
+	.from-1-buttongreen:hover {
+		background: #3A910E;
+	}
+	
+	.from-2 {
+		background-color: #ecf4f9;
+		height: 145px;
+	}
+	
+	.from-2-footer {
+		color: #999;
+		font-size: 1.2em;
+		padding-top: 65px;
+		text-align: center;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel styleName="{style.from-1}">
+			<center>
+				<g:Image width="87px" height="86px" url="resources/evolution_tasks.png" styleName="{style.from-2-image}" />
+				<g:Label text="Chào mừng bạn đến với Mini Task." styleName="{style.from-1-label1}" />
+				<g:Label text="Bắt đầu đăng nhập với Google Account."
+					styleName="{style.from-1-label2}" />
+				<g:AbsolutePanel height="66px" width="349px"
+					styleName="{style.from-1-buttongreen}">
+					<g:at left="74" top="20">
+						<g:Label text="Đăng nhập với Google Account" />
+					</g:at>
+					<g:at left="12" top="10">
+						<g:Image width="50px" height="46px" url="resources/google_ico.jpg"/>
+					</g:at>
+				</g:AbsolutePanel>
+			</center>
+		</g:HTMLPanel>
+		
+		<g:HTMLPanel styleName="{style.from-2}">
+			<g:Label text="© Copyright 2014, Mini Task, ITPRO."
+				styleName="{style.from-2-footer}" />
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

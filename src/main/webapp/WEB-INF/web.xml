@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee                
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- StartUp Servlets -->
+	<!-- <servlet>
+		<servlet-name>RegisterDataObject</servlet-name>
+		<servlet-class></servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet> -->
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>MiniTask.html</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -44,6 +44,7 @@
 			<groupId>com.googlecode.objectify</groupId>
 			<artifactId>objectify</artifactId>
 			<version>5.0.2</version>
+
 		</dependency>
 
 		<!-- Test Dependencies -->
@@ -60,6 +61,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>${appengine.target.version}</version>
@@ -71,6 +78,14 @@
 			<version>${appengine.target.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.8</version>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

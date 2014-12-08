@@ -17,11 +17,6 @@ public class OfyService {
 
 	public static DatastoreService ds() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
-		// Collection<Transaction> active = ds.getActiveTransactions();
-		// if (active.size() > 0)
-		// throw new IllegalStateException("Active is: " + active);
-
 		return ds;
 	}
 }

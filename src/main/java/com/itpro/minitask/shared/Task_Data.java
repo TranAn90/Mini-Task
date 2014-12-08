@@ -57,26 +57,17 @@ public class Task_Data implements Serializable {
 	Date dueDate;
 	@Unindex
 	List<String> ccList = new ArrayList<String>();
-	// [(0,new); (1,working); (2, finished), (3, close); (4, cancel)]
+	// [(0,new); (1,working); (2, finished)]
 	int status;
 	// [(0, open); (1,archive)]
 	int state;
 	boolean security;
-	@Unindex
-	boolean type;
+	//{-100, delete}
 	@Unindex
 	int version = 0;
 
 	public void setVersion(int version) {
 		this.version = version;
-	}
-
-	public boolean isType() {
-		return type;
-	}
-
-	public void setType(boolean type) {
-		this.type = type;
 	}
 
 	public Long getParentId() {
@@ -227,28 +218,38 @@ public class Task_Data implements Serializable {
 		this.security = security;
 	}
 
-	public void updateTask(Task_Data newData) {
-		this.activityDate = (newData.getActivityDate() == null ? activityDate
-				: newData.getActivityDate());
-		this.finishDate = (newData.getFinishDate() == null ? finishDate
-				: newData.getFinishDate());
-		this.initDate = (newData.getInitDate() == null ? initDate : newData
-				.getInitDate());
-		this.description = newData.getDescription();
-		this.dueDate = newData.getDueDate();
-		this.name = newData.getName();
-		this.projectId = newData.getProjectId();
-		this.listChild = newData.getListChild();
-		this.priority = newData.getPriority();
-		this.recipient = (newData.getRecipient() == null ? recipient : newData
-				.getRecipient());
-		this.security = newData.isSecurity();
-		this.sender = (newData.getSender() == null ? sender : newData
-				.getSender());
-		this.status = newData.getStatus();
-		this.ccList = newData.getCcList();
-		this.version = newData.getVersion();
-		this.parentId = newData.getParentId();
+	public static final int TASK_STATUS_WORKING = 1;
+	public static final int TASK_STATUS_NEW = 0;
+	public static final int TASK_STATUS_FINISHED = 2;
 
-	}
+	// public enum TaskStatus {
+	// New(0), Working(1), Finished(2), Close(3), Cancel(4);
+	// private int status;
+	//
+	// public int getStatus() {
+	// return status;
+	// }
+	//
+	// private TaskStatus(int status) {
+	// this.status = status;
+	// }
+	// }
+	// public void updateTask(Task_Data newData) {
+	// this.activityDate = newData.getActivityDate();
+	// this.finishDate = newData.getFinishDate();
+	// this.description = newData.getDescription();
+	// this.dueDate = newData.getDueDate();
+	// this.name = newData.getName();
+	// this.projectId = newData.getProjectId();
+	// this.listChild = newData.getListChild();
+	// this.priority = newData.getPriority();
+	// this.recipient = newData.getRecipient();
+	// this.security = newData.isSecurity();
+	// this.sender = newData.getSender();
+	// this.status = newData.getStatus();
+	// this.ccList = newData.getCcList();
+	// this.version = newData.getVersion();
+	// this.parentId = newData.getParentId();
+	//
+	// }
 }

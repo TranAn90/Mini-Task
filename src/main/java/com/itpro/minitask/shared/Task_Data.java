@@ -14,6 +14,10 @@ import com.googlecode.objectify.annotation.Unindex;
 @Index
 @Entity(name = "task_data")
 public class Task_Data implements Serializable {
+	public static final int TASK_STATUS_WORKING = 1;
+	public static final int TASK_STATUS_NEW = 0;
+	public static final int TASK_STATUS_FINISHED = 2;
+
 	public static class CompDateInit implements Comparator<Task_Data> {
 
 		private int mod = 1;
@@ -32,10 +36,10 @@ public class Task_Data implements Serializable {
 	}
 
 	@com.googlecode.objectify.annotation.Id
-	Long Id;
+	Long id;
 	Long projectId;
 	@Unindex
-	List<Long> listChild = new ArrayList<Long>();
+	List<Long> listChild;
 	@Unindex
 	Long parentId;
 	@Unindex
@@ -62,7 +66,7 @@ public class Task_Data implements Serializable {
 	// [(0, open); (1,archive)]
 	int state;
 	boolean security;
-	//{-100, delete}
+	// {-100, delete}
 	@Unindex
 	int version = 0;
 
@@ -83,11 +87,11 @@ public class Task_Data implements Serializable {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Long getProjectId() {
@@ -218,10 +222,15 @@ public class Task_Data implements Serializable {
 		this.security = security;
 	}
 
-	public static final int TASK_STATUS_WORKING = 1;
-	public static final int TASK_STATUS_NEW = 0;
-	public static final int TASK_STATUS_FINISHED = 2;
+	@Override
+	public boolean equals(Object o) {
+		Task_Data task = (Task_Data) o;
+		if (this.id.equals(task.getId()))
+			return true;
+		else
+			return false;
 
+	}
 	// public enum TaskStatus {
 	// New(0), Working(1), Finished(2), Close(3), Cancel(4);
 	// private int status;

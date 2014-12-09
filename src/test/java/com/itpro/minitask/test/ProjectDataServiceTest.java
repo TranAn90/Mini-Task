@@ -13,7 +13,6 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.google.appengine.tools.development.testing.LocalTaskQueueTestConfig;
 import com.googlecode.objectify.Key;
 import com.itpro.minitask.server.DataRequestService;
-import com.itpro.minitask.shared.Task_Data;
 import com.itpro.minitask.shared.Task_Project;
 
 import static com.itpro.minitask.test.util.OfyService.ofy;

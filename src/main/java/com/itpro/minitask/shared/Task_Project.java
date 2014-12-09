@@ -176,4 +176,12 @@ public class Task_Project implements Serializable {
 		this.version = version;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		Task_Project p = (Task_Project) o;
+		if (this.id.equals(p.getId()))
+			return true;
+		else
+			return false;
+	}
 }

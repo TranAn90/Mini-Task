@@ -48,4 +48,132 @@ public class Task_Project implements Serializable {
 	@Unindex
 	int version = 0;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Long> getListTaskId() {
+		return listTaskId;
+	}
+
+	public void setListTaskId(List<Long> listTaskId) {
+		this.listTaskId = listTaskId;
+	}
+
+	public List<Long> getListChildId() {
+		return listChildId;
+	}
+
+	public void setListChildId(List<Long> listChildId) {
+		this.listChildId = listChildId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCreator() {
+		return creator;
+	}
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public Date getInitDate() {
+		return initDate;
+	}
+
+	public void setInitDate(Date initDate) {
+		this.initDate = initDate;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public List<String> getListMember() {
+		return listMember;
+	}
+
+	public void setListMember(List<String> listMember) {
+		this.listMember = listMember;
+	}
+
+	public boolean isType() {
+		return type;
+	}
+
+	public void setType(boolean type) {
+		this.type = type;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 }

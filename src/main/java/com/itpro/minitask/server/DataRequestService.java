@@ -8,6 +8,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Key;
 import com.itpro.minitask.client.rpc.DataRequest;
 import com.itpro.minitask.shared.Task_Data;
+import com.itpro.minitask.shared.Task_Project;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
@@ -20,14 +21,14 @@ public class DataRequestService extends RemoteServiceServlet implements
 	 *            will save in database
 	 * @return null if parentId invalid, task if save task success
 	 */
-	Task_Data exportData = null;
+	Task_Data exportTask = null;
 
 	public Task_Data insertTask(Task_Data newtask) {
 		newtask.setInitDate(new Date());
 		newtask.setUpdateDate(new Date());
 		Key<Task_Data> key = ofy().save().entity(newtask).now();
-		exportData = ofy().load().key(key).now();
-		return exportData;
+		exportTask = ofy().load().key(key).now();
+		return exportTask;
 	}
 
 	/**
@@ -35,12 +36,12 @@ public class DataRequestService extends RemoteServiceServlet implements
 	 */
 	@Override
 	public Task_Data retrieveTask(Long id) {
-		Task_Data findTask = null;
+
 		if (id == null)
-			findTask = null;
+			exportTask = null;
 		else
-			findTask = ofy().load().type(Task_Data.class).id(id).now();
-		return findTask;
+			exportTask = ofy().load().type(Task_Data.class).id(id).now();
+		return exportTask;
 	}
 
 	/**
@@ -145,14 +146,100 @@ public class DataRequestService extends RemoteServiceServlet implements
 
 	}
 
-	List<Task_Data> result;
+	List<Task_Data> tasks;
 
 	@Override
 	public List<Task_Data> retrieveTasks() {
-		result = new ArrayList<Task_Data>();
+		tasks = new ArrayList<Task_Data>();
 		List<Task_Data> list = ofy().load().type(Task_Data.class).list();
 		if (!list.isEmpty())
-			result.addAll(list);
-		return result;
+			tasks.addAll(list);
+		return tasks;
 	}
+
+	// save task
+	Task_Project exportProject = null;
+
+	@Override
+	public Task_Project insertProject(Task_Project newProject) {
+		newProject.setInitDate(new Date());
+		newProject.setUpdateDate(new Date());
+		Key<Task_Project> key = ofy().save().entity(newProject).now();
+		exportProject = ofy().load().key(key).now();
+		return exportProject;
+	}
+
+	/**
+	 * get project by id
+	 */
+
+	@Override
+	public Task_Project retrieveProject(Long id) {
+
+		if (id == null) {
+			exportProject = null;
+		} else
+			exportProject = ofy().load().type(Task_Project.class).id(id).now();
+
+		return exportProject;
+	}
+
+	// get all project in database
+	List<Task_Project> projects;
+
+	@Override
+	public List<Task_Project> retrieveProjects() {
+		projects = new ArrayList<Task_Project>();
+		List<Task_Project> list = ofy().load().type(Task_Project.class).list();
+		if (!list.isEmpty())
+			projects.addAll(list);
+		return projects;
+	}
+
+	// get all child project
+	@Override
+	public List<Task_Project> retrieveChildProjects(List<Long> idChilds) {
+		if (idChilds == null || idChilds.isEmpty())
+			projects = null;
+		else {
+			projects = new ArrayList<Task_Project>();
+			for (Long idChild : idChilds) {
+				Task_Project findP = retrieveProject(idChild);
+				if (findP != null)
+					projects.add(findP);
+			}
+		}
+		return projects;
+	}
+
+	@Override
+	public boolean updateProject(Task_Project newData) {
+
+		Task_Project oldP = retrieveProject(newData.getId());
+		if (oldP == null)
+			isUpdate = false;
+		else {
+			newData.setUpdateDate(new Date());
+			ofy().save().entity(newData).now();
+			isUpdate = true;
+		}
+		return isUpdate;
+	}
+
+	@Override
+	public boolean removeProject(Task_Project project) {
+		if(project == null)
+			isRemove = true;
+		else{
+			Task_Project findP = retrieveProject(project.getId());
+			if(findP == null)
+				isRemove = true;
+			else{
+				ofy().delete().entity(findP).now();
+				isRemove = true;
+			}
+		}
+		return isRemove;
+	}
+
 }

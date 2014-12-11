@@ -2,6 +2,7 @@ package com.itpro.minitask.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.itpro.minitask.client.view.desktop.CreateTaskDialog;
 import com.itpro.minitask.client.view.desktop.Header;
 
 public class MiniTask implements EntryPoint {
@@ -10,7 +11,8 @@ public class MiniTask implements EntryPoint {
 		RootPanel root = RootPanel.get("root");
 		Header page = new Header();
 		root.add(page);
-		System.out.println("hello root");
+		CreateTaskDialog createTask = new CreateTaskDialog( new CreateTaskDialog.Listener() {
+		});
 	}
 	
 	void addDevView() {

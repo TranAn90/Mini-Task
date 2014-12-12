@@ -131,7 +131,7 @@
 				<configuration>
 					<runTarget>MiniTask.html</runTarget>
 					<modules>
-						<module>com.itpro.minitask.MiniTask</module>
+						<module>com.softlink.minitask.MiniTask</module>
 					</modules>
 					<compileReport>true</compileReport>
 					<!-- <appEngineHome>${appengine.home}</appEngineHome> <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server> 

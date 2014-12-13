@@ -10,9 +10,19 @@
 		<servlet-class></servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet> -->
+	
+	<servlet>
+		<servlet-name>MiniTask-UserRequestService</servlet-name>
+		<servlet-class>com.softlink.minitask.server.UserRequestService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MiniTask-UserRequestService</servlet-name>
+		<url-pattern>/script/user_request</url-pattern>
+	</servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>MiniTask.html</welcome-file>
 	</welcome-file-list>
+	
 </web-app>

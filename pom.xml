@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.itpro</groupId>
+	<groupId>com.softlink</groupId>
 	<artifactId>mini_task</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
 		<javaRuntime>1.7</javaRuntime>
-		<appengine.target.version>1.9.15</appengine.target.version>
+		<appengine.target.version>1.8.9</appengine.target.version>
 		<gwtVersion>2.5.1</gwtVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -116,11 +116,12 @@
 				<configuration>
 					<runTarget>MiniTask.html</runTarget>
 					<modules>
-						<module>com.itpro.minitask.MiniTask</module>
+						<module>com.softlink.minitask.MiniTask</module>
 					</modules>
 					<compileReport>true</compileReport>
-					<!-- <appEngineHome>${appengine.home}</appEngineHome> <server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server> 
-						<appEngineVersion>${appengine.target.version}</appEngineVersion> -->
+					<appEngineHome>${appengine.home}</appEngineHome>
+					<server>com.google.appengine.tools.development.gwt.AppEngineLauncher</server>
+					<appEngineVersion>${appengine.target.version}</appEngineVersion>
 					<copyWebapp>true</copyWebapp>
 					<logLevel>INFO</logLevel>
 				</configuration>

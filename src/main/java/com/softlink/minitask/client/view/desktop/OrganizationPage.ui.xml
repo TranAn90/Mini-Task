@@ -1,0 +1,173 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.softlink.minitask.client.view.desktop">
+	<ui:style>
+	.organizationpage-Obj1 {
+		border-bottom: 1px solid #dcdcdc;
+	}
+	
+	.organizationpage-Obj2 {
+		position: relative;
+		top: 80px;
+		margin-left: auto;
+	}
+	
+	.organizationpage-Obj3 {
+		float: left;
+		margin-bottom: 20px;
+	}
+	
+	.organizationpage-Obj4 {
+		background: white;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	
+	.organizationpage-Obj4:hover {
+		background: #E6E6E6;
+	}
+	
+	.organizationpage-Obj5 {
+		font-weight: 400;
+		font-size: 16px;
+		color: #8c8c8c;
+	}
+	
+	.organizationpage-Obj6 {
+		background-color: #0E74AF;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	
+	.organizationpage-Obj6:hover {
+		background-color: #0D689E;
+	}
+	
+	.organizationpage-Obj7 {
+		font-weight: 700;
+		font-size: 16px;
+		color: #f6f6f6;
+	}
+	
+	.organizationpage-Obj8 {
+		position: relative;
+		font-size: 22px;
+		font-weight: 700;
+		top: 40px;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+	
+	.organizationpage-Obj9 {
+		position: relative;
+		top: 35px;
+		width: 300px;
+		margin: auto;
+	}
+	
+	.organizationpage-Obj10 {
+		color: #4d4d4d;
+		font-weight: 700;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		padding-bottom: 10px;
+	}
+	
+	.organizationpage-Obj11 {
+		margin-bottom: 10px;
+		max-width: 300px;
+	}
+	
+	.organizationpage-Obj12 {
+		position: relative;
+		display: block;
+		background: #48b512;
+		background: -webkit-linear-gradient(top, #48b512 0, #3d990f 100%);
+		background: linear-gradient(to bottom, #48b512 0, #3d990f 100%);
+		box-shadow: 0 1px 0 #4d4d4d;
+		color: #fff;
+		margin: auto;
+		margin-top: 8px;
+		border-radius: 3px;
+		cursor: pointer;
+		margin-bottom: 20px;
+	}
+	
+	.organizationpage-Obj12:hover {
+		background: #3A910E;
+	}
+	
+	.organizationpage-Obj13 {
+		line-height: 35px;
+		font-weight: 700;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+		font-size: 16px;
+	}
+	
+	.organizationpage-Obj14 {
+		opacity: 0.6;
+	}
+	
+	.organizationpage-Obj14:hover {
+		opacity: 1;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTMLPanel styleName="{style.organizationpage-Obj1} background-softGray"
+			height="250px">
+			<g:Label text="Lựa chọn tổ chức của bạn!"
+				horizontalAlignment="ALIGN_CENTER" styleName="{style.organizationpage-Obj8}" />
+			<center>
+				<g:FlowPanel width="70%" styleName="{style.organizationpage-Obj2}">
+					<g:AbsolutePanel height="90px" width="300px"
+						styleName="{style.organizationpage-Obj3}">
+						<g:at left="0" top="0">
+							<g:AbsolutePanel height="100%"
+								styleName="{style.organizationpage-Obj4}" width="90%">
+								<g:at left="0" top="30">
+									<g:Label height="18px" horizontalAlignment="ALIGN_CENTER"
+										styleName="{style.organizationpage-Obj5}" text="Tạo mới..."
+										width="270px" />
+								</g:at>
+							</g:AbsolutePanel>
+						</g:at>
+					</g:AbsolutePanel>
+					<g:AbsolutePanel height="90px"
+						styleName="{style.organizationpage-Obj3}" width="300px">
+						<g:at left="0" top="0">
+							<g:AbsolutePanel height="100%"
+								styleName="{style.organizationpage-Obj6}" width="90%">
+								<g:at left="10" top="5">
+									<g:Label styleName="{style.organizationpage-Obj7}"
+										text="ITPRO" />
+								</g:at>
+								<g:at left="230" top="4">
+									<g:Image url="resources/eye_inv.png" width="28px"
+										height="28px" styleName="{style.organizationpage-Obj14}" />
+								</g:at>
+							</g:AbsolutePanel>
+						</g:at>
+					</g:AbsolutePanel>
+				</g:FlowPanel>
+			</center>
+		</g:HTMLPanel>
+
+		<g:HTMLPanel>
+			<g:HTMLPanel styleName="{style.organizationpage-Obj9}"
+				visible="false">
+				<g:Label text="Tên tổ chức (*)" styleName="{style.organizationpage-Obj10}" />
+				<g:TextBox width="300px"
+					styleName="{style.organizationpage-Obj11} textbox-normalEdit"
+					height="25px" />
+				<g:Label text="Mô tả" styleName="{style.organizationpage-Obj10}" />
+				<g:TextArea width="296px"
+					styleName="{style.organizationpage-Obj11} textbox-normalEdit"
+					height="130px" />
+				<g:HTMLPanel styleName="{style.organizationpage-Obj12}"
+					width="140px" height="35px">
+					<g:Label text="Thêm" height="100%" horizontalAlignment="ALIGN_CENTER"
+						styleName="{style.organizationpage-Obj13}" />
+				</g:HTMLPanel>
+			</g:HTMLPanel>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,211 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.softlink.minitask.client.view.desktop">
+	<ui:style>
+	.OrganizationDetail-Obj1 {
+		width: 100%;
+		margin: auto;
+	}
+	
+	.OrganizationDetail-Obj2 {
+		float: left;
+		height: 150px;
+	}
+	
+	.OrganizationDetail-Obj3 {
+		background-color: #d6d6d6;
+		border: 1px solid #c7c7c7;
+		border-radius: 3px;
+	}
+	
+	.OrganizationDetail-Obj4 {
+		margin: auto;
+	}
+	
+	.OrganizationDetail-Obj5 {
+		font-size: 20px;
+	}
+	
+	.OrganizationDetail-Obj6 {
+		font-size: 16px;
+	}
+	
+	.OrganizationDetail-Obj7 {
+		margin: auto;
+	}
+	
+	.OrganizationDetail-Obj8 {
+		position: relative;
+		top: 35px;
+		width: 300px;
+		margin: auto;
+	}
+	
+	.OrganizationDetail-Obj9 {
+		margin-bottom: 10px;
+		max-width: 300px;
+	}
+	
+	.OrganizationDetail-Obj10 {
+		line-height: 35px;
+		margin-bottom: 60px;
+	}
+	
+	.OrganizationDetail-Obj11 {
+		width: 60%;
+		margin: auto;
+		padding-top: 20px;
+	}
+	
+	.OrganizationDetail-Obj12 {
+		border-bottom: 1px solid #dbdbdb;
+		margin-bottom: 20px;
+	}
+	
+	.OrganizationDetail-Obj13 {
+		font-size: 18px;
+	}
+	
+	.OrganizationDetail-Obj14 {
+		float: left;
+		position: relative;
+		top: 16px;
+		color: #4d4d4d;
+		font-size: 14px;
+	}
+	
+	.OrganizationDetail-Obj15 {
+		float: right;
+		position: relative;
+		top: 4px;
+	}
+	
+	.OrganizationDetail-Obj16 {
+		line-height: 35px;
+		margin-right: 20px;
+	}
+	
+	.OrganizationDetail-Obj17 {
+		padding-left: 40%;
+	}
+	</ui:style>
+	<g:HTMLPanel styleName="{style.OrganizationDetail-Obj1}">
+		<g:HTMLPanel styleName="{style.OrganizationDetail-Obj2} background-softGray"
+			width="100%">
+			<g:AbsolutePanel width="680px" height="100%"
+				styleName="{style.OrganizationDetail-Obj4}">
+				<g:at left="10" top="30">
+					<g:AbsolutePanel height="85px" width="85px"
+						styleName="{style.OrganizationDetail-Obj3}">
+						<g:at left="0" top="0">
+							<g:Image width="100%" height="100%"
+								url="resources/org-logo-large.png" />
+						</g:at>
+					</g:AbsolutePanel>
+				</g:at>
+				<g:at left="110" top="35">
+					<g:Label text="An Company"
+						styleName="{style.OrganizationDetail-Obj5} font-blackTitle" width="" />
+				</g:at>
+				<g:at left="510" top="45">
+					<g:AbsolutePanel styleName="button-greenStyle"
+						width="140px" height="40px">
+						<g:at left="15" top="8">
+							<g:Label text="Tham gia"
+								stylePrimaryName="{style.OrganizationDetail-Obj6} font-whiteTitle" />
+						</g:at>
+						<g:at left="95" top="5">
+							<g:Image width="28px" height="28px" url="resources/door_in.png" />
+						</g:at>
+					</g:AbsolutePanel>
+				</g:at>
+			</g:AbsolutePanel>
+		</g:HTMLPanel>
+		
+		<g:TabPanel width="100%">
+		
+			<g:Tab text="Thông tin">
+				<g:HTMLPanel>
+					<g:HTMLPanel styleName="{style.OrganizationDetail-Obj8}">
+						<g:Label text="Tên tổ chức (*)"
+							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" />
+						<g:TextBox width="300px" height="25px"
+							styleName="{style.OrganizationDetail-Obj9} textbox-normalEdit" />
+						<g:Label text="Mô tả"
+							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" />
+						<g:TextArea width="296px" height="170px"
+							styleName="{style.OrganizationDetail-Obj9} textbox-normalEdit" />
+						<g:HTMLPanel width="140px" height="35px"
+							styleName="{style.OrganizationDetail-Obj10} button-greenStyle">
+							<g:Label text="Lưu" height="100%" horizontalAlignment="ALIGN_CENTER" />
+						</g:HTMLPanel>
+					</g:HTMLPanel>
+				</g:HTMLPanel>
+			</g:Tab>
+			
+			<g:Tab text="Thành viên">
+				<g:HTMLPanel width="100%" height="">
+					<g:HTMLPanel styleName="{style.OrganizationDetail-Obj11}">
+						<g:HTMLPanel height="60px" styleName="{style.OrganizationDetail-Obj12}">
+							<g:AbsolutePanel width="145px" height="35px"
+								styleName="button-whiteStyle">
+								<g:at left="26" top="10">
+									<g:Label text="Thêm thành viên" width="109px" height="" />
+								</g:at>
+								<g:at left="8" top="7">
+									<g:Label text="+" styleName="{style.OrganizationDetail-Obj13}" />
+								</g:at>
+							</g:AbsolutePanel>
+						</g:HTMLPanel>
+						<g:HTMLPanel height="60px" styleName="{style.OrganizationDetail-Obj12}">
+							<g:Label styleName="{style.OrganizationDetail-Obj14} font-blackTitle"
+								text="antp@itpro.vn" />
+							<g:HorizontalPanel height="35px"
+								styleName="{style.OrganizationDetail-Obj15}">
+								<g:HTMLPanel width="90px" height="35px"
+									styleName="{style.OrganizationDetail-Obj16} button-whiteStyle">
+									<center>
+										<g:Label text="Quản lý" />
+									</center>
+								</g:HTMLPanel>
+								<g:AbsolutePanel height="35px" styleName="button-whiteStyle"
+									width="90px">
+									<g:at left="33" top="10">
+										<g:Label text="Xóa" />
+									</g:at>
+								</g:AbsolutePanel>
+							</g:HorizontalPanel>
+						</g:HTMLPanel>
+						<g:HTMLPanel height="60px" styleName="{style.OrganizationDetail-Obj12}">
+							<g:Label text="lent@itpro.vn"
+								styleName="{style.OrganizationDetail-Obj14} font-blackTitle" />
+							<g:HorizontalPanel styleName="{style.OrganizationDetail-Obj15}"
+								height="35px">
+								<g:Label text="Nhân viên"
+									styleName="{style.OrganizationDetail-Obj16} font-grayTitle" />
+								<g:AbsolutePanel width="90px" height="35px"
+									styleName="button-whiteStyle">
+									<g:at left="18" top="10">
+										<g:Label text="Rời khỏi" />
+									</g:at>
+								</g:AbsolutePanel>
+							</g:HorizontalPanel>
+						</g:HTMLPanel>
+						<g:HTMLPanel height="60px" styleName="{style.OrganizationDetail-Obj12}">
+							<g:Label styleName="{style.OrganizationDetail-Obj14} font-blackTitle" text="nguyenhue@itpro.vn"/>
+							<g:HorizontalPanel height="35px" styleName="{style.OrganizationDetail-Obj15}">
+								<g:Label styleName="{style.OrganizationDetail-Obj16} font-grayTitle" text="Đang chờ tham gia"/>
+								<g:AbsolutePanel height="35px" styleName="button-whiteStyle" width="90px">
+									<g:at left="33" top="10">
+										<g:Label text="Xóa"/>
+									</g:at>
+								</g:AbsolutePanel>
+							</g:HorizontalPanel>
+						</g:HTMLPanel>
+					</g:HTMLPanel>
+				</g:HTMLPanel>
+			</g:Tab>
+			
+		</g:TabPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

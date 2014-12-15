@@ -9,7 +9,6 @@ import java.util.List;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Unindex;
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @SuppressWarnings("serial")
 @Index
@@ -18,6 +17,10 @@ public class Task_Data implements Serializable {
 	public static final int TASK_STATUS_WORKING = 1;
 	public static final int TASK_STATUS_NEW = 0;
 	public static final int TASK_STATUS_FINISHED = 2;
+	
+	public static final int TASK_PRIORITY_LOW = 0;
+	public static final int TASK_PRIORITY_HIGH = 1;
+	public static final int TASK_PRIORITY_MEDIUM = 2;
 
 	public static class CompDateInit implements Comparator<Task_Data> {
 
@@ -256,6 +259,7 @@ public class Task_Data implements Serializable {
 			t.setId(id);
 			t.setUpdateDate(new Date());
 			t.setInitDate(new Date());
+			t.setDueDate( new Date());
 			if (i % 2 == 1)
 				t.setSecurity(true);
 			else

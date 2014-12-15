@@ -162,6 +162,10 @@
 .background-softGray {
 	background-color: #f0f0f0;
 }
+/**css for table*/
+.grid-TaskStatus {
+	text-align: center;
+}
 
 /** Overriding gwt-Tabbar */
 .gwt-TabBar {

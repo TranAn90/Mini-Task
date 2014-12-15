@@ -20,6 +20,8 @@ import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.softlink.minitask.client.AppConstants;
+import com.softlink.minitask.client.view.desktop.ui.ZoomOutDescription;
 
 public class CreateTaskDialog extends DialogBox {
 
@@ -64,6 +66,24 @@ public class CreateTaskDialog extends DialogBox {
 	FlowPanel tableCC;
 	@UiField
 	Anchor btAddCC;
+	@UiField
+	Label lbName;
+	@UiField
+	Label lbRecipient;
+	@UiField
+	Label lbProjectName;
+	@UiField
+	Label lbDescription;
+	@UiField
+	Label lbDueDate;
+	@UiField
+	Label lbSubProject;
+	@UiField
+	Label lbStatus;
+	@UiField
+	Label lbParentId;
+	@UiField
+	Label lbPriority;
 
 	interface Binder extends UiBinder<Widget, CreateTaskDialog> {
 	}
@@ -78,6 +98,7 @@ public class CreateTaskDialog extends DialogBox {
 		setWidget(uiBinder.createAndBindUi(this));
 		setStyleName("frame_dialogBoxClean");
 		setGlassEnabled(true);
+		InitTextForm();
 		this.listener = listener;
 		center();
 		show();
@@ -118,6 +139,30 @@ public class CreateTaskDialog extends DialogBox {
 
 					}
 				});
+	}
+
+	private final AppConstants CONSTANS = GWT.create(AppConstants.class);
+
+	private void InitTextForm() {
+		headerText.setText(CONSTANS.CreateTaskDialogHeaderCreate());
+		lbDescription.setText(CONSTANS.ViewDescription());
+		lbDueDate.setText(CONSTANS.ViewDueDate());
+		lbName.setText(CONSTANS.ViewTaskName());
+		lbParentId.setText(CONSTANS.ViewTaskParentId());
+		lbPriority.setText(CONSTANS.ViewTaskPriority());
+		lbProjectName.setText(CONSTANS.ViewProjectName());
+		lbRecipient.setText(CONSTANS.ViewTaskRecipient());
+		lbStatus.setText(CONSTANS.ViewTaskStatus());
+		lbSubProject.setText(CONSTANS.ViewProjectSub());
+		security.setText(CONSTANS.ViewTaskSecurity());
+		sendToEmail.setText(CONSTANS.CreateTaskDialogSendToEmail());
+		btZoomOut.setTitle(CONSTANS.ButtonTitleZoomOutDes());
+		btAddCC.setText(CONSTANS.CreateTaskDialogButtonTextAddCC());
+		btClose.setTitle(CONSTANS.ButtonTitleClose());
+		btReload.setTitle(CONSTANS.ButtonTitleReload());
+		btSave.setText(CONSTANS.ButtonTextSave());
+		btSaveContinue.setText(CONSTANS.ButtonTextSaveContinue());
+		disclosurePanel.getHeaderTextAccessor().setText(CONSTANS.CreateTaskDialogShowMore());
 	}
 
 	@Override

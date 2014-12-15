@@ -16,6 +16,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.DisclosurePanel;
+import com.softlink.minitask.client.AppConstants;
+import com.softlink.minitask.client.view.desktop.ui.ZoomOutDescription;
 
 public class CreateProjectDialog extends DialogBox {
 
@@ -52,6 +54,20 @@ public class CreateProjectDialog extends DialogBox {
 	Image btClose;
 	@UiField
 	DisclosurePanel disclosurePanel;
+	@UiField
+	Label header;
+	@UiField
+	Label lbNameProject;
+	@UiField
+	Label lbManager;
+	@UiField
+	Label lbDescription;
+	@UiField
+	Label lbDueDate;
+	@UiField
+	Label lbStartDate;
+	@UiField
+	Label lbEndDate;
 
 	public interface Listener {
 
@@ -63,6 +79,7 @@ public class CreateProjectDialog extends DialogBox {
 		setWidget(uiBinder.createAndBindUi(this));
 		this.listener = listener;
 		setStyleName("frame_dialogBoxClean");
+		SetTextForm();
 		disclosurePanel.setOpen(false);
 		setGlassEnabled(true);
 		this.listener = listener;
@@ -106,4 +123,22 @@ public class CreateProjectDialog extends DialogBox {
 		hide();
 	}
 
+	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
+
+	private void SetTextForm() {
+		header.setText(CONSTANTS.CreateProjectDialogHeader());
+		lbNameProject.setText(CONSTANTS.ViewProjectName());
+		lbManager.setText(CONSTANTS.ViewProjectManager());
+		lbDescription.setText(CONSTANTS.ViewDescription());
+		lbDueDate.setText(CONSTANTS.ViewDueDate());
+		lbStartDate.setText(CONSTANTS.ViewProjectStartDate());
+		lbEndDate.setText(CONSTANTS.ViewProjectEndDate());
+		btAddMember.setText(CONSTANTS.CreateProjectDialogButtonAddMember());
+		disclosurePanel.getHeaderTextAccessor().setText(CONSTANTS.CreateProjectDialogShowMore());
+		btSave.setText(CONSTANTS.ButtonTextSave());
+		btSaveContinue.setText(CONSTANTS.ButtonTextSaveContinue());
+		btReload.setTitle(CONSTANTS.ButtonTitleReload());
+		btClose.setTitle(CONSTANTS.ButtonTitleClose());
+		btZoomOut.setTitle(CONSTANTS.ButtonTitleZoomOutDes());
+	}
 }

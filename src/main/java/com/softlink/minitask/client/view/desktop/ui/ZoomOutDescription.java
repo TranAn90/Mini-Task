@@ -1,4 +1,4 @@
-package com.softlink.minitask.client.view.desktop;
+package com.softlink.minitask.client.view.desktop.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;

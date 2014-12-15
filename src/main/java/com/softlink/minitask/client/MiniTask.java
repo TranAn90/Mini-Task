@@ -6,18 +6,26 @@ import java.util.List;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.softlink.minitask.client.view.desktop.CreateProjectDialog;
+import com.softlink.minitask.client.view.desktop.CreateTaskDialog;
 import com.softlink.minitask.client.view.desktop.Header;
+import com.softlink.minitask.client.view.desktop.TaskListView;
 import com.softlink.minitask.shared.Task_Data;
 import com.softlink.minitask.shared.Task_Project;
+import com.google.gwt.core.client.GWT;
 
 public class MiniTask implements EntryPoint {
+	private static final AppConstants CONSTANTS = GWT.create(AppConstants.class);
+ 
+	 
 
 	void addRootView() {
 		RootPanel root = RootPanel.get("root");
 		Header page = new Header();
 		root.add(page);
-		CreateProjectDialog p = new CreateProjectDialog(
-				new CreateProjectDialog.Listener() {
+		// TaskListView taskListView = new TaskListView();
+		// root.add(taskListView);
+		CreateTaskDialog create = new CreateTaskDialog(
+				new CreateTaskDialog.Listener() {
 				});
 	}
 

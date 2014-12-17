@@ -91,7 +91,8 @@ public class CreateProjectDialog extends DialogBox {
 	@UiHandler("btZoomOut")
 	void onBtZoomOutClick(ClickEvent event) {
 		ZoomOutDescription zommOut = new ZoomOutDescription(
-				description.getText(), "Mở rộng mô tả công việc",
+				description.getText(),
+				CONSTANTS.CreateProjectDialogHeaderZoomOutDes(),
 				new ZoomOutDescription.Listener() {
 
 					@Override
@@ -116,6 +117,16 @@ public class CreateProjectDialog extends DialogBox {
 
 	@UiHandler("btReload")
 	void onBtReloadClick(ClickEvent event) {
+		ClearData();
+	}
+
+	private void ClearData() {
+		name.setText(null);
+		description.setText(null);
+		dueDate.setValue(null);
+		startDate.setValue(null);
+		endDate.setValue(null);
+		tableMember.clear();
 	}
 
 	@UiHandler("btClose")
@@ -134,7 +145,8 @@ public class CreateProjectDialog extends DialogBox {
 		lbStartDate.setText(CONSTANTS.ViewProjectStartDate());
 		lbEndDate.setText(CONSTANTS.ViewProjectEndDate());
 		btAddMember.setText(CONSTANTS.CreateProjectDialogButtonAddMember());
-		disclosurePanel.getHeaderTextAccessor().setText(CONSTANTS.CreateProjectDialogShowMore());
+		disclosurePanel.getHeaderTextAccessor().setText(
+				CONSTANTS.CreateProjectDialogShowMore());
 		btSave.setText(CONSTANTS.ButtonTextSave());
 		btSaveContinue.setText(CONSTANTS.ButtonTextSaveContinue());
 		btReload.setTitle(CONSTANTS.ButtonTitleReload());

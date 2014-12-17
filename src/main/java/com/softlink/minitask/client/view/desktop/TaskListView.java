@@ -16,8 +16,8 @@ import com.google.gwt.view.client.ListDataProvider;
 import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.view.desktop.ui.CSSImageResource;
 import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
-import com.softlink.minitask.client.view.desktop.ui.TableAllTasks;
-import com.softlink.minitask.client.view.desktop.ui.TableMyTasks;
+import com.softlink.minitask.client.view.desktop.ui.AllTasksTable;
+import com.softlink.minitask.client.view.desktop.ui.MyTasksTable;
 import com.softlink.minitask.shared.Task_Data;
 
 public class TaskListView extends Composite {
@@ -34,7 +34,7 @@ public class TaskListView extends Composite {
 	@UiField
 	HorizontalPanel horMain;
 	private AppConstants appConstants = GWT.create(AppConstants.class);
-	private TableMyTasks gridTaskRecipients = new TableMyTasks(dataGridCss,
+	private MyTasksTable gridTaskRecipients = new MyTasksTable(dataGridCss,
 			cSSImageResource);
 
 	public TaskListView() {
@@ -54,7 +54,7 @@ public class TaskListView extends Composite {
 	private List<Task_Data> allTasks = new ArrayList<Task_Data>();
 
 	private void InitViewAllTasks() {
-		TableAllTasks tableAllTasks = new TableAllTasks(dataGridCss,
+		AllTasksTable tableAllTasks = new AllTasksTable(dataGridCss,
 				cSSImageResource);
 		DataGrid<Task_Data> allTasksDataGrid = tableAllTasks.InitTable();
 		horMain.add(allTasksDataGrid);

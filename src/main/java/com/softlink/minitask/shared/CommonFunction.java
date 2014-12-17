@@ -1,5 +1,8 @@
 package com.softlink.minitask.shared;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.resources.client.ImageResource;
@@ -11,9 +14,14 @@ public class CommonFunction {
 		return (s == null) || (s.trim().length() == 0);
 	}
 
+	static final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 	final int TASK_PRIORITY_LOW = Task_Data.TASK_PRIORITY_LOW;
 	final int TASK_PRIORITY_HIGH = Task_Data.TASK_PRIORITY_HIGH;
 	final int TASK_PRIORITY_MEDIUM = Task_Data.TASK_PRIORITY_MEDIUM;
+
+	public static final List<String> allTaskPriorityText = Arrays.asList(
+			CONSTANTS.TaskPriorityLow(), CONSTANTS.TaskPriorityMedium(),
+			CONSTANTS.TaskPriorityHight());
 	public static final String dateString = "dd-MM-yyyy";
 	public static final DateTimeFormat formatDate = DateTimeFormat
 			.getFormat(dateString);
@@ -39,21 +47,22 @@ public class CommonFunction {
 	final int TASK_STATUS_NEW = Task_Data.TASK_STATUS_NEW;
 	final int TASK_STATUS_WORKING = Task_Data.TASK_STATUS_WORKING;
 	final int TASK_STATUS_FINISHED = Task_Data.TASK_STATUS_FINISHED;
-	final AppConstants appConstants = GWT.create(AppConstants.class);
-
+	public static final List<String> allTaskStatusText = Arrays.asList(
+			CONSTANTS.TaskStatusNew(), CONSTANTS.TaskStatusWorking(),
+			CONSTANTS.TaskStatusFinished());
 	public String getTextTaskStatus(int status) {
 		String stStatus = null;
 		switch (status) {
 		case TASK_STATUS_NEW:
-			stStatus = appConstants.TaskStatusNew();
+			stStatus = CONSTANTS.TaskStatusNew();
 
 			break;
 		case TASK_STATUS_WORKING:
-			stStatus = appConstants.TaskStatusWorking();
+			stStatus = CONSTANTS.TaskStatusWorking();
 
 			break;
 		case TASK_STATUS_FINISHED:
-			stStatus = appConstants.TaskStatusFinished();
+			stStatus = CONSTANTS.TaskStatusFinished();
 
 			break;
 

@@ -20,18 +20,20 @@
 				styleName="background-softGray">
 				<g:at left="5" top="10">
 					<g:Label styleName="{style.zoomOutDes_Obj2} button-greenStyle"
-						width="80px" height="30px" text="Lưu mô tả" horizontalAlignment="ALIGN_CENTER" ui:field="btSave"></g:Label>
+						width="80px" height="30px" horizontalAlignment="ALIGN_CENTER"
+						ui:field="btSave"></g:Label>
 				</g:at>
 				<g:at left="100" top="10">
 					<g:Label styleName="{style.zoomOutDes_Obj2} button-whiteStyle"
-						width="70px" height="30px" text="Làm lại" horizontalAlignment="ALIGN_CENTER" ui:field="btRemake"></g:Label>
+						width="70px" height="30px" horizontalAlignment="ALIGN_CENTER"
+						ui:field="btReload"></g:Label>
 				</g:at>
 				<g:at left="190" top="20">
-					<g:Label text="Hoặc"  />
+					<g:Label ui:field="lbOr" />
 				</g:at>
 				<g:at left="225" top="20">
 					<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link"
-						text="Hủy bỏ" width="50px" ui:field="btCancel" />
+						width="50px" ui:field="btCancel" />
 				</g:at>
 			</g:AbsolutePanel>
 		</g:VerticalPanel>

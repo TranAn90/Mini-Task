@@ -18,12 +18,12 @@ import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.shared.CommonFunction;
 import com.softlink.minitask.shared.Task_Data;
 
-public class TableMyTasks {
+public class MyTasksTable {
 	private DataGrid<Task_Data> gridTasks;
 	private CSSImageResource cSSImageResource;
 	private DataGrid.Resources dataGridCss;
 
-	public TableMyTasks(DataGrid.Resources dataGridCss,
+	public MyTasksTable(DataGrid.Resources dataGridCss,
 			CSSImageResource cSSImageResource) {
 		this.dataGridCss = dataGridCss;
 		this.cSSImageResource = cSSImageResource;
@@ -47,12 +47,6 @@ public class TableMyTasks {
 			@Override
 			public ImageResource getValue(Task_Data object) {
 				return fun.getImgPriority(object, cSSImageResource);
-			}
-
-			@Override
-			public String getCellStyleNames(Context context, Task_Data object) {
-				// TODO Auto-generated method stub
-				return "";
 			}
 
 		};
@@ -111,8 +105,8 @@ public class TableMyTasks {
 			}
 		};
 		gridTasks.addColumn(clNameProject, appConstants.ViewProjectName());
+		
 		// column description
-
 		DateTimeFormat formatDate = CommonFunction.formatDate;
 
 		DateCell dateCell = new DateCell(formatDate);

@@ -18,12 +18,12 @@ import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.shared.CommonFunction;
 import com.softlink.minitask.shared.Task_Data;
 
-public class TableAllTasks {
+public class AllTasksTable {
 	private DataGrid<Task_Data> gridTasks;
 	private CSSImageResource cSSImageResource;
 	private DataGrid.Resources dataGridCss;
 
-	public TableAllTasks(DataGrid.Resources dataGridCss,
+	public AllTasksTable(DataGrid.Resources dataGridCss,
 			CSSImageResource cSSImageResource) {
 		this.dataGridCss = dataGridCss;
 		this.cSSImageResource = cSSImageResource;

@@ -1,5 +1,7 @@
 package com.softlink.minitask.client.view.desktop;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -22,6 +24,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.view.desktop.ui.ZoomOutDescription;
+import com.softlink.minitask.shared.CommonFunction;
 
 public class CreateTaskDialog extends DialogBox {
 
@@ -93,6 +96,7 @@ public class CreateTaskDialog extends DialogBox {
 	}
 
 	private Listener listener;
+	private List<String> allPriorityTask = CommonFunction.allTaskPriorityText;
 
 	public CreateTaskDialog(Listener listener) {
 		setWidget(uiBinder.createAndBindUi(this));
@@ -103,11 +107,26 @@ public class CreateTaskDialog extends DialogBox {
 		center();
 		show();
 		disclosurePanel.setOpen(false);
+		for (String item : allPriorityTask) {
+			priority.addItem(item);
+		}
+		
 
 	}
 
 	@UiHandler("btReload")
 	void onBtReloadClick(ClickEvent event) {
+		ClearData();
+	}
+
+	private void ClearData() {
+		name.setText(null);
+		dueDate.setValue(null);
+		description.setText(null);
+		sendToEmail.setValue(false);
+		security.setValue(false);
+		parentId.setValue(null);
+		tableCC.clear();
 	}
 
 	@UiHandler("btClose")
@@ -131,7 +150,8 @@ public class CreateTaskDialog extends DialogBox {
 	void onBtZoomOutClick(ClickEvent event) {
 		@SuppressWarnings("unused")
 		ZoomOutDescription zoom = new ZoomOutDescription(description.getText(),
-				"Mở rộng mô tả dự án", new ZoomOutDescription.Listener() {
+				CONSTANS.CreateTaskDialogHeaderZoomOutDes(),
+				new ZoomOutDescription.Listener() {
 
 					@Override
 					public void onClickanSave(String description) {
@@ -162,7 +182,8 @@ public class CreateTaskDialog extends DialogBox {
 		btReload.setTitle(CONSTANS.ButtonTitleReload());
 		btSave.setText(CONSTANS.ButtonTextSave());
 		btSaveContinue.setText(CONSTANS.ButtonTextSaveContinue());
-		disclosurePanel.getHeaderTextAccessor().setText(CONSTANS.CreateTaskDialogShowMore());
+		disclosurePanel.getHeaderTextAccessor().setText(
+				CONSTANS.CreateTaskDialogShowMore());
 	}
 
 	@Override

@@ -33,12 +33,13 @@ public interface AppConstants extends Constants {
 	// for project
 	String CreateProjectDialogHeader();
 	String ViewProjectManager();
+	String CreateProjectDialogButtonAddMember();
+	String CreateProjectDialogShowMore();
 	
 	String ViewInitDate();
 	String ViewProjectStartDate();
 	String ViewProjectEndDate();
-	String CreateProjectDialogButtonAddMember();
-	String CreateProjectDialogShowMore();
+	
 	String ButtonTextSave();
 	String ButtonTextSaveContinue();
 	String ButtonTitleReload();
@@ -49,4 +50,13 @@ public interface AppConstants extends Constants {
 	String CreateTaskDialogSendToEmail();
 	String CreateTaskDialogButtonTextAddCC();
 	String CreateTaskDialogShowMore();
+	String ZoomOutDescriptionButtonTextSaveDes();
+	String ZoomOutDescriptionButtonTextReload();
+	String ZoomOutDescriptionLabelTextOr();
+	String ZoomOutDescriptionButtonTextCancel();
+	String CreateProjectDialogHeaderZoomOutDes();
+	String CreateTaskDialogHeaderZoomOutDes();
+	String TaskPriorityLow();
+	String TaskPriorityMedium();
+	String TaskPriorityHight();
 }

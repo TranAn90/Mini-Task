@@ -2,6 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.softlink.minitask.client.view.desktop">
 	<ui:style>
+	@external .organizationpage-Obj3, organizationpage-Obj6, organizationpage-Obj7, organizationpage-Obj14;
 	.organizationpage-Obj1 {
 		border-bottom: 1px solid #dcdcdc;
 	}
@@ -9,7 +10,7 @@
 	.organizationpage-Obj2 {
 		position: relative;
 		top: 80px;
-		margin-left: auto;
+		max-width: 900px;
 	}
 	
 	.organizationpage-Obj3 {
@@ -47,6 +48,7 @@
 		font-weight: 700;
 		font-size: 16px;
 		color: #f6f6f6;
+		text-align: left;
 	}
 	
 	.organizationpage-Obj8 {
@@ -78,48 +80,33 @@
 	}
 	
 	.organizationpage-Obj12 {
-		position: relative;
-		display: block;
-		background: #48b512;
-		background: -webkit-linear-gradient(top, #48b512 0, #3d990f 100%);
-		background: linear-gradient(to bottom, #48b512 0, #3d990f 100%);
-		box-shadow: 0 1px 0 #4d4d4d;
-		color: #fff;
-		margin: auto;
-		margin-top: 8px;
-		border-radius: 3px;
-		cursor: pointer;
-		margin-bottom: 20px;
-	}
-	
-	.organizationpage-Obj12:hover {
-		background: #3A910E;
-	}
-	
-	.organizationpage-Obj13 {
 		line-height: 35px;
 		font-weight: 700;
 		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 		font-size: 16px;
+		margin-bottom: 20px;
+		margin-top: 10px;
 	}
 	
 	.organizationpage-Obj14 {
-		opacity: 0.6;
+		line-height: 30px;
 	}
 	
-	.organizationpage-Obj14:hover {
-		opacity: 1;
+	.organizationpage-Obj15 {
+		width: 60%;
+		margin: auto;
+		padding-top: 20px;
 	}
 	</ui:style>
 	<g:HTMLPanel>
 		<g:HTMLPanel styleName="{style.organizationpage-Obj1} background-softGray"
-			height="250px">
+			height="250px" ui:field="htmlOrganizationForm">
 			<g:Label text="Lựa chọn tổ chức của bạn!"
 				horizontalAlignment="ALIGN_CENTER" styleName="{style.organizationpage-Obj8}" />
 			<center>
-				<g:FlowPanel width="70%" styleName="{style.organizationpage-Obj2}">
+				<g:FlowPanel width="300px" styleName="{style.organizationpage-Obj2}" ui:field="flowOrganizationList">
 					<g:AbsolutePanel height="90px" width="300px"
-						styleName="{style.organizationpage-Obj3}">
+						styleName="{style.organizationpage-Obj3}" ui:field="absOrganizationNew">
 						<g:at left="0" top="0">
 							<g:AbsolutePanel height="100%"
 								styleName="{style.organizationpage-Obj4}" width="90%">
@@ -128,46 +115,48 @@
 										styleName="{style.organizationpage-Obj5}" text="Tạo mới..."
 										width="270px" />
 								</g:at>
+								<g:at left="0" top="0">
+									<g:Anchor width="100%" height="100%" ui:field="btnNewOrganization"/>
+								</g:at>
 							</g:AbsolutePanel>
 						</g:at>
 					</g:AbsolutePanel>
-					<g:AbsolutePanel height="90px"
-						styleName="{style.organizationpage-Obj3}" width="300px">
+					
+					<!-- <g:AbsolutePanel height="90px" styleName="{style.organizationpage-Obj3}" width="300px">
 						<g:at left="0" top="0">
-							<g:AbsolutePanel height="100%"
-								styleName="{style.organizationpage-Obj6}" width="90%">
+							<g:AbsolutePanel height="100%" styleName="{style.organizationpage-Obj6}" width="90%">
 								<g:at left="10" top="5">
-									<g:Label styleName="{style.organizationpage-Obj7}"
-										text="ITPRO" />
+									<g:Label styleName="{style.organizationpage-Obj7}" text="Mini Task " width="180px" height="21px" />
 								</g:at>
-								<g:at left="230" top="4">
-									<g:Image url="resources/eye_inv.png" width="28px"
-										height="28px" styleName="{style.organizationpage-Obj14}" />
+								<g:at left="0" top="0">
+									<g:Anchor width="100%" height="100%" ui:field="anchor"/>
+								</g:at>
+								<g:at left="200" top="52">
+									<g:Label text="Cài đặt" styleName="{style.organizationpage-Obj14} button-greenStyle" width="70px" height="30px" ui:field="btnOrganiztionSetting" visible="false"/>
 								</g:at>
 							</g:AbsolutePanel>
 						</g:at>
-					</g:AbsolutePanel>
+					</g:AbsolutePanel> -->
+					
 				</g:FlowPanel>
 			</center>
 		</g:HTMLPanel>
 
 		<g:HTMLPanel>
-			<g:HTMLPanel styleName="{style.organizationpage-Obj9}"
-				visible="false">
+			<g:HTMLPanel styleName="{style.organizationpage-Obj15}" ui:field="htmlInviteTable"/>
+			<g:HTMLPanel styleName="{style.organizationpage-Obj9}" ui:field="formOrganizationCreate" visible="false">
 				<g:Label text="Tên tổ chức (*)" styleName="{style.organizationpage-Obj10}" />
 				<g:TextBox width="300px"
 					styleName="{style.organizationpage-Obj11} textbox-normalEdit"
-					height="25px" />
+					height="25px" ui:field="txbOrganizationName" />
 				<g:Label text="Mô tả" styleName="{style.organizationpage-Obj10}" />
 				<g:TextArea width="296px"
 					styleName="{style.organizationpage-Obj11} textbox-normalEdit"
-					height="130px" />
-				<g:HTMLPanel styleName="{style.organizationpage-Obj12}"
-					width="140px" height="35px">
-					<g:Label text="Thêm" height="100%" horizontalAlignment="ALIGN_CENTER"
-						styleName="{style.organizationpage-Obj13}" />
-				</g:HTMLPanel>
+					height="155px" ui:field="txbOrganizationDescription" />
+				<g:Label text="Bắt đầu" height="35px" horizontalAlignment="ALIGN_CENTER"
+						styleName="{style.organizationpage-Obj12} button-greenStyle" width="140px" ui:field="btnCreateOrganization" />
 			</g:HTMLPanel>
 		</g:HTMLPanel>
+		
 	</g:HTMLPanel>
 </ui:UiBinder> 

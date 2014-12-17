@@ -9,6 +9,8 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.softlink.minilib.client.rpc.SystemService;
+import com.softlink.minilib.client.rpc.SystemServiceAsync;
 import com.softlink.minitask.client.events.InLoginPageEvent;
 import com.softlink.minitask.client.events.InOrganizationDetailEvent;
 import com.softlink.minitask.client.events.InOrganizationPageEvent;
@@ -33,6 +35,7 @@ public class AppController {
 	}
 	
 	public static final UserRequestAsync userRequest = GWT.create(UserRequest.class);
+	public static final SystemServiceAsync systemService = SystemService.Util.getInstance();
 
 	private void EventManager() {
 		eventBus.addHandler(InLoginPageEvent.TYPE, new InLoginPageEvent.Handler() {
@@ -65,13 +68,13 @@ public class AppController {
 		getUserProfiles();
 	}
 	
-	public static void getUserProfiles() {
+	private void getUserProfiles() {
 		userRequest.getUserProfiles(new AsyncCallback<UserProfiles>() {
 			@Override
 			public void onSuccess(UserProfiles result) {
 				if(result != null) 
 					Storage.userProfiles = result;
-				handlerHistory();
+				handlerHistory();	
 			}
 			@Override
 			public void onFailure(Throwable caught) {
@@ -80,7 +83,7 @@ public class AppController {
 		});
 	}
 	
-	private static void handlerHistory() {
+	private void handlerHistory() {
 		EventBus eventBus = MiniTask.clientFactory.getEventBus();
 		PlaceController placeController = MiniTask.clientFactory.getPlaceController();
 

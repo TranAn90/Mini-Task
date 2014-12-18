@@ -1,0 +1,172 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+	.createTaskDialog_Obj1 {
+		padding: 0 !important;
+		width: 100%;
+	}
+	
+	.createTaskDialog_Obj2 {
+		line-height: 27px !important;
+	}
+	
+	.createTaskDialog_Obj3 {
+		font-weight: bold;
+	}
+	
+	.createTaskDialog_Obj4 {
+		margin-top: 5px;
+	}
+	
+	@external createTaskDialog_checkBox;
+	.createTaskDialog_checkBox {
+		margin-right: 20px;
+	}
+	</ui:style>
+	<g:HTMLPanel styleName="frame-grayDialog" width="600px">
+		<g:VerticalPanel styleName="{style.createTaskDialog_Obj1}">
+			<g:AbsolutePanel width="100%" height="50px"
+				styleName="background-softGray">
+				<g:at left="12" top="15">
+					<g:Label styleName="font-blackNormalHeader" ui:field="headerText" />
+				</g:at>
+				<g:at left="530" top="20">
+					<g:Image width="22px" height="18px" url="resources/refresh.png" ui:field="btReload" />
+				</g:at>
+				<g:at left="560" top="20">
+					<g:Image width="22px" height="18px" url="resources/close.png" ui:field="btClose" />
+				</g:at>
+			</g:AbsolutePanel>
+			<g:ScrollPanel height="100%" width="100%">
+				<g:VerticalPanel height="100%" width="100%">
+					<g:AbsolutePanel height="195px">
+						<g:at left="25" top="20">
+							<g:Label styleName="font-blackTitleNormal"
+								width="90px" ui:field="lbName" />
+						</g:at>
+						<g:at left="117" top="12">
+							<g:TextBox width="450px" styleName="textbox-normalEdit"
+								ui:field="name" height="20px" />
+						</g:at>
+						<g:at left="25" top="60">
+							<g:Label styleName="font-blackTitleNormal"
+								width="90px" ui:field="lbRecipient" />
+						</g:at>
+						<g:at left="117" top="52">
+							<g:ListBox visibleItemCount="0" width="200px"
+								styleName="textbox-normalEdit" height="25px" ui:field="recipient" />
+						</g:at>
+						<g:at left="347" top="60">
+							<g:Label styleName="font-blackTitleNormal"
+								width="60px" ui:field="lbDueDate" />
+						</g:at>
+						<g:at left="417" top="52">
+							<p1:DateBox width="150px" styleName="textbox-normalEdit"
+								ui:field="dueDate" height="20px" />
+						</g:at>
+
+						<g:at left="25" top="100">
+							<g:Label styleName="font-blackTitleNormal"
+								width="90px" ui:field="lbProjectName" />
+						</g:at>
+						<g:at left="117" top="92">
+							<g:ListBox visibleItemCount="0" width="200px"
+								styleName="textbox-normalEdit" height="25px" ui:field="nameProject" />
+						</g:at>
+
+						<g:at left="25" top="147">
+							<g:Label styleName="font-blackTitleNormal"
+								width="90px" ui:field="lbDescription" />
+						</g:at>
+						<g:at left="117" top="132">
+							<g:RichTextArea width="448px" height="50px"
+								styleName="textbox-normalEdit" ui:field="description" />
+						</g:at>
+						<g:at left="570" top="147">
+							<g:Image width="20px" height="20px"
+								url="resources/zoom_out.png" ui:field="btZoomOut" />
+						</g:at>
+						<g:at left="347" top="100">
+							<g:Label width="70px" height="16px" styleName="font-blackTitleNormal" ui:field="lbSubProject" />
+						</g:at>
+						<g:at left="417" top="92">
+							<g:ListBox width="150px" height="25px" styleName="textbox-normalEdit"
+								visibleItemCount="0" ui:field="namePhase" />
+						</g:at>
+					</g:AbsolutePanel>
+					<g:DisclosurePanel open="true" width="100%"
+						height="100%" ui:field="disclosurePanel">
+						<g:header></g:header>
+
+						<g:VerticalPanel width="100%" height="100%"
+							spacing="5">
+							<g:AbsolutePanel width="100%" height="75px">
+								<g:at left="0" top="10">
+									<g:Label styleName="font-blackTitleNormal" ui:field="lbStatus" />
+								</g:at>
+								<g:at left="300" top="10">
+									<g:Label width="55px" styleName="font-blackTitleNormal" ui:field="lbPriority" />
+								</g:at>
+								<g:at left="0" top="50">
+									<g:Label width="50px" styleName="font-blackTitleNormal" ui:field="lbParentId" />
+								</g:at>
+
+								 
+								<g:at left="96" top="2">
+									<g:ListBox width="120px" visibleItemCount="0"
+										styleName="textbox-normalEdit" height="25px" ui:field="status" />
+								</g:at>
+								<g:at left="365" top="2">
+									<g:ListBox width="120px" visibleItemCount="0"
+										styleName="textbox-normalEdit" height="25px" ui:field="priority" />
+								</g:at>
+								<g:at left="96" top="92">
+									<g:ListBox width="400px" visibleItemCount="0"
+										styleName="normal_textbox" height="25px" visible="false" />
+								</g:at>
+								<g:at left="267" top="48">
+									<g:CheckBox styleName="font-blackTitleNormal"
+										width="90px" ui:field="security" />
+								</g:at>
+								<g:at left="378" top="48">
+									<g:CheckBox styleName="font-blackTitleNormal"
+										ui:field="sendToEmail" />
+								</g:at>
+								<g:at left="96" top="40">
+									<g:TextBox width="120px" styleName="textbox-normalEdit"
+										ui:field="parentId" height="20px" />
+								</g:at>
+							</g:AbsolutePanel>
+							<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link"
+								text="Thêm người theo dõi công việc" ui:field="btAddCC" />
+
+							<g:FlowPanel width="90%" height="100%" ui:field="tableCC" />
+						</g:VerticalPanel>
+
+
+					</g:DisclosurePanel>
+				</g:VerticalPanel>
+			</g:ScrollPanel>
+			<g:AbsolutePanel width="100%" height="40px"
+				styleName="background-softGray">
+				<g:at left="10" top="5">
+					<g:Label styleName="{style.createTaskDialog_Obj2} button-greenStyle"
+						width="60px" height="30px" text="Lưu" horizontalAlignment="ALIGN_CENTER"
+						ui:field="btSave"></g:Label>
+				</g:at>
+				<g:at left="85" top="5">
+					<g:Label styleName="{style.createTaskDialog_Obj2} button-whiteStyle"
+						width="100px" height="30px" text="Lưu và thêm"
+						horizontalAlignment="ALIGN_CENTER" ui:field="btSaveContinue"></g:Label>
+				</g:at>
+				<!-- <g:at left="232" top="20"> <g:Label visible="false">Hoặc</g:Label> 
+					</g:at> <g:at left="268" top="16"> <g:Anchor horizontalAlignment="ALIGN_CENTER" 
+					styleName="button_link" text="Hủy bỏ" ui:field="btCancel" visible="false" 
+					/> </g:at> -->
+			</g:AbsolutePanel>
+
+		</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,4 +1,18 @@
+
 .clean {}
+
+/** Frame Style */
+.frame-grayDialog {
+	border: 10px solid #f1f1f1;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	background-color: white;
+	position: relative
+}
+
+.frame_dialogBoxClean {
+	
+}
 
 /** Font Style */
 .font-whiteBigHeader {
@@ -27,6 +41,12 @@
 	font-size: 16px;
 }
 
+.font-blackTitleNormal {
+	font-weight: 700;
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
 .font-whiteTitle {
 	font-weight: 700;
 	font-size: 16px;
@@ -51,10 +71,29 @@
 	margin: auto;
 	border-radius: 3px;
 	cursor: pointer;
+	border-radius: 3px;
 }
 
 .button-greenStyle:hover {
 	background: #3A910E;
+}
+
+.button-redStyle {
+	position: relative;
+	display: block;
+	background: #c02c2c;
+	background: -webkit-linear-gradient(top, #48b512 0, #3d990f 100%);
+	background: linear-gradient(to bottom, #48b512 0, #3d990f 100%);
+	box-shadow: 0 1px 0 #4d4d4d;
+	color: #fff;
+	margin: auto;
+	border-radius: 3px;
+	cursor: pointer;
+	padding: 4px;
+}
+
+.button-redStyle:HOVER {
+	background: #c02c2c;
 }
 
 .button-whiteStyle {
@@ -106,6 +145,11 @@
 	background-color: #0D689E;
 }
 
+.button-link {
+	cursor: pointer;
+	font-weight: bold;
+}
+
 /** Textbox Style */
 .textbox-normalEdit {
 	text-indent: 4px;
@@ -121,6 +165,11 @@
 
 .background-softGray {
 	background-color: #f0f0f0;
+}
+
+/**css for table*/
+.grid-TaskStatus {
+	text-align: center;
 }
 
 /** Overriding gwt-Tabbar */

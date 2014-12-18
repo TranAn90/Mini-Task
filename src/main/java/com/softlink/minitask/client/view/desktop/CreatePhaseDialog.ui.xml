@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	
+	.createProjectDialog_Obj2 {
+		line-height: 27px !important;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:AbsolutePanel height="154px">
+			<g:at left="20" top="20">
+				<g:Label text="Giai đoạn" styleName="font-blackTitleNormal" ui:field="lbSubProject" />
+			</g:at>
+			<g:at left="120" top="4">
+				<g:TextBox width="350px" ui:field="subProject" />
+			</g:at>
+			<g:at left="20" top="70">
+				<g:Label text="Ngày bắt đầu" styleName="font-blackTitleNormal" ui:field="lbStartDate" />
+			</g:at>
+			<g:at left="120" top="57">
+				<p1:DateBox width="100px" ui:field="startDate" />
+			</g:at>
+			<g:at left="286" top="70">
+				<g:Label width="62px" height="16px" styleName="font-blackTitleNormal"
+					text="Thời hạn" ui:field="lbEndDate" />
+			</g:at>
+			<g:at left="370" top="54">
+				<p1:DateBox width="100px" ui:field="endDate" />
+			</g:at>
+			<g:at left="20" top="110">
+				<g:Label text="Lưu"
+					styleName="{style.createProjectDialog_Obj2} button-greenStyle"
+					width="60px" horizontalAlignment="ALIGN_CENTER" height="30px" ui:field="btSave" />
+			</g:at>
+			<g:at left="88" top="122">
+				<g:Label text="Hoặc" ui:field="lbOr" />
+			</g:at>
+			<g:at left="120" top="122">
+				<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link"
+					width="50px" ui:field="btCancel" text="Hủy bỏ" />
+			</g:at>
+		</g:AbsolutePanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

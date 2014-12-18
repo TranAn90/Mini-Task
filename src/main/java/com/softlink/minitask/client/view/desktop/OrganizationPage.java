@@ -25,24 +25,42 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.softlink.minilib.shared.Invite_Token;
 import com.softlink.minilib.shared.System_Organization;
+import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.view.OrganizationPageInf;
 
-public class OrganizationPage extends Composite implements OrganizationPageInf{
+public class OrganizationPage extends Composite implements OrganizationPageInf {
 
 	private static OrganizationPageUiBinder uiBinder = GWT
 			.create(OrganizationPageUiBinder.class);
-	
-	@UiField HTMLPanel formOrganizationCreate;
-	@UiField Anchor btnNewOrganization;
-	@UiField TextBox txbOrganizationName;
-	@UiField TextArea txbOrganizationDescription;
-	@UiField Label btnCreateOrganization;
-	@UiField FlowPanel flowOrganizationList;
-	@UiField HTMLPanel htmlOrganizationForm;
-	@UiField AbsolutePanel absOrganizationNew;
-	@UiField HTMLPanel htmlInviteTable;
-	
+
+	@UiField
+	HTMLPanel formOrganizationCreate;
+	@UiField
+	Anchor btnNewOrganization;
+	@UiField
+	TextBox txbOrganizationName;
+	@UiField
+	TextArea txbOrganizationDescription;
+	@UiField
+	Label btnCreateOrganization;
+	@UiField
+	FlowPanel flowOrganizationList;
+	@UiField
+	HTMLPanel htmlOrganizationForm;
+	@UiField
+	AbsolutePanel absOrganizationNew;
+	@UiField
+	HTMLPanel htmlInviteTable;
+	@UiField
+	Label lbOptionOrganization;
+	@UiField
+	Label lbCreate;
+	@UiField
+	Label lbNameOr;
+	@UiField
+	Label lbDescription;
+
 	private Presenter presenter;
 	private List<System_Organization> organizationList;
 
@@ -52,8 +70,9 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 
 	public OrganizationPage() {
 		initWidget(uiBinder.createAndBindUi(this));
+		SetTextForm();
 	}
-	
+
 	AbsolutePanel renderOrganizationUI(final System_Organization organization) {
 		AbsolutePanel organizationUI = new AbsolutePanel();
 		organizationUI.setSize("300px", "90px");
@@ -61,7 +80,7 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 		AbsolutePanel organizationUI1 = new AbsolutePanel();
 		organizationUI1.setSize("90%", "100%");
 		organizationUI1.setStyleName("organizationpage-Obj6");
-		organizationUI.add(organizationUI1 , 0, 0);
+		organizationUI.add(organizationUI1, 0, 0);
 		final Label lbOrganizationName = new Label(organization.getName());
 		lbOrganizationName.setSize("240px", "21px");
 		lbOrganizationName.setStyleName("organizationpage-Obj7");
@@ -69,52 +88,54 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 		Anchor btnOrganization = new Anchor();
 		btnOrganization.setSize("100%", "100%");
 		organizationUI1.add(btnOrganization, 0, 0);
-		final Label btnOrganiztionSetting = new Label("Cài đặt");
+		final Label btnOrganiztionSetting = new Label(
+				CONSTANTS.ButtonTextSetting());
 		btnOrganiztionSetting.setSize("70px", "30px");
 		btnOrganiztionSetting.setVisible(false);
-		btnOrganiztionSetting.setStyleName("organizationpage-Obj14 button-greenStyle");
+		btnOrganiztionSetting
+				.setStyleName("organizationpage-Obj14 button-greenStyle");
 		organizationUI1.add(btnOrganiztionSetting, 200, 60);
-		//Event handler
+		// Event handler
 		btnOrganization.addMouseOverHandler(new MouseOverHandler() {
-			
+
 			@Override
 			public void onMouseOver(MouseOverEvent event) {
 				btnOrganiztionSetting.setVisible(true);
 			}
 		});
 		btnOrganization.addMouseOutHandler(new MouseOutHandler() {
-			
+
 			@Override
 			public void onMouseOut(MouseOutEvent event) {
 				btnOrganiztionSetting.setVisible(false);
 			}
 		});
 		btnOrganization.addClickHandler(new ClickHandler() {
-			
+
 			@Override
 			public void onClick(ClickEvent event) {
 				Window.alert("Go To " + lbOrganizationName.getText());
 			}
 		});
 		btnOrganiztionSetting.addMouseOverHandler(new MouseOverHandler() {
-			
+
 			@Override
 			public void onMouseOver(MouseOverEvent event) {
 				btnOrganiztionSetting.setVisible(true);
 			}
 		});
 		btnOrganiztionSetting.addMouseOutHandler(new MouseOutHandler() {
-			
+
 			@Override
 			public void onMouseOut(MouseOutEvent event) {
 				btnOrganiztionSetting.setVisible(false);
 			}
 		});
 		btnOrganiztionSetting.addClickHandler(new ClickHandler() {
-			
+
 			@Override
 			public void onClick(ClickEvent event) {
-				if(presenter != null)
+				if (presenter != null)
 					presenter.goToOrganizationDetail(organization);
 			}
 		});
@@ -129,14 +150,14 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 		txbOrganizationDescription.setText("");
 		Window.scrollTo(0, Window.getClientHeight());
 	}
-	
+
 	@UiHandler("btnCreateOrganization")
 	void onBtnCreateOrganizationClick(ClickEvent event) {
 		System_Organization organization = new System_Organization();
 		organization.setName(txbOrganizationName.getText());
 		organization.setDescription(txbOrganizationDescription.getText());
 		organization.setAdmin(Storage.getUserProfiles().getEmail());
-		if(presenter != null)
+		if (presenter != null)
 			presenter.doCreateOrganization(organization);
 	}
 
@@ -148,19 +169,20 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 	@Override
 	public void setOrganizationList(List<System_Organization> organizationList) {
 		this.organizationList = organizationList;
-		if(this.organizationList == null) {
+		if (this.organizationList == null) {
 			htmlOrganizationForm.setHeight("250px");
 			flowOrganizationList.setWidth("300px");
-		}
-		else {
-			String htmlHeight = (250 + (this.organizationList.size() / 3) * 90) + "px";
-			String flowWidth = (300 + this.organizationList.size() * 300) + "px";
+		} else {
+			String htmlHeight = (250 + (this.organizationList.size() / 3) * 90)
+					+ "px";
+			String flowWidth = (300 + this.organizationList.size() * 300)
+					+ "px";
 			flowOrganizationList.setWidth(flowWidth);
 			htmlOrganizationForm.setHeight(htmlHeight);
 		}
 		flowOrganizationList.clear();
 		flowOrganizationList.add(absOrganizationNew);
-		for(System_Organization o: this.organizationList)
+		for (System_Organization o : this.organizationList)
 			flowOrganizationList.add(renderOrganizationUI(o));
 	}
 
@@ -168,12 +190,14 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 	public void clear() {
 		formOrganizationCreate.setVisible(false);
 	}
-	
+
 	HTMLPanel renderInviteRowUI(final Invite_Token token) {
 		HTMLPanel InviteRowUi = new HTMLPanel("");
 		InviteRowUi.setHeight("60px");
 		InviteRowUi.setStyleName("OrganizationDetail-Obj12");
-		Label inviteLabel = new Label("Bạn đã nhận được lời mời tham gia tổ chức " + token.getOrganizationName() + " - " + token.getOrganizationAdmin());
+		Label inviteLabel = new Label(CONSTANTS.OrganizationPagelbInvite()
+				+ token.getOrganizationName() + " - "
+				+ token.getOrganizationAdmin());
 		inviteLabel.setWidth("70%");
 		inviteLabel.setStyleName("OrganizationDetail-Obj14 font-blackTitle");
 		InviteRowUi.add(inviteLabel);
@@ -181,19 +205,19 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 		controlPanel.setHeight("35px");
 		controlPanel.setStyleName("OrganizationDetail-Obj15");
 		InviteRowUi.add(controlPanel);
-		Label acceptInvite = new Label("Tham gia");
+		Label acceptInvite = new Label(CONSTANTS.OrganizationDetailLbJoin());
 		acceptInvite.setSize("90px", "35px");
 		acceptInvite.setStyleName("OrganizationDetail-Obj16 button-whiteStyle");
 		controlPanel.add(acceptInvite);
-		Label denyInvite = new Label("Bỏ qua");
+		Label denyInvite = new Label(CONSTANTS.OrganizationPagelbdenyInvite());
 		denyInvite.setSize("90px", "35px");
 		denyInvite.setStyleName("OrganizationDetail-Obj16 button-whiteStyle");
 		controlPanel.add(denyInvite);
-		//Event handler
+		// Event handler
 		acceptInvite.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				if(presenter != null)
+				if (presenter != null)
 					presenter.doAcceptInviteToken(token);
 			}
 		});
@@ -203,10 +227,23 @@ public class OrganizationPage extends Composite implements OrganizationPageInf{
 	@Override
 	public void setInviteTokenList(List<Invite_Token> inviteTokenList) {
 		htmlInviteTable.clear();
-		if(inviteTokenList != null) {
-			for(Invite_Token token: inviteTokenList)
+		if (inviteTokenList != null) {
+			for (Invite_Token token : inviteTokenList)
 				htmlInviteTable.add(renderInviteRowUI(token));
 		}
 	}
-	
+
+	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
+
+	protected void SetTextForm() {
+		lbOptionOrganization.setText(CONSTANTS
+				.OrganizationPagelbOptionOrganization());
+		lbCreate.setText(CONSTANTS.OrganizationPagelbCreate());
+		lbNameOr.setText(CONSTANTS.OrganizationDetailLbNameOrganization());
+		lbDescription.setText(CONSTANTS.ViewDescription());
+		btnCreateOrganization.setText(CONSTANTS
+				.OrganizationPagebtTextCreateOrganization());
+
+	}
+
 }

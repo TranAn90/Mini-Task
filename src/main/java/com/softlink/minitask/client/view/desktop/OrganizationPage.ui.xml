@@ -101,8 +101,8 @@
 	<g:HTMLPanel>
 		<g:HTMLPanel styleName="{style.organizationpage-Obj1} background-softGray"
 			height="250px" ui:field="htmlOrganizationForm">
-			<g:Label text="Lựa chọn tổ chức của bạn!"
-				horizontalAlignment="ALIGN_CENTER" styleName="{style.organizationpage-Obj8}" />
+			<g:Label
+				horizontalAlignment="ALIGN_CENTER" styleName="{style.organizationpage-Obj8}" ui:field="lbOptionOrganization" />
 			<center>
 				<g:FlowPanel width="300px" styleName="{style.organizationpage-Obj2}" ui:field="flowOrganizationList">
 					<g:AbsolutePanel height="90px" width="300px"
@@ -112,8 +112,8 @@
 								styleName="{style.organizationpage-Obj4}" width="90%">
 								<g:at left="0" top="30">
 									<g:Label height="18px" horizontalAlignment="ALIGN_CENTER"
-										styleName="{style.organizationpage-Obj5}" text="Tạo mới..."
-										width="270px" />
+										styleName="{style.organizationpage-Obj5}"
+										width="270px" ui:field="lbCreate" />
 								</g:at>
 								<g:at left="0" top="0">
 									<g:Anchor width="100%" height="100%" ui:field="btnNewOrganization"/>
@@ -145,15 +145,15 @@
 		<g:HTMLPanel>
 			<g:HTMLPanel styleName="{style.organizationpage-Obj15}" ui:field="htmlInviteTable"/>
 			<g:HTMLPanel styleName="{style.organizationpage-Obj9}" ui:field="formOrganizationCreate" visible="false">
-				<g:Label text="Tên tổ chức (*)" styleName="{style.organizationpage-Obj10}" />
+				<g:Label styleName="{style.organizationpage-Obj10}" ui:field="lbNameOr" />
 				<g:TextBox width="300px"
 					styleName="{style.organizationpage-Obj11} textbox-normalEdit"
 					height="25px" ui:field="txbOrganizationName" />
-				<g:Label text="Mô tả" styleName="{style.organizationpage-Obj10}" />
+				<g:Label styleName="{style.organizationpage-Obj10}" ui:field="lbDescription" />
 				<g:TextArea width="296px"
 					styleName="{style.organizationpage-Obj11} textbox-normalEdit"
 					height="155px" ui:field="txbOrganizationDescription" />
-				<g:Label text="Bắt đầu" height="35px" horizontalAlignment="ALIGN_CENTER"
+				<g:Label height="35px" horizontalAlignment="ALIGN_CENTER"
 						styleName="{style.organizationpage-Obj12} button-greenStyle" width="140px" ui:field="btnCreateOrganization" />
 			</g:HTMLPanel>
 		</g:HTMLPanel>

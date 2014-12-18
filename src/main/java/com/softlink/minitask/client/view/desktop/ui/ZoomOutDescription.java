@@ -71,7 +71,7 @@ public class ZoomOutDescription extends DialogBox {
 			.create(AppConstants.class);
 
 	protected void InitForm() {
-		btCancel.setText(CONSTANTS.ZoomOutDescriptionButtonTextCancel());
+		btCancel.setText(CONSTANTS.ButtonTextCancel());
 		btReload.setText(CONSTANTS.ZoomOutDescriptionButtonTextReload());
 		btSave.setText(CONSTANTS.ZoomOutDescriptionButtonTextSaveDes());
 		lbOr.setText(CONSTANTS.ZoomOutDescriptionLabelTextOr());

@@ -9,14 +9,22 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.view.LoginPageInf;
+import com.google.gwt.user.client.ui.Label;
 
-public class LoginPage extends Composite implements LoginPageInf{
+public class LoginPage extends Composite implements LoginPageInf {
 
 	private static LoginPageUiBinder uiBinder = GWT
 			.create(LoginPageUiBinder.class);
-	
-	@UiField Anchor btnLogin;
+
+	@UiField
+	Anchor btnLogin;
+	@UiField
+	Label lbWelcome;
+	@UiField
+	Label lbStart;
+	@UiField Label lbLogin;
 	String loginUrl;
 
 	interface LoginPageUiBinder extends UiBinder<Widget, LoginPage> {
@@ -24,6 +32,15 @@ public class LoginPage extends Composite implements LoginPageInf{
 
 	public LoginPage() {
 		initWidget(uiBinder.createAndBindUi(this));
+		SetTextForm();
+	}
+
+	final AppConstants CONSTANTS = GWT.create(AppConstants.class);
+
+	protected void SetTextForm() {
+		lbWelcome.setText(CONSTANTS.LoginPagelbWelcome());
+		lbStart.setText(CONSTANTS.LoginPagelbStart());
+		lbLogin.setText( CONSTANTS.LoginPagelbLogin());
 	}
 
 	@Override

@@ -3,8 +3,10 @@ package com.softlink.minitask.client.view.desktop;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.softlink.minitask.client.MiniTask;
 import com.softlink.minitask.client.view.ContainerInf;
@@ -14,35 +16,44 @@ public class Container extends Composite implements ContainerInf {
 	private static ContainerUiBinder uiBinder = GWT
 			.create(ContainerUiBinder.class);
 	
-	@UiField HTMLPanel container;
-	
-	private Header header = new Header();
+	@UiField DockLayoutPanel container;
+	Header header = new Header();
+	ScrollPanel scrollAbleContent = new ScrollPanel();
 
 	interface ContainerUiBinder extends UiBinder<Widget, Container> {
 	}
 
 	public Container() {
 		initWidget(uiBinder.createAndBindUi(this));
+		container.setHeight(Window.getClientHeight() + "px");
+	}
+	
+	void clearContent() {
+		container.clear();
+		scrollAbleContent.clear();
 	}
 
 	@Override
 	public void inLoginPage() {
-		container.clear();
-		container.add(MiniTask.clientFactory.getLoginPage());
+		clearContent();
+		container.add(scrollAbleContent);
+		scrollAbleContent.add(MiniTask.clientFactory.getLoginPage());
 	}
 
 	@Override
 	public void inOrganizationPage() {
-		container.clear();
-		container.add(header);
-		container.add(MiniTask.clientFactory.getOrganizationPage());
+		clearContent();
+		container.addNorth(header, 40);
+		container.add(scrollAbleContent);
+		scrollAbleContent.add(MiniTask.clientFactory.getOrganizationPage());
 	}
 
 	@Override
 	public void inOrganizationDetail() {
-		container.clear();
-		container.add(header);
-		container.add(MiniTask.clientFactory.getOrganizationDetail());
+		clearContent();
+		container.addNorth(header, 40);
+		container.add(scrollAbleContent);
+		scrollAbleContent.add(MiniTask.clientFactory.getOrganizationDetail());
 	}
 
 }

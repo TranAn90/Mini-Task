@@ -64,8 +64,8 @@
 			height="30px">
 			<g:Image url="resources/evolution_tasks.png" height="24px"
 				styleName="{style.header-Obj4}" />
-			<g:Label text="Mini Task" styleName="{style.header-Obj3}"
-				height="30px" />
+			<g:Label styleName="{style.header-Obj3}"
+				height="30px" ui:field="lbNameApp" />
 		</g:HorizontalPanel>
 		<g:HorizontalPanel height="30px"
 			styleName="{style.header-Obj5} button-blueMenu">

@@ -17,40 +17,68 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.softlink.minilib.shared.System_Organization;
+import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.view.OrganizationDetailInf;
 
-public class OrganizationDetail extends Composite implements OrganizationDetailInf{
+public class OrganizationDetail extends Composite implements
+		OrganizationDetailInf {
 
 	private static CompanyDetailUiBinder uiBinder = GWT
 			.create(CompanyDetailUiBinder.class);
-	
-	@UiField Label lbOrganizationName;
-	@UiField TabPanel tabOrganizationSetting;
-	@UiField TextBox txbOrganizationName;
-	@UiField TextArea txbOrganizationDetail;
-	@UiField Anchor btnBackOrganizationPage;
-	@UiField Anchor btnGoToOrganization;
-	@UiField HTMLPanel htmlUserTable;
-	@UiField HTMLPanel htmlAddUser;
-	@UiField Anchor btnAddUser;
-	@UiField AbsolutePanel absAddUserForm;
-	@UiField TextBox txbInviteUser;
-	@UiField Label btnInviteUser;
-	
+
+	@UiField
+	Label lbOrganizationName;
+	@UiField
+	TabPanel tabOrganizationSetting;
+	@UiField
+	TextBox txbOrganizationName;
+	@UiField
+	TextArea txbOrganizationDetail;
+	@UiField
+	Anchor btnBackOrganizationPage;
+	@UiField
+	Anchor btnGoToOrganization;
+	@UiField
+	HTMLPanel htmlUserTable;
+	@UiField
+	HTMLPanel htmlAddUser;
+	@UiField
+	Anchor btnAddUser;
+	@UiField
+	AbsolutePanel absAddUserForm;
+	@UiField
+	TextBox txbInviteUser;
+	@UiField
+	Label btnInviteUser;
+	@UiField
+	Label lbBack;
+	@UiField
+	Label lbNameOrganization;
+	@UiField
+	Label lbDescription;
+	@UiField
+	Label btSave;
+	@UiField
+	Label lbJoin;
+	@UiField
+	Label lbAddUser;
+
 	private System_Organization organization;
 	private boolean isAdmin;
 	private Presenter presenter;
 
-	interface CompanyDetailUiBinder extends UiBinder<Widget, OrganizationDetail> {
+	interface CompanyDetailUiBinder extends
+			UiBinder<Widget, OrganizationDetail> {
 	}
 
 	public OrganizationDetail() {
 		initWidget(uiBinder.createAndBindUi(this));
 		tabOrganizationSetting.selectTab(0);
 		txbInviteUser.getElement().setPropertyString("placeholder", "Email");
+		SetTextForm();
 	}
-	
+
 	HTMLPanel renderAdminRowUI(String admin) {
 		HTMLPanel AdminRowUi = new HTMLPanel("");
 		AdminRowUi.setHeight("60px");
@@ -62,12 +90,12 @@ public class OrganizationDetail extends Composite implements OrganizationDetailI
 		controlPanel.setHeight("35px");
 		controlPanel.setStyleName("OrganizationDetail-Obj15");
 		AdminRowUi.add(controlPanel);
-		Label adminRole = new Label("Quản trị");
+		Label adminRole = new Label(CONSTANTS.UserRoleAdmin());
 		adminRole.setStyleName("OrganizationDetail-Obj16 font-grayTitle");
 		controlPanel.add(adminRole);
 		return AdminRowUi;
 	}
-	
+
 	HTMLPanel renderUserRowUI(String user) {
 		HTMLPanel UserRowUi = new HTMLPanel("");
 		UserRowUi.setHeight("60px");
@@ -79,23 +107,25 @@ public class OrganizationDetail extends Composite implements OrganizationDetailI
 		controlPanel.setHeight("35px");
 		controlPanel.setStyleName("OrganizationDetail-Obj15");
 		UserRowUi.add(controlPanel);
-		Label userRoleStatic = new Label("Thành viên");
+		Label userRoleStatic = new Label(
+				CONSTANTS.OrganizationDetailTabNameMember());
 		userRoleStatic.setStyleName("OrganizationDetail-Obj16 font-grayTitle");
-		Label userRoleControl = new Label("Thành viên");
+		Label userRoleControl = new Label(
+				CONSTANTS.OrganizationDetailTabNameMember());
 		userRoleControl.setSize("90px", "35px");
-		userRoleControl.setStyleName("OrganizationDetail-Obj16 button-whiteStyle");
+		userRoleControl
+				.setStyleName("OrganizationDetail-Obj16 button-whiteStyle");
 		Label removeUser = new Label();
 		removeUser.setSize("90px", "35px");
 		removeUser.setStyleName("OrganizationDetail-Obj16 button-whiteStyle");
-		if(isAdmin) {
-			removeUser.setText("Xóa");
+		if (isAdmin) {
+			removeUser.setText(CONSTANTS.ButtonTextRemove());
 			controlPanel.add(userRoleControl);
 			controlPanel.add(removeUser);
-		}
-		else {
-			removeUser.setText("Rời khỏi");
+		} else {
+			removeUser.setText(CONSTANTS.OrganizationDetailbtRemoveTextLeave());
 			controlPanel.add(userRoleStatic);
-			if(Storage.getUserProfiles().getEmail().equals(user))
+			if (Storage.getUserProfiles().getEmail().equals(user))
 				controlPanel.add(removeUser);
 		}
 		return UserRowUi;
@@ -112,13 +142,13 @@ public class OrganizationDetail extends Composite implements OrganizationDetailI
 		controlPanel.setHeight("35px");
 		controlPanel.setStyleName("OrganizationDetail-Obj15");
 		InviteRowUi.add(controlPanel);
-		Label inviteRole = new Label("Đang chờ tham gia");
+		Label inviteRole = new Label(CONSTANTS.OrganizationDetaillbWaitingJoin());
 		inviteRole.setStyleName("OrganizationDetail-Obj16 font-grayTitle");
 		controlPanel.add(inviteRole);
-		Label removeInvite = new Label("Xóa");
+		Label removeInvite = new Label(CONSTANTS.ButtonTextRemove());
 		removeInvite.setSize("90px", "35px");
 		removeInvite.setStyleName("OrganizationDetail-Obj16 button-whiteStyle");
-		if(isAdmin) 
+		if (isAdmin)
 			controlPanel.add(removeInvite);
 		return InviteRowUi;
 	}
@@ -130,27 +160,27 @@ public class OrganizationDetail extends Composite implements OrganizationDetailI
 		txbOrganizationName.setText(organization.getName());
 		txbOrganizationDetail.setText(organization.getDescription());
 		txbInviteUser.setText("");
-		if(organization.getAdmin().equals(Storage.getUserProfiles().getEmail()))
+		if (organization.getAdmin()
+				.equals(Storage.getUserProfiles().getEmail()))
 			isAdmin = true;
-		else 
+		else
 			isAdmin = false;
 		htmlUserTable.clear();
-		if(isAdmin) {
+		if (isAdmin) {
 			htmlUserTable.add(htmlAddUser);
 			txbOrganizationName.setEnabled(true);
 			txbOrganizationDetail.setEnabled(true);
-		}
-		else {
+		} else {
 			txbOrganizationName.setEnabled(false);
 			txbOrganizationDetail.setEnabled(false);
 		}
 		htmlUserTable.add(renderAdminRowUI(organization.getAdmin()));
-		if(organization.getUserList() != null) {
-			for(String user: organization.getUserList())
+		if (organization.getUserList() != null) {
+			for (String user : organization.getUserList())
 				htmlUserTable.add(renderUserRowUI(user));
 		}
-		if(organization.getInviteList() != null) {
-			for(String invite: organization.getInviteList())
+		if (organization.getInviteList() != null) {
+			for (String invite : organization.getInviteList())
 				htmlUserTable.add(renderInviteRowUI(invite));
 		}
 	}
@@ -164,22 +194,22 @@ public class OrganizationDetail extends Composite implements OrganizationDetailI
 	void onBtnGoToOrganizationClick(ClickEvent event) {
 		Window.alert("Go To " + organization.getName());
 	}
-	
+
 	@UiHandler("btnBackOrganizationPage")
 	void onBtnBackOrganizationPageClick(ClickEvent event) {
-		if(presenter != null)
+		if (presenter != null)
 			presenter.goToOrganizationPage();
 	}
-	
+
 	@UiHandler("btnAddUser")
 	void onBtnAddUserClick(ClickEvent event) {
 		absAddUserForm.setVisible(true);
 		txbInviteUser.setFocus(true);
 	}
-	
+
 	@UiHandler("btnInviteUser")
 	void onBtnInviteUserClick(ClickEvent event) {
-		if(presenter != null)
+		if (presenter != null)
 			presenter.doInviteUser(txbInviteUser.getText(), organization);
 	}
 
@@ -187,5 +217,22 @@ public class OrganizationDetail extends Composite implements OrganizationDetailI
 	public void clear() {
 		tabOrganizationSetting.selectTab(0);
 		absAddUserForm.setVisible(false);
+	}
+
+	final AppConstants CONSTANTS = GWT.create(AppConstants.class);
+
+	protected void SetTextForm() {
+		lbBack.setText(CONSTANTS.ButtonTextBack());
+		lbNameOrganization.setText(CONSTANTS
+				.OrganizationDetailLbNameOrganization());
+		lbDescription.setText(CONSTANTS.ViewDescription());
+		tabOrganizationSetting.getTabBar().setTabText(0,
+				CONSTANTS.OrganizationDetailTabNameInformation());
+		tabOrganizationSetting.getTabBar().setTabText(1,
+				CONSTANTS.OrganizationDetailTabNameMember());
+		btSave.setText(CONSTANTS.ButtonTextSave());
+		lbAddUser.setText(CONSTANTS.OrganizationDetailLbAddUser());
+		lbJoin.setText(CONSTANTS.OrganizationDetailLbJoin());
+		btnInviteUser.setText(CONSTANTS.OrganizationDetailBtTextInviteUser());
 	}
 }

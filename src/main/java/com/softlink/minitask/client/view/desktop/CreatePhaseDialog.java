@@ -60,7 +60,7 @@ public class CreatePhaseDialog extends DialogBox {
 		lbStartDate.setText(CONSTANTS.ViewProjectStartDate());
 		lbSubProject.setText(CONSTANTS.ViewProjectSub());
 		btSave.setText(CONSTANTS.ButtonTextSave());
-		btCancel.setText(CONSTANTS.ZoomOutDescriptionButtonTextCancel());
+		btCancel.setText(CONSTANTS.ButtonTextCancel());
 	}
 
 	@UiHandler("btSave")

@@ -59,13 +59,13 @@
 			<center>
 				<g:Image width="87px" height="86px" url="resources/evolution_tasks.png"
 					styleName="{style.loginPage-Obj2}" />
-				<g:Label text="Chào mừng bạn đến với Mini Task." styleName="{style.loginPage-Obj3}" />
-				<g:Label text="Bắt đầu đăng nhập với Google Account."
-					styleName="{style.loginPage-Obj4}" />
+				<g:Label styleName="{style.loginPage-Obj3}" ui:field="lbWelcome" />
+				<g:Label
+					styleName="{style.loginPage-Obj4}" ui:field="lbStart" />
 				<g:AbsolutePanel height="66px" width="349px"
 					styleName="{style.loginPage-Obj5}">
 					<g:at left="74" top="20">
-						<g:Label text="Đăng nhập với Google Account" />
+						<g:Label ui:field="lbLogin" />
 					</g:at>
 					<g:at left="12" top="10">
 						<g:Image width="50px" height="46px" url="resources/google_ico.jpg" />

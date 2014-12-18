@@ -118,7 +118,7 @@
 			width="100%">
 			<g:AbsolutePanel height="40px" styleName="{style.OrganizationDetail-Obj18} button-boxBlue" width="130px">
 				<g:at left="48" top="7">
-					<g:Label stylePrimaryName="{style.OrganizationDetail-Obj6} font-whiteTitle" text="Quay lại"/>
+					<g:Label stylePrimaryName="{style.OrganizationDetail-Obj6} font-whiteTitle" ui:field="lbBack"/>
 				</g:at>
 				<g:at left="12" top="5">
 					<g:Image height="28px" url="resources/back.png" width="25px"/>
@@ -147,8 +147,8 @@
 					<g:AbsolutePanel styleName="button-greenStyle"
 						width="140px" height="40px">
 						<g:at left="15" top="8">
-							<g:Label text="Tham gia"
-								stylePrimaryName="{style.OrganizationDetail-Obj6} font-whiteTitle" />
+							<g:Label
+								stylePrimaryName="{style.OrganizationDetail-Obj6} font-whiteTitle" ui:field="lbJoin" />
 						</g:at>
 						<g:at left="95" top="5">
 							<g:Image width="28px" height="28px" url="resources/door_in.png" />
@@ -166,17 +166,17 @@
 			<g:Tab text="Thông tin">
 				<g:HTMLPanel>
 					<g:HTMLPanel styleName="{style.OrganizationDetail-Obj8}">
-						<g:Label text="Tên tổ chức (*)"
-							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" />
+						<g:Label
+							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" ui:field="lbNameOrganization" />
 						<g:TextBox width="300px" height="25px"
 							styleName="{style.OrganizationDetail-Obj9} textbox-normalEdit" ui:field="txbOrganizationName" />
-						<g:Label text="Mô tả"
-							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" />
+						<g:Label
+							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" ui:field="lbDescription" />
 						<g:TextArea width="296px" height="170px"
 							styleName="{style.OrganizationDetail-Obj9} textbox-normalEdit" ui:field="txbOrganizationDetail" />
 						<g:HTMLPanel width="140px" height="35px"
 							styleName="{style.OrganizationDetail-Obj10} button-greenStyle">
-							<g:Label text="Lưu" height="100%" horizontalAlignment="ALIGN_CENTER" />
+							<g:Label   height="100%" horizontalAlignment="ALIGN_CENTER" ui:field="btSave" />
 						</g:HTMLPanel>
 					</g:HTMLPanel>
 				</g:HTMLPanel>
@@ -189,7 +189,7 @@
 							<g:AbsolutePanel width="145px" height="35px"
 								styleName="{style.OrganizationDetail-Obj19} button-whiteStyle">
 								<g:at left="26" top="10">
-									<g:Label text="Thêm thành viên" width="109px" height="" />
+									<g:Label  width="109px" height="" ui:field="lbAddUser" />
 								</g:at>
 								<g:at left="8" top="7">
 									<g:Label text="+" styleName="{style.OrganizationDetail-Obj13}" />
@@ -203,7 +203,7 @@
 									<g:TextBox height="30px" styleName="{style.OrganizationDetail-Obj21} textbox-normalEdit" width="250px" ui:field="txbInviteUser"/>
 								</g:at>
 								<g:at left="285" top="0">
-									<g:Label text="Thêm" styleName="{style.OrganizationDetail-Obj20} button-greenStyle" width="80px" height="35px" ui:field="btnInviteUser"/>
+									<g:Label styleName="{style.OrganizationDetail-Obj20} button-greenStyle" width="80px" height="35px" ui:field="btnInviteUser"/>
 								</g:at>
 							</g:AbsolutePanel>
 						</g:HTMLPanel>

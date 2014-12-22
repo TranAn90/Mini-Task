@@ -16,7 +16,10 @@ public class Container extends Composite implements ContainerInf {
 	private static ContainerUiBinder uiBinder = GWT
 			.create(ContainerUiBinder.class);
 	
+	public static final int headerHeight = 40;
+	
 	@UiField DockLayoutPanel container;
+	
 	Header header = new Header();
 	ScrollPanel scrollAbleContent = new ScrollPanel();
 
@@ -26,6 +29,8 @@ public class Container extends Composite implements ContainerInf {
 	public Container() {
 		initWidget(uiBinder.createAndBindUi(this));
 		container.setHeight(Window.getClientHeight() + "px");
+		TaskList taskList = new TaskList();
+		container.add(taskList);
 	}
 	
 	void clearContent() {
@@ -43,7 +48,7 @@ public class Container extends Composite implements ContainerInf {
 	@Override
 	public void inOrganizationPage() {
 		clearContent();
-		container.addNorth(header, 40);
+		container.addNorth(header, headerHeight);
 		container.add(scrollAbleContent);
 		scrollAbleContent.add(MiniTask.clientFactory.getOrganizationPage());
 	}
@@ -51,9 +56,14 @@ public class Container extends Composite implements ContainerInf {
 	@Override
 	public void inOrganizationDetail() {
 		clearContent();
-		container.addNorth(header, 40);
+		container.addNorth(header, headerHeight);
 		container.add(scrollAbleContent);
 		scrollAbleContent.add(MiniTask.clientFactory.getOrganizationDetail());
+	}
+
+	@Override
+	public void onStartUp() {
+		header.setInfo();
 	}
 
 }

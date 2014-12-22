@@ -1,6 +1,8 @@
 package com.softlink.minitask.client.view.desktop.ui;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import com.google.gwt.cell.client.ClickableTextCell;
 import com.google.gwt.cell.client.DateCell;
@@ -34,7 +36,7 @@ public class AllTasksTable {
 	private AppConstants appConstants = GWT.create(AppConstants.class);
 
 	public DataGrid<Task_Data> InitTable() {
-		gridTasks = new DataGrid<Task_Data>(20, dataGridCss);
+		gridTasks = new DataGrid<Task_Data>(50, dataGridCss);
 		Label lbEmpty = new Label(appConstants.EmptryLabel());
 		gridTasks.setEmptyTableWidget(lbEmpty);
 		gridTasks.setWidth("100%");
@@ -179,6 +181,17 @@ public class AllTasksTable {
 		gridTasks.setColumnWidth(clDueDate, "100px");
 		gridTasks.addColumn(clDueDate, appConstants.ViewDueDate());
 		return gridTasks;
+	}
+	
+	public void addFooter() {
+		List<Task_Data> newContactLst = Arrays.asList(new Task_Data());
+
+	    int numRows = gridTasks.getRowCount();
+
+	    gridTasks.setRowCount(numRows+1);
+
+	    gridTasks.setRowData(numRows,newContactLst);	
+
 	}
 
 }

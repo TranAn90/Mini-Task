@@ -13,9 +13,6 @@
 		<g:west size="80.0">
 			<p1:SlideBar/>
 		</g:west>
-		<g:center>
-			<g:ScrollPanel ui:field="scrollAbleContent"/>
-		</g:center>
 	</g:DockLayoutPanel>
 
 </ui:UiBinder> 

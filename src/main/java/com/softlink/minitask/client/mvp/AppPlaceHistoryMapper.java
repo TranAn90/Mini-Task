@@ -3,6 +3,12 @@ package com.softlink.minitask.client.mvp;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.softlink.minitask.client.place.OrganizationPlace;
+import com.softlink.minitask.client.place.ProjectEditPlace;
+import com.softlink.minitask.client.place.ProjectListPlace;
+import com.softlink.minitask.client.place.ProjectViewPlace;
+import com.softlink.minitask.client.place.TaskEditPlace;
+import com.softlink.minitask.client.place.TaskListPlace;
+import com.softlink.minitask.client.place.TaskViewPlace;
 import com.softlink.minitask.client.place.WelcomePlace;
 
 /**
@@ -11,7 +17,7 @@ import com.softlink.minitask.client.place.WelcomePlace;
  */
 public class AppPlaceHistoryMapper implements PlaceHistoryMapper {
 
-	String delimiter = "=";
+	String delimiter = "/";
 
 	/**
 	 * In fact it check URL on browser and set corresponding place in App
@@ -33,6 +39,24 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper {
 		else if (tokens[0].equals("organization")) 
 			return new OrganizationPlace(tokens[1]);
 		
+		else if (tokens[0].equals("taskList")) 
+			return new TaskListPlace();
+		
+		else if (tokens[0].equals("taskView")) 
+			return new TaskViewPlace(tokens[1]);
+		
+		else if (tokens[0].equals("taskEdit")) 
+			return new TaskEditPlace(tokens[1]);
+		
+		else if (tokens[0].equals("projectList")) 
+			return new ProjectListPlace();
+		
+		else if (tokens[0].equals("projectView")) 
+			return new ProjectViewPlace(tokens[1]);
+		
+		else if (tokens[0].equals("projectEdit")) 
+			return new ProjectEditPlace(tokens[1]);
+		
 		return new WelcomePlace();
 	}
 
@@ -52,6 +76,24 @@ public class AppPlaceHistoryMapper implements PlaceHistoryMapper {
 				return "organization" + delimiter + currentPlace.getToken();
 		}
 		
+		else if (place instanceof TaskListPlace)
+			return "taskList";
+		
+		else if (place instanceof TaskViewPlace)
+			return "taskView" + delimiter + ((TaskViewPlace)place).getToken();
+		
+		else if (place instanceof TaskEditPlace)
+			return "taskEdit" + delimiter + ((TaskEditPlace)place).getToken();
+		
+		else if (place instanceof ProjectListPlace)
+			return "projectList";
+		
+		else if (place instanceof ProjectViewPlace)
+			return "projectView" + delimiter + ((ProjectViewPlace)place).getToken();
+		
+		else if (place instanceof ProjectEditPlace)
+			return "projectEdit" + delimiter + ((ProjectEditPlace)place).getToken();
+		 
 		return null;
 	}
 }

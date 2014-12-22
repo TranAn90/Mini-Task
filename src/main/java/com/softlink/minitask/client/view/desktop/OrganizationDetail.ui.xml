@@ -40,6 +40,7 @@
 		top: 35px;
 		width: 300px;
 		margin: auto;
+		margin-bottom: 30px;
 	}
 	
 	.OrganizationDetail-Obj9 {
@@ -112,6 +113,15 @@
 		padding-top: 2px;
 		font-size: 14px;
 	}
+	
+	.OrganizationDetail-Obj22 {
+		line-height: 35px;
+		font-weight: 700;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		margin-bottom: 50px;
+		margin-top: 15px;
+	}
 	</ui:style>
 	<g:HTMLPanel styleName="{style.OrganizationDetail-Obj1}">
 		<g:HTMLPanel styleName="{style.OrganizationDetail-Obj2} background-softGray"
@@ -143,7 +153,7 @@
 					<g:Label text="My Task"
 						styleName="{style.OrganizationDetail-Obj5} font-blackTitle" width="" ui:field="lbOrganizationName" />
 				</g:at>
-				<g:at left="511" top="38">
+				<g:at left="511" top="40">
 					<g:AbsolutePanel styleName="button-greenStyle"
 						width="140px" height="40px">
 						<g:at left="15" top="8">
@@ -174,10 +184,7 @@
 							styleName="{style.OrganizationDetail-Obj9} font-blackTitle" ui:field="lbDescription" />
 						<g:TextArea width="296px" height="170px"
 							styleName="{style.OrganizationDetail-Obj9} textbox-normalEdit" ui:field="txbOrganizationDetail" />
-						<g:HTMLPanel width="140px" height="35px"
-							styleName="{style.OrganizationDetail-Obj10} button-greenStyle">
-							<g:Label   height="100%" horizontalAlignment="ALIGN_CENTER" ui:field="btSave" />
-						</g:HTMLPanel>
+						<g:Label text="Lưu" horizontalAlignment="ALIGN_CENTER" width="140px" height="35px" styleName="{style.OrganizationDetail-Obj22} button-greenStyle" ui:field="btnSave"/>
 					</g:HTMLPanel>
 				</g:HTMLPanel>
 			</g:Tab>

@@ -58,11 +58,11 @@ public class OrganizationDetail extends Composite implements
 	@UiField
 	Label lbDescription;
 	@UiField
-	Label btSave;
-	@UiField
 	Label lbJoin;
 	@UiField
 	Label lbAddUser;
+	@UiField 
+	Label btnSave;
 
 	private System_Organization organization;
 	private boolean isAdmin;
@@ -230,7 +230,7 @@ public class OrganizationDetail extends Composite implements
 				CONSTANTS.OrganizationDetailTabNameInformation());
 		tabOrganizationSetting.getTabBar().setTabText(1,
 				CONSTANTS.OrganizationDetailTabNameMember());
-		btSave.setText(CONSTANTS.ButtonTextSave());
+		btnSave.setText(CONSTANTS.ButtonTextSave());
 		lbAddUser.setText(CONSTANTS.OrganizationDetailLbAddUser());
 		lbJoin.setText(CONSTANTS.OrganizationDetailLbJoin());
 		btnInviteUser.setText(CONSTANTS.OrganizationDetailBtTextInviteUser());

@@ -6,9 +6,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class MiniTask implements EntryPoint {
  
-	 
-	 
-	
 	public static final ClientFactory clientFactory = GWT.create(ClientFactory.class);
 	public static final AppController appController = new AppController();
 	
@@ -16,7 +13,7 @@ public class MiniTask implements EntryPoint {
 	public void onModuleLoad() {
 		RootPanel root = RootPanel.get("root");
 		root.add(clientFactory.getContainer());
-//		appController.run();
+		appController.run();
 	}
 	
 }

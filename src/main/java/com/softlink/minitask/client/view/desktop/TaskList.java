@@ -7,6 +7,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.DataGrid;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -19,9 +20,10 @@ import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
 import com.softlink.minitask.client.view.desktop.ui.AllTasksTable;
 import com.softlink.minitask.client.view.desktop.ui.MyTasksTable;
 import com.softlink.minitask.shared.Task_Data;
+import com.google.gwt.user.client.ui.HTMLPanel;
 
-public class TaskListView extends Composite {
-	interface Binder extends UiBinder<Widget, TaskListView> {
+public class TaskList extends Composite {
+	interface Binder extends UiBinder<Widget, TaskList> {
 	}
 
 	private static Binder uiBinder = GWT.create(Binder.class);
@@ -31,17 +33,34 @@ public class TaskListView extends Composite {
 	public final CSSImageResource cSSImageResource = GWT
 			.create(CSSImageResource.class);
 
-	@UiField
-	HorizontalPanel horMain;
+	@UiField HorizontalPanel horMain;
+	@UiField HTMLPanel htmlTaskList;
+	@UiField HTMLPanel htmlMenu;
+	
+	public static final int menuHeight = 46;
+	
 	private AppConstants appConstants = GWT.create(AppConstants.class);
 	private MyTasksTable gridTaskRecipients = new MyTasksTable(dataGridCss,
 			cSSImageResource);
 
-	public TaskListView() {
-		initWidget(uiBinder.createAndBindUi(this));
-		// InitViewMyTasks();
-		InitViewAllTasks();
+	private List<Task_Data> autoGenerateTasks = Task_Data.autoGenerateTasks();
 
+	private List<Task_Data> allTasks = new ArrayList<Task_Data>();
+
+	private List<Task_Data> recipients = new ArrayList<Task_Data>();
+
+	private DataGrid<Task_Data> gridRecipient;
+
+	private DataGrid<Task_Data> gridSender;
+
+	private List<Task_Data> senders = new ArrayList<Task_Data>();
+
+	public TaskList() {
+		initWidget(uiBinder.createAndBindUi(this));
+		htmlMenu.setHeight(menuHeight + "px");
+		horMain.setHeight(Window.getClientHeight() - Container.headerHeight - menuHeight + "px");
+//		InitViewMyTasks();
+		InitViewAllTasks();
 	}
 
 	private void InitViewMyTasks() {
@@ -50,23 +69,20 @@ public class TaskListView extends Composite {
 		InitViewSender();
 	}
 
-	private List<Task_Data> autoGenerateTasks = Task_Data.autoGenerateTasks();
-	private List<Task_Data> allTasks = new ArrayList<Task_Data>();
-
 	private void InitViewAllTasks() {
 		AllTasksTable tableAllTasks = new AllTasksTable(dataGridCss,
 				cSSImageResource);
 		DataGrid<Task_Data> allTasksDataGrid = tableAllTasks.InitTable();
+		allTasksDataGrid.setSize("100%", "100%");
 		horMain.add(allTasksDataGrid);
 		ListDataProvider<Task_Data> providerAllTasks = new ListDataProvider<Task_Data>();
 		providerAllTasks.addDataDisplay(allTasksDataGrid);
 		allTasks = providerAllTasks.getList();
 		allTasks.addAll(autoGenerateTasks);
-
+		Task_Data data = new Task_Data();
+		allTasks.add(data);
+		tableAllTasks.addFooter();
 	}
-
-	private List<Task_Data> recipients = new ArrayList<Task_Data>();
-	private DataGrid<Task_Data> gridRecipient;
 
 	private void InitViewRecipient() {
 		VerticalPanel verRecipient = new VerticalPanel();
@@ -84,9 +100,6 @@ public class TaskListView extends Composite {
 		recipients = providerRecipient.getList();
 		recipients.addAll(autoGenerateTasks.subList(0, 30));
 	}
-
-	private DataGrid<Task_Data> gridSender;
-	private List<Task_Data> senders = new ArrayList<Task_Data>();
 
 	private void InitViewSender() {
 		VerticalPanel verSender = new VerticalPanel();

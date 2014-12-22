@@ -43,7 +43,7 @@ public class Task_Data implements Serializable {
 	Long id;
 	Long projectId;
 	@Unindex
-	List<Long> listChild;
+	List<Long> listChild = new ArrayList<Long>();
 	@Unindex
 	Long parentId;
 	@Unindex
@@ -248,7 +248,7 @@ public class Task_Data implements Serializable {
 	public static List<Task_Data> autoGenerateTasks() {
 		List<String> emails = autoGeneraEmails();
 		List<Task_Data> result = new ArrayList<Task_Data>();
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 20; i++) {
 			Task_Data t = new Task_Data();
 			t.setName("Công việc thứ " + i);
 			t.setDescription("Mô tả cho công việc thứ " + i);

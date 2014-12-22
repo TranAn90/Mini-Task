@@ -9,5 +9,7 @@ public interface ContainerInf extends IsWidget{
 	void inOrganizationPage();
 	
 	void inOrganizationDetail();
+	
+	void onStartUp();
 
 }

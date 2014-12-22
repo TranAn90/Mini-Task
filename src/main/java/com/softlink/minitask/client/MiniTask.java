@@ -8,9 +8,10 @@ import com.softlink.minitask.client.view.desktop.ProjectListView;
 import com.softlink.minitask.client.view.desktop.TaskListView;
 
 public class MiniTask implements EntryPoint {
-
-	public static final ClientFactory clientFactory = GWT
-			.create(ClientFactory.class);
+ 
+ 
+	public static final ClientFactory clientFactory = GWT.create(ClientFactory.class);
+ 
 	public static final AppController appController = new AppController();
 
 	@Override

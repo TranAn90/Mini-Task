@@ -1,5 +1,17 @@
+.clean {
+	
+}
 
-.clean {}
+/** Dialog Style */
+.dialog-menu {
+	background: #fff;
+	border-radius: 3px;
+	border: 1px solid #dbdbdb;
+	border-bottom-color: #c2c2c2;
+	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .15);
+	box-shadow: 0 1px 6px rgba(0, 0, 0, .15);
+	z-index: 20;
+}
 
 /** Frame Style */
 .frame-grayDialog {
@@ -125,6 +137,10 @@
 	cursor: pointer;
 }
 
+.button-blueMenu:hover {
+	background: rgba(255, 255, 255, .4);
+}
+
 .button-boxWhite {
 	background: white;
 	border-radius: 3px;
@@ -187,4 +203,6 @@
 
 .gwt-TabPanelBottom {
 	border-style: none !important;
+}
+.gwt-Label {
 }

@@ -75,6 +75,8 @@ public class CreateProjectDialog extends DialogBox {
 
 	private Listener listener;
 
+	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
+
 	public CreateProjectDialog(Listener listener) {
 		setWidget(uiBinder.createAndBindUi(this));
 		this.listener = listener;
@@ -133,8 +135,6 @@ public class CreateProjectDialog extends DialogBox {
 	void onBtCloseClick(ClickEvent event) {
 		hide();
 	}
-
-	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 
 	private void SetTextForm() {
 		header.setText(CONSTANTS.CreateProjectDialogHeader());

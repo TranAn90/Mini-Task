@@ -14,6 +14,7 @@ import com.softlink.minilib.client.rpc.SystemServiceAsync;
 import com.softlink.minitask.client.events.InLoginPageEvent;
 import com.softlink.minitask.client.events.InOrganizationDetailEvent;
 import com.softlink.minitask.client.events.InOrganizationPageEvent;
+import com.softlink.minitask.client.events.OnStartUpEvent;
 import com.softlink.minitask.client.mvp.AppActivityMapper;
 import com.softlink.minitask.client.mvp.AppPlaceHistoryMapper;
 import com.softlink.minitask.client.place.WelcomePlace;
@@ -56,6 +57,12 @@ public class AppController {
 				clientFactory.getContainer().inOrganizationDetail();
 			}
 		});
+		eventBus.addHandler(OnStartUpEvent.TYPE, new OnStartUpEvent.Handler() {
+			@Override
+			public void inPlace(OnStartUpEvent event) {
+				clientFactory.getContainer().onStartUp();
+			}
+		});
 	}
 
 	public AppController() {
@@ -72,8 +79,10 @@ public class AppController {
 		userRequest.getUserProfiles(new AsyncCallback<UserProfiles>() {
 			@Override
 			public void onSuccess(UserProfiles result) {
-				if(result != null) 
+				if(result != null)  {
 					Storage.userProfiles = result;
+					clientFactory.getContainer().onStartUp();
+				}
 				handlerHistory();	
 			}
 			@Override

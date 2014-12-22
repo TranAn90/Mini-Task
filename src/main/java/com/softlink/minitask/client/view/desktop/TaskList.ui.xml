@@ -1,0 +1,37 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+	.TaskList-Obj1 {
+		float: left;
+		position: relative;
+		left: 15px;
+		top: 13%;
+		height: 70%;
+	}
+	
+	.TaskList-Obj2 {
+		float: right;
+		position: relative;
+		right: 20px;
+		top: 13%;
+		height: 70%;
+	}
+	
+	.TaskList-Obj3 {
+		line-height: 30px;
+		text-align: center;
+	}
+	</ui:style>
+	<g:HTMLPanel ui:field="htmlTaskList">
+		<g:HTMLPanel height="46px" styleName="background-softGray" ui:field="htmlMenu">
+			<g:HorizontalPanel styleName="{style.TaskList-Obj1}">
+				<g:Label text="Thêm công việc" width="110px" height="100%" styleName="{style.TaskList-Obj3} button-greenStyle"/>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel styleName="{style.TaskList-Obj2}"/>
+		</g:HTMLPanel>
+	<g:HorizontalPanel width="100%" height=""
+		ui:field="horMain">
+	</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

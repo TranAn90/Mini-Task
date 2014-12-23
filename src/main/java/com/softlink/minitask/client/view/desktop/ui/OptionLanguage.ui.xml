@@ -1,0 +1,61 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.UserProfileDialog-Obj1 {
+		float: right;
+		text-indent: -22px;
+		opacity: 0.5;
+		cursor: pointer;
+		font-size: 16px;
+		line-height: 18px;
+	}
+	
+	.UserProfileDialog-Obj1:hover {
+		opacity: 1;
+	}
+	
+	.UserProfileDialog-Obj2 {
+		text-align: center;
+		font-size: 16px;
+	}
+	
+	.UserProfileDialog-Obj3 {
+		text-indent: 20px;
+		font-size: 14px;
+		cursor: pointer;
+		line-height: 25px;
+		margin-top: 14px;
+	}
+	
+	.UserProfileDialog-Obj4 {
+		margin: auto;
+		border-top: 1px #c2c2c2;
+		border-right: 1px #c2c2c2;
+		border-bottom: 1px solid #c2c2c2;
+		border-left: 1px #c2c2c2;
+	}
+	
+	.UserProfileDialog-Obj5 {
+		line-height: 22px !important;
+	}
+	</ui:style>
+	<g:HTMLPanel styleName="dialog-menu" width="200px" height="120px">
+		<g:AbsolutePanel height="10px" width="100%" />
+		<g:Label text="x" styleName="{style.UserProfileDialog-Obj1} font-blackTitle"
+			ui:field="btClose" />
+		<g:Label styleName="{style.UserProfileDialog-Obj2} font-grayTitle"
+			ui:field="lbHeader" />
+		<g:AbsolutePanel height="10px" width="90%"
+			styleName="{style.UserProfileDialog-Obj4}" />
+		<g:VerticalPanel spacing="10">
+			<g:RadioButton name="new name"
+				styleName="{style.UserProfileDialog-Obj3} font-blackTitleNormal"
+				ui:field="btVietNamese" />
+			<g:RadioButton name="new name"
+				styleName="{style.UserProfileDialog-Obj3} font-blackTitleNormal"
+				ui:field="btEnglish" />
+		</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

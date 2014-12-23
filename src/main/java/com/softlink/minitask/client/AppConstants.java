@@ -81,4 +81,7 @@ public interface AppConstants extends Constants {
 	String LoginPagelbStart();
 	String LoginPagelbLogin();
 	String ViewProjectListMember();
+	String OptionLanguagelbHeader();
+	String OptionLanguagebtEnglish();
+	String OptionLanguagebtVietNamese();
 }

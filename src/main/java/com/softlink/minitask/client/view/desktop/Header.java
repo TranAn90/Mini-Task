@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Label;
 import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.AppController.Storage;
+import com.softlink.minitask.client.view.desktop.ui.OptionLanguage;
 import com.softlink.minitask.client.view.desktop.ui.UserProfileDialog;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -18,16 +19,22 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 public class Header extends Composite {
 
 	private static HeaderUiBinder uiBinder = GWT.create(HeaderUiBinder.class);
-	
+
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 
-	@UiField Label lbNameApp;
-	@UiField Label lbOrganizationName;
-	@UiField Label lbUserName;
-	@UiField Image imgNotify;
-	@UiField Label lbLanguage;
-	@UiField HorizontalPanel horOrganizationName;
-	
+	@UiField
+	Label lbNameApp;
+	@UiField
+	Label lbOrganizationName;
+	@UiField
+	Label lbUserName;
+	@UiField
+	Image imgNotify;
+	@UiField
+	Label lbLanguage;
+	@UiField
+	HorizontalPanel horOrganizationName;
+
 	UserProfileDialog userDialog;
 
 	interface HeaderUiBinder extends UiBinder<Widget, Header> {
@@ -35,13 +42,19 @@ public class Header extends Composite {
 
 	protected void SetTextForm() {
 		lbNameApp.setText(CONSTANTS.AppNameMiniTask());
+		String href = Window.Location.getHref();
+		String local_en = OptionLanguage.local_en;
+		if (href.contains(local_en))
+			lbLanguage.setText(languageEN);
+		else
+			lbLanguage.setText(languageVN);
 	}
 
 	public Header() {
 		initWidget(uiBinder.createAndBindUi(this));
 		SetTextForm();
 	}
-	
+
 	public void setInfo() {
 		String userName = Storage.getUserProfiles().getName();
 		userDialog = new UserProfileDialog(userName);
@@ -52,10 +65,10 @@ public class Header extends Composite {
 	void onLbOrganizationNameClick(ClickEvent event) {
 		Window.alert("Organization Name");
 	}
-	
+
 	@UiHandler("lbUserName")
 	void onLbUserNameClick(ClickEvent event) {
-		if(!userDialog.isShowing) {
+		if (!userDialog.isShowing) {
 			userDialog.isShowing = true;
 			int left = Window.getClientWidth() - 285;
 			int top = lbUserName.getAbsoluteTop() + 40;
@@ -63,15 +76,24 @@ public class Header extends Composite {
 			userDialog.show();
 		}
 	}
-	
+
 	@UiHandler("imgNotify")
 	void onImgNotifyClick(ClickEvent event) {
 		Window.alert("Notify");
 	}
-	
+
+	private OptionLanguage optionLanguage;
+	final String languageVN = "VN";
+	final String languageEN = "EN";
+
 	@UiHandler("lbLanguage")
 	void onLbLanguageClick(ClickEvent event) {
-		Window.alert("Language");
+
+		optionLanguage = new OptionLanguage();
+		int left = lbLanguage.getAbsoluteLeft();
+		int top = lbLanguage.getAbsoluteTop();
+		optionLanguage.setPopupPosition(left - 170, top + 40);
+		optionLanguage.show();
+
 	}
-	
 }

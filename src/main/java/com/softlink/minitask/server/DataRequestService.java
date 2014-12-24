@@ -1,5 +1,7 @@
 package com.softlink.minitask.server;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,22 +9,38 @@ import java.util.List;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Key;
 import com.softlink.minitask.client.rpc.DataRequest;
+import com.softlink.minitask.shared.LocalData;
 import com.softlink.minitask.shared.Task_Data;
 import com.softlink.minitask.shared.Task_Project;
-
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @SuppressWarnings("serial")
 public class DataRequestService extends RemoteServiceServlet implements
 		DataRequest {
+	
+	List<Task_Data> tasks;
+	
+	Task_Data exportTask = null;
+
+	List<Task_Project> projects;
+
+	Task_Project exportProject = null;
+
+	boolean isRemove = false;
+
+	boolean isUpdate = false;
+
+	final int TASK_STATUS_WORKING = Task_Data.TASK_STATUS_WORKING;
+
+	final int TASK_STATUS_NEW = Task_Data.TASK_STATUS_NEW;
+
+	final int TASK_STATUS_FINISHED = Task_Data.TASK_STATUS_FINISHED;
+
 	/**
 	 * 
 	 * @param task
 	 *            will save in database
 	 * @return null if parentId invalid, task if save task success
 	 */
-	Task_Data exportTask = null;
-
 	public Task_Data insertTask(Task_Data newtask) {
 		newtask.setInitDate(new Date());
 		newtask.setUpdateDate(new Date());
@@ -30,64 +48,6 @@ public class DataRequestService extends RemoteServiceServlet implements
 		exportTask = ofy().load().key(key).now();
 		return exportTask;
 	}
-
-	/**
-	 * get task by id
-	 */
-	@Override
-	public Task_Data retrieveTask(Long id) {
-
-		if (id == null)
-			exportTask = null;
-		else
-			exportTask = ofy().load().type(Task_Data.class).id(id).now();
-		return exportTask;
-	}
-
-	/**
-	 * 
-	 * @param parent
-	 *            Task_Data is parent
-	 * @return list sub Task_Data
-	 */
-	public List<Task_Data> getTaskChilds(Task_Data parent) {
-		List<Task_Data> taskChilds = new ArrayList<Task_Data>();
-		if (parent.getListChild() != null && !parent.getListChild().isEmpty()) {
-			for (Long id : parent.getListChild()) {
-				Task_Data findTask = retrieveTask(id);
-				if (findTask != null)
-					taskChilds.add(findTask);
-			}
-		}
-		return taskChilds;
-	}
-
-	boolean isRemove = false;
-
-	/**
-	 * @param task
-	 *            Task_Data will remove
-	 * @return true(remove success, not found task), false( remove fail)
-	 */
-	@Override
-	public boolean removeTask(Task_Data task) {
-		if (task != null && task.getId() != null) {
-			Task_Data findTask = retrieveTask(task.getId());
-			if (findTask != null) {
-				ofy().delete().entities(findTask);
-				isRemove = true;
-			} else
-				isRemove = true;
-
-		} else
-			isRemove = true;
-		return isRemove;
-	}
-
-	boolean isUpdate = false;
-	final int TASK_STATUS_WORKING = Task_Data.TASK_STATUS_WORKING;
-	final int TASK_STATUS_NEW = Task_Data.TASK_STATUS_NEW;
-	final int TASK_STATUS_FINISHED = Task_Data.TASK_STATUS_FINISHED;
 
 	@Override
 	public boolean updateTask(Task_Data newTask) {
@@ -115,6 +75,56 @@ public class DataRequestService extends RemoteServiceServlet implements
 		} else
 			isUpdate = false;
 		return isUpdate;
+	}
+
+	/**
+	 * get task by id
+	 */
+	@Override
+	public Task_Data retrieveTask(Long id) {
+		if (id == null)
+			exportTask = null;
+		else
+			exportTask = ofy().load().type(Task_Data.class).id(id).now();
+		return exportTask;
+	}
+
+	/**
+	 * 
+	 * @param parent
+	 *            Task_Data is parent
+	 * @return list sub Task_Data
+	 */
+	public List<Task_Data> getTaskChilds(Task_Data parent) {
+		List<Task_Data> taskChilds = new ArrayList<Task_Data>();
+		if (parent.getListChild() != null && !parent.getListChild().isEmpty()) {
+			for (Long id : parent.getListChild()) {
+				Task_Data findTask = retrieveTask(id);
+				if (findTask != null)
+					taskChilds.add(findTask);
+			}
+		}
+		return taskChilds;
+	}
+
+	/**
+	 * @param task
+	 *            Task_Data will remove
+	 * @return true(remove success, not found task), false( remove fail)
+	 */
+	@Override
+	public boolean removeTask(Task_Data task) {
+		if (task != null && task.getId() != null) {
+			Task_Data findTask = retrieveTask(task.getId());
+			if (findTask != null) {
+				ofy().delete().entities(findTask);
+				isRemove = true;
+			} else
+				isRemove = true;
+
+		} else
+			isRemove = true;
+		return isRemove;
 	}
 
 	@Override
@@ -146,8 +156,6 @@ public class DataRequestService extends RemoteServiceServlet implements
 
 	}
 
-	List<Task_Data> tasks;
-
 	@Override
 	public List<Task_Data> retrieveTasks() {
 		tasks = new ArrayList<Task_Data>();
@@ -156,9 +164,6 @@ public class DataRequestService extends RemoteServiceServlet implements
 			tasks.addAll(list);
 		return tasks;
 	}
-
-	// save task
-	Task_Project exportProject = null;
 
 	@Override
 	public Task_Project insertProject(Task_Project newProject) {
@@ -169,13 +174,24 @@ public class DataRequestService extends RemoteServiceServlet implements
 		return exportProject;
 	}
 
+	@Override
+	public boolean updateProject(Task_Project newData) {
+		Task_Project oldP = retrieveProject(newData.getId());
+		if (oldP == null)
+			isUpdate = false;
+		else {
+			newData.setUpdateDate(new Date());
+			ofy().save().entity(newData).now();
+			isUpdate = true;
+		}
+		return isUpdate;
+	}
+
 	/**
 	 * get project by id
 	 */
-
 	@Override
 	public Task_Project retrieveProject(Long id) {
-
 		if (id == null) {
 			exportProject = null;
 		} else
@@ -183,9 +199,6 @@ public class DataRequestService extends RemoteServiceServlet implements
 
 		return exportProject;
 	}
-
-	// get all project in database
-	List<Task_Project> projects;
 
 	@Override
 	public List<Task_Project> retrieveProjects() {
@@ -213,20 +226,6 @@ public class DataRequestService extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public boolean updateProject(Task_Project newData) {
-
-		Task_Project oldP = retrieveProject(newData.getId());
-		if (oldP == null)
-			isUpdate = false;
-		else {
-			newData.setUpdateDate(new Date());
-			ofy().save().entity(newData).now();
-			isUpdate = true;
-		}
-		return isUpdate;
-	}
-
-	@Override
 	public boolean removeProject(Task_Project project) {
 		if(project == null)
 			isRemove = true;
@@ -240,6 +239,17 @@ public class DataRequestService extends RemoteServiceServlet implements
 			}
 		}
 		return isRemove;
+	}
+
+	@Override
+	public LocalData retrieveAllData() {
+		LocalData localData = new LocalData();
+		List<Task_Data> taskList = retrieveTasks();
+		List<Task_Project> projectList = retrieveProjects();
+		localData.setTaskList(taskList);
+		localData.setProjectList(projectList);
+		localData.setLoad(true);
+		return localData;
 	}
 
 }

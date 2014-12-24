@@ -1,9 +1,8 @@
 package com.softlink.minitask.client.activity;
 
-import java.util.ArrayList;
-
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.softlink.minilib.shared.Invite_Token;
@@ -12,6 +11,7 @@ import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.MiniTask;
 import com.softlink.minitask.client.events.InOrganizationPageEvent;
 import com.softlink.minitask.client.place.OrganizationPlace;
+import com.softlink.minitask.client.place.TaskListPlace;
 import com.softlink.minitask.client.place.WelcomePlace;
 import com.softlink.minitask.client.view.OrganizationPageInf;
 
@@ -22,11 +22,11 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		eventBus.fireEvent(new InOrganizationPageEvent());
 		if(!Storage.getUserProfiles().isLogin()) {
 			MiniTask.clientFactory.getPlaceController().goTo(new WelcomePlace());
 		}
 		else {
+			eventBus.fireEvent(new InOrganizationPageEvent());
 			MiniTask.clientFactory.getOrganizationPage().setPresenter(this);
 			MiniTask.clientFactory.getOrganizationPage().clear();
 			MiniTask.clientFactory.getOrganizationPage().setOrganizationList(Storage.getUserProfiles().getOrganizationList());
@@ -45,10 +45,27 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 		MiniTask.appController.systemService.insertOrganization(organization, new AsyncCallback<System_Organization>() {
 			@Override
 			public void onSuccess(System_Organization result) {
-				if(Storage.getUserProfiles().getOrganizationList() == null)
-					Storage.getUserProfiles().setOrganizationList(new ArrayList<System_Organization>());
-				Storage.getUserProfiles().getOrganizationList().add(result);
-				MiniTask.clientFactory.getOrganizationPage().setOrganizationList(Storage.getUserProfiles().getOrganizationList());
+				if(result != null) {
+					Storage.getUserProfiles().getOrganizationList().add(result);
+					MiniTask.clientFactory.getOrganizationPage().setOrganizationList(Storage.getUserProfiles().getOrganizationList());
+					//Go to new organization task
+					Storage.getUserProfiles().setOrganizationCurrently(result.getId());
+					MiniTask.appController.systemService.goToOrganization(result, new AsyncCallback<Boolean>() {
+						@Override
+						public void onSuccess(Boolean result) {
+							if(result) {
+								MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
+								MiniTask.clientFactory.getContainer().updateHeaderInfo();
+							}
+							else
+								Window.alert("Error: can't find organization!");
+						}
+						@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub
+						}
+					});
+				}
 			}	
 			@Override
 			public void onFailure(Throwable caught) {
@@ -76,6 +93,26 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 			@Override
 			public void onFailure(Throwable caught) {
 				// TODO Auto-generated method stub	
+			}
+		});
+	}
+
+	@Override
+	public void goToOrganizationTask(System_Organization organization) {
+		Storage.getUserProfiles().setOrganizationCurrently(organization.getId());
+		MiniTask.appController.systemService.goToOrganization(organization, new AsyncCallback<Boolean>() {
+			@Override
+			public void onSuccess(Boolean result) {
+				if(result) {
+					MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
+					MiniTask.clientFactory.getContainer().updateHeaderInfo();
+				}
+				else
+					Window.alert("Error: can't find organization!");
+			}
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
 			}
 		});
 	}

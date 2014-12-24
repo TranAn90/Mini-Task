@@ -4,25 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.softlink.minitask.client.AppConstants;
-import com.softlink.minitask.client.view.desktop.ui.CSSImageResource;
-import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
+import com.softlink.minitask.client.AppController.Storage;
+import com.softlink.minitask.client.view.TaskListInf;
 import com.softlink.minitask.client.view.desktop.ui.AllTasksTable;
+import com.softlink.minitask.client.view.desktop.ui.CSSImageResource;
+import com.softlink.minitask.client.view.desktop.ui.CreateTaskDialog;
+import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
 import com.softlink.minitask.client.view.desktop.ui.MyTasksTable;
 import com.softlink.minitask.shared.Task_Data;
-import com.google.gwt.user.client.ui.HTMLPanel;
 
-public class TaskList extends Composite {
+public class TaskList extends Composite implements TaskListInf{
 	interface Binder extends UiBinder<Widget, TaskList> {
 	}
 
@@ -36,10 +41,12 @@ public class TaskList extends Composite {
 	@UiField HorizontalPanel horMain;
 	@UiField HTMLPanel htmlTaskList;
 	@UiField HTMLPanel htmlMenu;
+	@UiField Label btnAddTask;
 	
 	public static final int menuHeight = 46;
 	
 	private AppConstants appConstants = GWT.create(AppConstants.class);
+	
 	private MyTasksTable gridTaskRecipients = new MyTasksTable(dataGridCss,
 			cSSImageResource);
 
@@ -49,18 +56,22 @@ public class TaskList extends Composite {
 
 	private List<Task_Data> recipients = new ArrayList<Task_Data>();
 
+	private List<Task_Data> senders = new ArrayList<Task_Data>();
+	
 	private DataGrid<Task_Data> gridRecipient;
 
 	private DataGrid<Task_Data> gridSender;
 
-	private List<Task_Data> senders = new ArrayList<Task_Data>();
+	private Presenter presenter;
+	
+	CreateTaskDialog createTaskDialog = new CreateTaskDialog();
 
 	public TaskList() {
 		initWidget(uiBinder.createAndBindUi(this));
 		htmlMenu.setHeight(menuHeight + "px");
 		horMain.setHeight(Window.getClientHeight() - Container.headerHeight - menuHeight + "px");
-//		InitViewMyTasks();
-		InitViewAllTasks();
+		InitViewMyTasks();
+//		InitViewAllTasks();
 	}
 
 	private void InitViewMyTasks() {
@@ -98,7 +109,7 @@ public class TaskList extends Composite {
 		ListDataProvider<Task_Data> providerRecipient = new ListDataProvider<Task_Data>();
 		providerRecipient.addDataDisplay(gridRecipient);
 		recipients = providerRecipient.getList();
-		recipients.addAll(autoGenerateTasks.subList(0, 30));
+//		recipients.addAll(autoGenerateTasks.subList(0, 9));
 	}
 
 	private void InitViewSender() {
@@ -115,7 +126,38 @@ public class TaskList extends Composite {
 		ListDataProvider<Task_Data> providerSender = new ListDataProvider<Task_Data>();
 		providerSender.addDataDisplay(gridSender);
 		senders = providerSender.getList();
-		senders.addAll(autoGenerateTasks.subList(30, 100));
+//		senders.addAll(autoGenerateTasks.subList(10, 19));
 	}
 
+	@Override
+	public void activityStart() {
+		if(presenter != null)
+			presenter.desktopLoadData();
+	}
+
+	@Override
+	public void setPresenter(Presenter presenter) {
+		this.presenter = presenter;
+	}
+
+	@Override
+	public void setTaskList(List<Task_Data> taskList) {
+		allTasks.clear();
+		senders.clear();
+		recipients.clear();
+		allTasks.addAll(taskList);
+		String user = Storage.getUserProfiles().getEmail();
+		for(Task_Data data: allTasks) {
+			if(data.getSender() != null && data.getSender().equals(user))
+				senders.add(data);
+			if(data.getRecipient() != null && data.getRecipient().equals(user))
+				recipients.add(data);
+		}
+	}
+
+	@UiHandler("btnAddTask")
+	void onBtnAddTaskClick(ClickEvent event) {
+		createTaskDialog.getInfo();
+		createTaskDialog.center();
+	}
 }

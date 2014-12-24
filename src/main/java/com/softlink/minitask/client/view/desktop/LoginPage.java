@@ -8,10 +8,10 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.view.LoginPageInf;
-import com.google.gwt.user.client.ui.Label;
 
 public class LoginPage extends Composite implements LoginPageInf {
 

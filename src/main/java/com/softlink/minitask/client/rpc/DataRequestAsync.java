@@ -3,6 +3,7 @@ package com.softlink.minitask.client.rpc;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.softlink.minitask.shared.LocalData;
 import com.softlink.minitask.shared.Task_Data;
 import com.softlink.minitask.shared.Task_Project;
 
@@ -33,5 +34,7 @@ public interface DataRequestAsync {
 	void updateProject(Task_Project newData, AsyncCallback<Boolean> callback);
 
 	void removeProject(Task_Project project, AsyncCallback<Boolean> callback);
+	
+	void retrieveAllData(AsyncCallback<LocalData> callback);
 
 }

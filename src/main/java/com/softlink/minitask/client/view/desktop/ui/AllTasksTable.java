@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.cell.client.ClickableTextCell;
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.ImageResourceCell;
 import com.google.gwt.cell.client.TextCell;
-import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;

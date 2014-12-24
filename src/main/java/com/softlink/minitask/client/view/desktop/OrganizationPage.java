@@ -12,7 +12,6 @@ import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
@@ -27,6 +26,7 @@ import com.softlink.minilib.shared.Invite_Token;
 import com.softlink.minilib.shared.System_Organization;
 import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.AppController.Storage;
+import com.softlink.minitask.client.MiniTask;
 import com.softlink.minitask.client.view.OrganizationPageInf;
 
 public class OrganizationPage extends Composite implements OrganizationPageInf {
@@ -114,7 +114,8 @@ public class OrganizationPage extends Composite implements OrganizationPageInf {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				Window.alert("Go To " + lbOrganizationName.getText());
+				if(presenter != null)
+					presenter.goToOrganizationTask(organization);
 			}
 		});
 		btnOrganiztionSetting.addMouseOverHandler(new MouseOverHandler() {
@@ -148,7 +149,7 @@ public class OrganizationPage extends Composite implements OrganizationPageInf {
 		txbOrganizationName.setFocus(true);
 		txbOrganizationName.setText("");
 		txbOrganizationDescription.setText("");
-		Window.scrollTo(0, Window.getClientHeight());
+		MiniTask.clientFactory.getContainer().scrollToBottom();
 	}
 
 	@UiHandler("btnCreateOrganization")

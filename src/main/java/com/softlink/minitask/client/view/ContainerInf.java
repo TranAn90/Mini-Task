@@ -10,6 +10,13 @@ public interface ContainerInf extends IsWidget{
 	
 	void inOrganizationDetail();
 	
+	void inTaskList();
+	
 	void onStartUp();
-
+	
+	//
+	void scrollToBottom();
+	
+	void updateHeaderInfo();
+	
 }

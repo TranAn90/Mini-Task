@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.softlink.minitask.shared.LocalData;
 import com.softlink.minitask.shared.Task_Data;
 import com.softlink.minitask.shared.Task_Project;
 
@@ -32,4 +33,6 @@ public interface DataRequest extends RemoteService {
 	boolean updateProject(Task_Project newData);
 	
 	boolean removeProject(Task_Project project);
+	
+	LocalData retrieveAllData();
 }

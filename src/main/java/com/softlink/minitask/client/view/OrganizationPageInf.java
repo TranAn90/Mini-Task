@@ -21,6 +21,8 @@ public interface OrganizationPageInf extends IsWidget {
 		
 		void goToOrganizationDetail(System_Organization organization);
 		
+		void goToOrganizationTask(System_Organization organization);
+		
 		void doAcceptInviteToken(Invite_Token token);
 	}
 

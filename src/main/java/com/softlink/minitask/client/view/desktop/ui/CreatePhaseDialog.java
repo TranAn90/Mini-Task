@@ -1,16 +1,16 @@
-package com.softlink.minitask.client.view.desktop;
+package com.softlink.minitask.client.view.desktop.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.softlink.minitask.client.AppConstants;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 
 public class CreatePhaseDialog extends DialogBox {
 

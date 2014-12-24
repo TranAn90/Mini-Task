@@ -7,10 +7,12 @@ import com.softlink.minitask.client.view.ContainerInf;
 import com.softlink.minitask.client.view.LoginPageInf;
 import com.softlink.minitask.client.view.OrganizationDetailInf;
 import com.softlink.minitask.client.view.OrganizationPageInf;
+import com.softlink.minitask.client.view.TaskListInf;
 import com.softlink.minitask.client.view.desktop.Container;
 import com.softlink.minitask.client.view.desktop.LoginPage;
 import com.softlink.minitask.client.view.desktop.OrganizationDetail;
 import com.softlink.minitask.client.view.desktop.OrganizationPage;
+import com.softlink.minitask.client.view.desktop.TaskList;
 
 /**
  * Use ClientFactoryImpl by default for Desktop
@@ -24,6 +26,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final LoginPage loginPage = new LoginPage();
 	private static final OrganizationPage organizationPage = new OrganizationPage();
 	private static final OrganizationDetail organizationDetail = new OrganizationDetail();
+	private static final TaskList taskList = new TaskList();
 	
 	public ClientFactoryImpl() {}
 
@@ -55,6 +58,11 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public OrganizationDetailInf getOrganizationDetail() {
 		return organizationDetail;
+	}
+
+	@Override
+	public TaskListInf getTaskList() {
+		return taskList;
 	}
 
 }

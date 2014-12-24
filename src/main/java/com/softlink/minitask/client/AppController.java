@@ -14,12 +14,16 @@ import com.softlink.minilib.client.rpc.SystemServiceAsync;
 import com.softlink.minitask.client.events.InLoginPageEvent;
 import com.softlink.minitask.client.events.InOrganizationDetailEvent;
 import com.softlink.minitask.client.events.InOrganizationPageEvent;
+import com.softlink.minitask.client.events.InTaskListEvent;
 import com.softlink.minitask.client.events.OnStartUpEvent;
 import com.softlink.minitask.client.mvp.AppActivityMapper;
 import com.softlink.minitask.client.mvp.AppPlaceHistoryMapper;
 import com.softlink.minitask.client.place.WelcomePlace;
+import com.softlink.minitask.client.rpc.DataRequest;
+import com.softlink.minitask.client.rpc.DataRequestAsync;
 import com.softlink.minitask.client.rpc.UserRequest;
 import com.softlink.minitask.client.rpc.UserRequestAsync;
+import com.softlink.minitask.shared.LocalData;
 import com.softlink.minitask.shared.UserProfiles;
 
 public class AppController {
@@ -30,13 +34,20 @@ public class AppController {
 	public static class Storage {
 		static UserProfiles userProfiles = new UserProfiles();
 		
+		static LocalData localData = new LocalData();
+		
 		public static UserProfiles getUserProfiles() {
 			return userProfiles;
 		}
+		
+		public static LocalData getLocalData() {
+			return localData;
+		}
 	}
 	
-	public static final UserRequestAsync userRequest = GWT.create(UserRequest.class);
 	public static final SystemServiceAsync systemService = SystemService.Util.getInstance();
+	public static final UserRequestAsync userRequest = GWT.create(UserRequest.class);
+	public static final DataRequestAsync dataRequest = GWT.create(DataRequest.class);
 
 	private void EventManager() {
 		eventBus.addHandler(InLoginPageEvent.TYPE, new InLoginPageEvent.Handler() {
@@ -55,6 +66,12 @@ public class AppController {
 			@Override
 			public void inPlace(InOrganizationDetailEvent event) {
 				clientFactory.getContainer().inOrganizationDetail();
+			}
+		});
+		eventBus.addHandler(InTaskListEvent.TYPE, new InTaskListEvent.Handler() {
+			@Override
+			public void inPlace(InTaskListEvent event) {
+				clientFactory.getContainer().inTaskList();
 			}
 		});
 		eventBus.addHandler(OnStartUpEvent.TYPE, new OnStartUpEvent.Handler() {

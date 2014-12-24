@@ -11,6 +11,7 @@ public class UserProfiles implements Serializable{
 	
 	private String name;
 	private String email;
+	private String organizationCurrently;
 	private List<System_Organization> organizationList = new ArrayList<System_Organization>();
 	private List<Invite_Token> inviteTokenList = new ArrayList<Invite_Token>();
 	private boolean isLogin = false;
@@ -33,6 +34,14 @@ public class UserProfiles implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getOrganizationCurrently() {
+		return organizationCurrently;
+	}
+
+	public void setOrganizationCurrently(String organizationCurrently) {
+		this.organizationCurrently = organizationCurrently;
 	}
 
 	public List<System_Organization> getOrganizationList() {

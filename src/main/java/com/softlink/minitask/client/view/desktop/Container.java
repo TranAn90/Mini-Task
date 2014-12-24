@@ -21,6 +21,7 @@ public class Container extends Composite implements ContainerInf {
 	@UiField DockLayoutPanel container;
 	
 	Header header = new Header();
+	SlideBar slideBar = new SlideBar();
 	ScrollPanel scrollAbleContent = new ScrollPanel();
 
 	interface ContainerUiBinder extends UiBinder<Widget, Container> {
@@ -29,8 +30,6 @@ public class Container extends Composite implements ContainerInf {
 	public Container() {
 		initWidget(uiBinder.createAndBindUi(this));
 		container.setHeight(Window.getClientHeight() + "px");
-		TaskList taskList = new TaskList();
-		container.add(taskList);
 	}
 	
 	void clearContent() {
@@ -63,6 +62,24 @@ public class Container extends Composite implements ContainerInf {
 
 	@Override
 	public void onStartUp() {
+		header.setInfo();
+	}
+
+	@Override
+	public void inTaskList() {
+		clearContent();
+		container.addNorth(header, headerHeight);
+		container.addWest(slideBar, 80);
+		container.add(MiniTask.clientFactory.getTaskList());
+	}
+
+	@Override
+	public void scrollToBottom() {
+		scrollAbleContent.scrollToBottom();
+	}
+
+	@Override
+	public void updateHeaderInfo() {
 		header.setInfo();
 	}
 

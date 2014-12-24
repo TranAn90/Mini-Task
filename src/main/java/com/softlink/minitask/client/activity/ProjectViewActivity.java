@@ -4,7 +4,6 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.softlink.minitask.client.place.ProjectViewPlace;
-import com.softlink.minitask.client.place.WelcomePlace;
 
 public class ProjectViewActivity extends AbstractActivity {
 	

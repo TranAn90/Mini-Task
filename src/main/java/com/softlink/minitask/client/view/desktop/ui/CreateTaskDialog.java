@@ -1,10 +1,14 @@
-package com.softlink.minitask.client.view.desktop;
+package com.softlink.minitask.client.view.desktop.ui;
 
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.OpenEvent;
+import com.google.gwt.event.logical.shared.OpenHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -22,9 +26,13 @@ import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.softlink.minilib.shared.System_Organization;
 import com.softlink.minitask.client.AppConstants;
-import com.softlink.minitask.client.view.desktop.ui.ZoomOutDescription;
+import com.softlink.minitask.client.AppController.Storage;
+import com.softlink.minitask.client.activity.ui.CreateTaskDialogActivity;
 import com.softlink.minitask.shared.CommonFunction;
+import com.softlink.minitask.shared.Task_Data;
+import com.softlink.minitask.shared.UserProfiles;
 
 public class CreateTaskDialog extends DialogBox {
 
@@ -91,27 +99,46 @@ public class CreateTaskDialog extends DialogBox {
 	interface Binder extends UiBinder<Widget, CreateTaskDialog> {
 	}
 
-	public interface Listener {
-
+	public interface Presenter {
+		void createTask(Task_Data data);
 	}
 
-	private Listener listener;
+	private Presenter presenter;
+	
 	private List<String> allPriorityTask = CommonFunction.allTaskPriorityText;
+	
+	public void getInfo() {
+		UserProfiles profile = Storage.getUserProfiles();
+		System_Organization organization = profile.findOrganization(profile.getOrganizationCurrently());
+		recipient.addItem(organization.getAdmin());
+		for(String user: organization.getUserList())
+			recipient.addItem(user);
+	}
 
-	public CreateTaskDialog(Listener listener) {
+	public CreateTaskDialog() {
 		setWidget(uiBinder.createAndBindUi(this));
+		setAnimationEnabled(true);
 		setStyleName("frame_dialogBoxClean");
 		setGlassEnabled(true);
+		this.presenter = new CreateTaskDialogActivity();
 		InitTextForm();
-		this.listener = listener;
-		center();
-		show();
 		disclosurePanel.setOpen(false);
 		for (String item : allPriorityTask) {
 			priority.addItem(item);
 		}
-		
-
+		disclosurePanel.addOpenHandler(new OpenHandler<DisclosurePanel>() {
+			@Override
+			public void onOpen(OpenEvent<DisclosurePanel> event) {
+				center();
+			}
+		});
+		disclosurePanel.addCloseHandler(new CloseHandler<DisclosurePanel>() {
+			
+			@Override
+			public void onClose(CloseEvent<DisclosurePanel> event) {
+				center();
+			}
+		});
 	}
 
 	@UiHandler("btReload")
@@ -136,6 +163,14 @@ public class CreateTaskDialog extends DialogBox {
 
 	@UiHandler("btSave")
 	void onBtSaveClick(ClickEvent event) {
+		Task_Data data = new Task_Data();
+		data.setName(name.getText());
+		data.setSender(Storage.getUserProfiles().getEmail());
+		data.setRecipient(recipient.getItemText(recipient.getSelectedIndex()));
+		data.setDueDate(dueDate.getValue());
+		data.setDescription(description.getText());
+		presenter.createTask(data);
+		hide();
 	}
 
 	@UiHandler("btSaveContinue")

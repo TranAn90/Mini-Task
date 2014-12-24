@@ -14,6 +14,8 @@ public interface OrganizationDetailInf extends IsWidget{
 	public interface Presenter {
 		void goToOrganizationPage();
 		
+		void goToOrganizationTask(System_Organization organization);
+		
 		void doInviteUser(String userEmail, System_Organization organization);
 	}
 

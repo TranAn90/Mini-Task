@@ -48,6 +48,7 @@ public class UserRequestService extends RemoteServiceServlet implements UserRequ
 			UserProfiles userProfiles = new UserProfiles();
 			userProfiles.setName(user_name);
 			userProfiles.setEmail(user_email);
+			userProfiles.setOrganizationCurrently(current_user.getOrganizationCurrently());
 			userProfiles.setLogin(true);
 			List<System_Organization> organizationList = new ArrayList<System_Organization>();
 			if(current_user.getOrganizationList() != null)

@@ -1,0 +1,169 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+	.TaskDetail-Obj1 {
+		width: 100%;
+	}
+	
+	.TaskDetail-Object2 {
+		width: 22%;
+		vertical-align: top;
+		text-align: left;
+		margin-left: 0px;
+	}
+	
+	.TaskDetail-Object3 {
+		width: 28%;
+		vertical-align: top;
+	}
+	
+	.TaskDetail-Object4 {
+		background: #ffffdd;
+		padding: 6px;
+		margin-bottom: 6px;
+		border: 1px solid #d7d7d7;
+	}
+	
+	.TaskDetail-Object5 {
+		margin-left: 5px;
+		padding-top: 0px !important;
+	}
+	
+	.TaskDetail-Object6 {
+		min-width: 900px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+	.TaskDetail-Object7 {
+		margin-bottom: 6px;
+		border: 1px solid #d7d7d7;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.TaskDetail-Object8 {
+		float: right;
+		white-space: nowrap;
+		line-height: 1.4em;
+		margin-top: 5px;
+		padding-left: 10px;
+		font-size: 0.9em;
+	}
+	
+	.TaskDetail-Object10 {
+		float: right;
+	}
+	
+	.TaskDetail-Object9 {
+		line-height: 22px !important;
+		margin-left: 5px;
+	}
+	</ui:style>
+	<g:HorizontalPanel width="100%" height="100%">
+		<g:VerticalPanel styleName="{style.TaskDetail-Object6}">
+			<g:HTMLPanel height="40px">
+				<g:HorizontalPanel styleName="{style.TaskDetail-Object10}">
+
+					<g:Label text="Edit"
+						styleName="{style.TaskDetail-Object9} button-greenStyle" width="60px"
+						horizontalAlignment="ALIGN_CENTER" height="25px" ui:field="btEdit" />
+					<g:Label text="Copy"
+						styleName="{style.TaskDetail-Object9} button-whiteStyle" width="60px"
+						horizontalAlignment="ALIGN_CENTER" height="25px" ui:field="btCopy" />
+					<g:Label text="Delete"
+						styleName="{style.TaskDetail-Object9} button-whiteStyle" width="60px"
+						horizontalAlignment="ALIGN_CENTER" height="25px" ui:field="btRemove" />
+
+				</g:HorizontalPanel>
+
+				<div>
+					<h2 style="margin-top: 10px;" ui:field="header">
+					</h2>
+				</div>
+
+			</g:HTMLPanel>
+
+			<g:VerticalPanel width="100%" styleName="{style.TaskDetail-Object4}"
+				ui:field="verMainContent">
+				<g:HTML styleName="{style.TaskDetail-Object5}">
+					<div>
+						<h3 style="margin-top: 0px;" ui:field="name">
+						</h3>
+					</div>
+				</g:HTML>
+				<g:HorizontalPanel styleName="{style.TaskDetail-Object5}">
+					<g:Label styleName="font-blackTitleNormal" width="80px"
+						ui:field="lbNameProject"></g:Label>
+					<g:HTML>
+						<div>
+							<div ui:field="nameProject">
+							</div>
+						</div>
+					</g:HTML>
+				</g:HorizontalPanel>
+				<g:HTML>
+					<table class="{style.TaskDetail-Obj1}">
+						<tr>
+							<th class="{style.TaskDetail-Object2}" ui:field="statusth"></th>
+							<td class="{style.TaskDetail-Object3}" ui:field="status">New</td>
+							<th class="{style.TaskDetail-Object2}" ui:field="startDateth">
+							</th>
+							<td class="{style.TaskDetail-Object3}" ui:field="startDate"></td>
+						</tr>
+						<tr>
+							<th class="{style.TaskDetail-Object2}" ui:field="priorityth"></th>
+							<td class="{style.TaskDetail-Object3}" ui:field="priority"></td>
+							<th class="{style.TaskDetail-Object2}" ui:field="dueDateth"></th>
+							<td class="{style.TaskDetail-Object3}" ui:field="dueDate"></td>
+						</tr>
+
+						<tr>
+							<th class="{style.TaskDetail-Object2}" ui:field="senderth"></th>
+							<td class="{style.TaskDetail-Object3}" ui:field="sender"></td>
+							<th class="{style.TaskDetail-Object2}" ui:field="securityth">
+							</th>
+							<td class="{style.TaskDetail-Object3}" ui:field="security"></td>
+						</tr>
+
+						<tr>
+							<th class="{style.TaskDetail-Object2}" ui:field="recipientth"></th>
+							<td class="{style.TaskDetail-Object3}" ui:field="recipient"></td>
+							<th class="{style.TaskDetail-Object2}" ui:field="idParentth"></th>
+							<td class="{style.TaskDetail-Object3}" ui:field="idParent"></td>
+						</tr>
+					</table>
+					<hr></hr>
+				</g:HTML>
+				<g:HTML>
+					<div>
+						<p>
+							<strong ui:field="descriptionth"></strong>
+						</p>
+						<div>
+							<p ui:field="description"></p>
+						</div>
+					</div>
+					<hr />
+				</g:HTML>
+				<g:HTMLPanel>
+
+
+					<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link"
+						addStyleNames="{style.TaskDetail-Object8}" ui:field="btNewSubTask" />
+					<p>
+						<strong ui:field="listSubTaskth"></strong>
+					</p>
+					<hr />
+				</g:HTMLPanel>
+
+			</g:VerticalPanel>
+
+		</g:VerticalPanel>
+
+		<g:HTMLPanel styleName="{style.TaskDetail-Object7}" width="200px"></g:HTMLPanel>
+	</g:HorizontalPanel>
+
+
+</ui:UiBinder> 

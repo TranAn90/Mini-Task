@@ -84,4 +84,10 @@ public interface AppConstants extends Constants {
 	String OptionLanguagelbHeader();
 	String OptionLanguagebtEnglish();
 	String OptionLanguagebtVietNamese();
+	String TaskDetaillistSubTaskth();
+	String TaskDetailbtNewSubTask();
+	String TaskDetaillbHeader();
+	String ButtonTextEdit();
+	String ButtonTextCopy();
+	String Language();
 }

@@ -1,0 +1,130 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style>
+	.ProjectDetail-Obj1 {
+		width: 100%;
+	}
+	
+	.ProjectDetail-Object2 {
+		width: 22%;
+		vertical-align: top;
+		text-align: left;
+		margin-left: 0px;
+	}
+	
+	.ProjectDetail-Object3 {
+		width: 28%;
+		vertical-align: top;
+	}
+	
+	.ProjectDetail-Object4 {
+		background: #ffffdd;
+		padding: 6px;
+		margin-bottom: 6px;
+		border: 1px solid #d7d7d7;
+	}
+	
+	.ProjectDetail-Object5 {
+		margin-left: 5px;
+		padding-top: 0px !important;
+	}
+	
+	.ProjectDetail-Object6 {
+		min-width: 1000px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+	.ProjectDetail-Object10 {
+		float: right;
+	}
+	
+	.ProjectDetail-Object9 {
+		line-height: 22px !important;
+		margin-left: 5px;
+	}
+	
+	.ProjectDetail-Object11 {
+		margin-left: 5px;
+		padding-bottom: 5px;
+	}
+	</ui:style>
+	<g:HorizontalPanel width="100%" height="100%">
+		<g:VerticalPanel styleName="{style.ProjectDetail-Object6}">
+			<g:HTMLPanel height="40px">
+				<g:HorizontalPanel styleName="{style.ProjectDetail-Object10}">
+
+					<g:Label text="Edit"
+						styleName="{style.ProjectDetail-Object9} button-greenStyle" width="60px"
+						horizontalAlignment="ALIGN_CENTER" height="25px" ui:field="btEdit" />
+
+					<g:Label text="Delete"
+						styleName="{style.ProjectDetail-Object9} button-whiteStyle" width="60px"
+						horizontalAlignment="ALIGN_CENTER" height="25px" ui:field="btRemove" />
+				</g:HorizontalPanel>
+				<div>
+					<h2 style="margin-top: 10px;" ui:field="header">
+					</h2>
+				</div>
+			</g:HTMLPanel>
+
+			<g:VerticalPanel width="100%"
+				styleName="{style.ProjectDetail-Object4}" ui:field="verMainContent">
+				<g:HTML styleName="{style.ProjectDetail-Object5}">
+					<div>
+						<h3 style="margin-top: 0px; font-style: italic;" ui:field="name">
+						</h3>
+					</div>
+				</g:HTML>
+				<g:HorizontalPanel styleName="{style.ProjectDetail-Object11}">
+					<g:Label styleName="font-blackTitleNormal" ui:field="lblistMember"
+						width="110px" />
+					<g:HTML>
+						<div>
+							<div ui:field="listMember">
+							</div>
+						</div>
+					</g:HTML>
+				</g:HorizontalPanel>
+				<g:HTML>
+					<table class="{style.ProjectDetail-Obj1}">
+						<tr>
+							<th class="{style.ProjectDetail-Object2}" ui:field="managerth"/>
+							<td class="{style.ProjectDetail-Object3}" ui:field="manager">
+							</td>
+							<th class="{style.ProjectDetail-Object2}" ui:field="startDateth">
+							</th>
+							<td class="{style.ProjectDetail-Object3}" ui:field="startDate"/>
+						</tr>
+						<tr>
+							<th class="{style.ProjectDetail-Object2}" ui:field="creatorth"></th>
+							<td class="{style.ProjectDetail-Object3}" ui:field="creator"></td>
+							<th class="{style.ProjectDetail-Object2}" ui:field="dueDateth"></th>
+							<td class="{style.ProjectDetail-Object3}" ui:field="dueDate"></td>
+						</tr>
+
+					</table>
+					<hr></hr>
+				</g:HTML>
+				<g:HTML>
+					<div>
+						<p>
+							<strong ui:field="descriptionth"></strong>
+						</p>
+						<div>
+							<p ui:field="description"></p>
+						</div>
+					</div>
+					<hr />
+				</g:HTML>
+
+			</g:VerticalPanel>
+
+		</g:VerticalPanel>
+
+
+	</g:HorizontalPanel>
+
+
+</ui:UiBinder> 

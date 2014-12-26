@@ -21,9 +21,9 @@ public class Task_Project implements Serializable {
 	@Id
 	Long id;
 	@Unindex
-	List<Long> listTaskId = new ArrayList<Long>();
+	List<Long> listTaskId;
 	@Unindex
-	List<Long> listChildId = new ArrayList<Long>();
+	List<Long> listChildId;
 	@Index
 	String name;
 	@Unindex

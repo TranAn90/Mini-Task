@@ -98,7 +98,11 @@ public class TaskDetail extends Composite {
 	Label btCopy;
 	@UiField
 	Label btRemove;
-	private final String split = ":";
+	@UiField
+	Label lbCcList;
+	@UiField
+	DivElement ccList;
+	public static final String split = ":";
 
 	private final AppConstants CONSTANT = GWT.create(AppConstants.class);
 	public final CSSImageResource cSSImageResource = GWT
@@ -117,7 +121,6 @@ public class TaskDetail extends Composite {
 	}
 
 	protected void SetTextForm() {
-		name.setInnerHTML("nguyeenx thi le");
 		lbNameProject.setText(CONSTANT.ViewProjectName() + split);
 		statusth.setInnerHTML(CONSTANT.ViewTaskStatus());
 		startDateth.setInnerHTML(CONSTANT.ViewProjectStartDate() + split);
@@ -128,17 +131,13 @@ public class TaskDetail extends Composite {
 		recipientth.setInnerHTML(CONSTANT.ViewTaskRecipient() + split);
 		idParentth.setInnerHTML(CONSTANT.ViewTaskParentId() + split);
 		descriptionth.setInnerHTML(CONSTANT.ViewDescription());
-		description
-				.setInnerHTML("She slapped his face with unexpected force "
-						+ "Teachers aren't allowed to use force in the classroom."
-						+ "The police were able to control the crowd by sheer force of numbers  "
-						+ "there were people in the crowd thêm cái gì vào đây nữa cho nó dài ra nhỉ)");
 		listSubTaskth.setInnerHTML(CONSTANT.TaskDetaillistSubTaskth());
 		btNewSubTask.setText(CONSTANT.TaskDetailbtNewSubTask());
 		header.setInnerHTML(CONSTANT.TaskDetaillbHeader());
 		btEdit.setText(CONSTANT.ButtonTextEdit());
 		btCopy.setText(CONSTANT.ButtonTextCopy());
 		btRemove.setText(CONSTANT.ButtonTextRemove());
+		lbCcList.setText(CONSTANT.ViewTaskCcList() + split);
 
 	}
 
@@ -245,12 +244,15 @@ public class TaskDetail extends Composite {
 	@UiHandler("btNewSubTask")
 	void onBtNewSubTaskClick(ClickEvent event) {
 	}
+
 	@UiHandler("btEdit")
 	void onBtEditClick(ClickEvent event) {
 	}
+
 	@UiHandler("btCopy")
 	void onBtCopyClick(ClickEvent event) {
 	}
+
 	@UiHandler("btRemove")
 	void onBtRemoveClick(ClickEvent event) {
 	}

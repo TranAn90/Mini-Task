@@ -90,4 +90,7 @@ public interface AppConstants extends Constants {
 	String ButtonTextEdit();
 	String ButtonTextCopy();
 	String Language();
+	String ViewTaskCcList();
+	String ProjectDetailHeader();
+	String ViewProjectCreator();
 }

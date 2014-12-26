@@ -9,7 +9,7 @@
 		cursor: pointer;
 		border-radius: 0px;
 		border-bottom: 1px silver solid;
-		background: #48b512;
+		background: #A8A8A8;
 	}
 	
 	.SlideBar-Obj2 {

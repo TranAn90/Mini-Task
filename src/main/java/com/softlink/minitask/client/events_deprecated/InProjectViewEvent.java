@@ -1,4 +1,4 @@
-package com.softlink.minitask.client.events;
+package com.softlink.minitask.client.events_deprecated;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;

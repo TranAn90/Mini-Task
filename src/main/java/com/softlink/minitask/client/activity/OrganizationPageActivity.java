@@ -9,7 +9,6 @@ import com.softlink.minilib.shared.Invite_Token;
 import com.softlink.minilib.shared.System_Organization;
 import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.MiniTask;
-import com.softlink.minitask.client.events.InOrganizationPageEvent;
 import com.softlink.minitask.client.place.OrganizationPlace;
 import com.softlink.minitask.client.place.TaskListPlace;
 import com.softlink.minitask.client.place.WelcomePlace;
@@ -26,7 +25,8 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 			MiniTask.clientFactory.getPlaceController().goTo(new WelcomePlace());
 		}
 		else {
-			eventBus.fireEvent(new InOrganizationPageEvent());
+//			eventBus.fireEvent(new InOrganizationPageEvent());
+			MiniTask.clientFactory.getContainer().inOrganizationPage();
 			MiniTask.clientFactory.getOrganizationPage().setPresenter(this);
 			MiniTask.clientFactory.getOrganizationPage().clear();
 			MiniTask.clientFactory.getOrganizationPage().setOrganizationList(Storage.getUserProfiles().getOrganizationList());
@@ -85,8 +85,11 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 			@Override
 			public void onSuccess(System_Organization result) {
 				Storage.getUserProfiles().getInviteTokenList().remove(token);
-				if(result != null)
+				if(result != null) {
 					Storage.getUserProfiles().getOrganizationList().add(result);
+					MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
+					MiniTask.clientFactory.getContainer().updateHeaderInfo();
+				}
 				MiniTask.clientFactory.getOrganizationPage().setOrganizationList(Storage.getUserProfiles().getOrganizationList());
 				MiniTask.clientFactory.getOrganizationPage().setInviteTokenList(Storage.getUserProfiles().getInviteTokenList());
 			}

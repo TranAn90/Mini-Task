@@ -4,13 +4,17 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Event.NativePreviewEvent;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.Widget;
 import com.softlink.minitask.client.AppConstants;
@@ -18,6 +22,7 @@ import com.softlink.minitask.client.AppConstants;
 public class OptionLanguage extends DialogBox {
 
 	private static Binder uiBinder = GWT.create(Binder.class);
+	
 	@UiField
 	Label btClose;
 	@UiField
@@ -26,6 +31,8 @@ public class OptionLanguage extends DialogBox {
 	RadioButton btVietNamese;
 	@UiField
 	RadioButton btEnglish;
+	
+	public boolean isShowing = false;
 
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 
@@ -39,6 +46,20 @@ public class OptionLanguage extends DialogBox {
 		setGlassEnabled(false);
 		setAutoHideEnabled(true);
 		SetTextForm();
+		
+		final Timer t = new Timer() {
+			@Override
+			public void run() {
+				isShowing = false;
+			}
+		};
+		
+		this.addCloseHandler(new CloseHandler<PopupPanel>() {
+			@Override
+			public void onClose(CloseEvent<PopupPanel> event) {
+				t.schedule(200);
+			}
+		});
 	}
 
 	protected void SetTextForm() {

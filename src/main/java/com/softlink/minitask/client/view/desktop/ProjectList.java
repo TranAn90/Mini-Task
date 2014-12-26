@@ -17,15 +17,19 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.softlink.minitask.client.AppConstants;
+import com.softlink.minitask.client.view.ProjectListInf;
+import com.softlink.minitask.client.view.desktop.ui.CreateProjectDialog;
 import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
 import com.softlink.minitask.shared.CommonFunction;
 import com.softlink.minitask.shared.Task_Project;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 
-public class ProjectListView extends Composite {
+public class ProjectList extends Composite implements ProjectListInf{
 
 	private static Binder uiBinder = GWT.create(Binder.class);
 
-	interface Binder extends UiBinder<Widget, ProjectListView> {
+	interface Binder extends UiBinder<Widget, ProjectList> {
 	}
 
 	public final DataGrid.Resources dataGridCss = GWT
@@ -36,8 +40,10 @@ public class ProjectListView extends Composite {
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 	private List<Task_Project> projects = new ArrayList<Task_Project>();
 	private ListDataProvider<Task_Project> dataProvider = new ListDataProvider<Task_Project>();
+	
+	CreateProjectDialog dialog = new CreateProjectDialog();
 
-	public ProjectListView() {
+	public ProjectList() {
 		gridProjects = new DataGrid<Task_Project>(50, dataGridCss);
 		initWidget(uiBinder.createAndBindUi(this));
 		InitDataGrid();
@@ -114,4 +120,8 @@ public class ProjectListView extends Composite {
 		gridProjects.addColumn(clDueDate, CONSTANTS.ViewDueDate());
 	}
 
+	@UiHandler("btnAddTask")
+	void onBtnAddTaskClick(ClickEvent event) {
+		dialog.center();
+	}
 }

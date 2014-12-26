@@ -8,7 +8,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.softlink.minilib.shared.System_Organization;
 import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.MiniTask;
-import com.softlink.minitask.client.events.InOrganizationDetailEvent;
 import com.softlink.minitask.client.place.OrganizationPlace;
 import com.softlink.minitask.client.place.TaskListPlace;
 import com.softlink.minitask.client.place.WelcomePlace;
@@ -28,7 +27,8 @@ public class OrganizationDetailActivity extends AbstractActivity implements Orga
 			MiniTask.clientFactory.getPlaceController().goTo(new WelcomePlace());
 		}
 		else {
-			eventBus.fireEvent(new InOrganizationDetailEvent());
+//			eventBus.fireEvent(new InOrganizationDetailEvent());
+			MiniTask.clientFactory.getContainer().inOrganizationDetail();
 			MiniTask.clientFactory.getOrganizationDetail().setPresenter(this);
 			System_Organization organization = Storage.getUserProfiles().findOrganization(token);
 			if(organization == null) {

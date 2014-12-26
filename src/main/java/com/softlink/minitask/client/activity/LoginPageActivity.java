@@ -7,7 +7,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.MiniTask;
-import com.softlink.minitask.client.events.InLoginPageEvent;
 import com.softlink.minitask.client.place.OrganizationPlace;
 import com.softlink.minitask.client.place.WelcomePlace;
 
@@ -18,7 +17,8 @@ public class LoginPageActivity extends AbstractActivity {
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		eventBus.fireEvent(new InLoginPageEvent());
+//		eventBus.fireEvent(new InLoginPageEvent());
+		MiniTask.clientFactory.getContainer().inLoginPage();
 		if(Storage.getUserProfiles().isLogin()) {
 			MiniTask.clientFactory.getPlaceController().goTo(new OrganizationPlace(null));
 		}

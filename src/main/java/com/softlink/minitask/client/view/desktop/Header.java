@@ -58,7 +58,7 @@ public class Header extends Composite {
 	public Header() {
 		initWidget(uiBinder.createAndBindUi(this));
 		SetTextForm();
-		lbOrganizationName.setVisible(false);
+		horOrganizationName.setVisible(false);
 	}
 
 	public void setInfo() {
@@ -68,11 +68,11 @@ public class Header extends Composite {
 		userDialog = new UserProfileDialog(userName);
 		lbUserName.setText(userName);
 		if(organization != null) {
-			lbOrganizationName.setVisible(true);
+			horOrganizationName.setVisible(true);
 			lbOrganizationName.setText(organization.getName());
 		}
 		else {
-			lbOrganizationName.setVisible(false);
+			horOrganizationName.setVisible(false);
 			lbOrganizationName.setText("");
 		}
 	}
@@ -102,18 +102,20 @@ public class Header extends Composite {
 		Window.alert("Notify");
 	}
 
-	private OptionLanguage optionLanguage;
+	private OptionLanguage optionLanguage = new OptionLanguage();
 	
 	final String languageVN = "VN";
 	final String languageEN = "EN";
 
 	@UiHandler("lbLanguage")
 	void onLbLanguageClick(ClickEvent event) {
-		optionLanguage = new OptionLanguage();
-		int left = lbLanguage.getAbsoluteLeft();
-		int top = lbLanguage.getAbsoluteTop();
-		optionLanguage.setPopupPosition(left - 170, top + 40);
-		optionLanguage.show();
+		if (!optionLanguage.isShowing) {
+			optionLanguage.isShowing = true;
+			int left = lbLanguage.getAbsoluteLeft();
+			int top = lbLanguage.getAbsoluteTop();
+			optionLanguage.setPopupPosition(left - 170, top + 40);
+			optionLanguage.show();
+		}
 	}
 	
 }

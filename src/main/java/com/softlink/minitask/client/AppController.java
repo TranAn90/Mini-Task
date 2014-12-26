@@ -11,11 +11,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.softlink.minilib.client.rpc.SystemService;
 import com.softlink.minilib.client.rpc.SystemServiceAsync;
-import com.softlink.minitask.client.events.InLoginPageEvent;
-import com.softlink.minitask.client.events.InOrganizationDetailEvent;
-import com.softlink.minitask.client.events.InOrganizationPageEvent;
-import com.softlink.minitask.client.events.InTaskListEvent;
-import com.softlink.minitask.client.events.OnStartUpEvent;
 import com.softlink.minitask.client.mvp.AppActivityMapper;
 import com.softlink.minitask.client.mvp.AppPlaceHistoryMapper;
 import com.softlink.minitask.client.place.WelcomePlace;
@@ -50,36 +45,36 @@ public class AppController {
 	public static final DataRequestAsync dataRequest = GWT.create(DataRequest.class);
 
 	private void EventManager() {
-		eventBus.addHandler(InLoginPageEvent.TYPE, new InLoginPageEvent.Handler() {
-			@Override
-			public void inPlace(InLoginPageEvent event) {
-				clientFactory.getContainer().inLoginPage();
-			}
-		});
-		eventBus.addHandler(InOrganizationPageEvent.TYPE, new InOrganizationPageEvent.Handler() {
-			@Override
-			public void inPlace(InOrganizationPageEvent event) {
-				clientFactory.getContainer().inOrganizationPage();
-			}
-		});
-		eventBus.addHandler(InOrganizationDetailEvent.TYPE, new InOrganizationDetailEvent.Handler() {
-			@Override
-			public void inPlace(InOrganizationDetailEvent event) {
-				clientFactory.getContainer().inOrganizationDetail();
-			}
-		});
-		eventBus.addHandler(InTaskListEvent.TYPE, new InTaskListEvent.Handler() {
-			@Override
-			public void inPlace(InTaskListEvent event) {
-				clientFactory.getContainer().inTaskList();
-			}
-		});
-		eventBus.addHandler(OnStartUpEvent.TYPE, new OnStartUpEvent.Handler() {
-			@Override
-			public void inPlace(OnStartUpEvent event) {
-				clientFactory.getContainer().onStartUp();
-			}
-		});
+//		eventBus.addHandler(InLoginPageEvent.TYPE, new InLoginPageEvent.Handler() {
+//			@Override
+//			public void inPlace(InLoginPageEvent event) {
+//				clientFactory.getContainer().inLoginPage();
+//			}
+//		});
+//		eventBus.addHandler(InOrganizationPageEvent.TYPE, new InOrganizationPageEvent.Handler() {
+//			@Override
+//			public void inPlace(InOrganizationPageEvent event) {
+//				clientFactory.getContainer().inOrganizationPage();
+//			}
+//		});
+//		eventBus.addHandler(InOrganizationDetailEvent.TYPE, new InOrganizationDetailEvent.Handler() {
+//			@Override
+//			public void inPlace(InOrganizationDetailEvent event) {
+//				clientFactory.getContainer().inOrganizationDetail();
+//			}
+//		});
+//		eventBus.addHandler(InTaskListEvent.TYPE, new InTaskListEvent.Handler() {
+//			@Override
+//			public void inPlace(InTaskListEvent event) {
+//				clientFactory.getContainer().inTaskList();
+//			}
+//		});
+//		eventBus.addHandler(OnStartUpEvent.TYPE, new OnStartUpEvent.Handler() {
+//			@Override
+//			public void inPlace(OnStartUpEvent event) {
+//				clientFactory.getContainer().onStartUp();
+//			}
+//		});
 	}
 
 	public AppController() {
@@ -88,7 +83,7 @@ public class AppController {
 	}
 
 	public void run() {
-		EventManager();
+//		EventManager();
 		getUserProfiles();
 	}
 	

@@ -4,6 +4,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface ContainerInf extends IsWidget{
 	
+	//App events
 	void inLoginPage();
 	
 	void inOrganizationPage();
@@ -12,9 +13,11 @@ public interface ContainerInf extends IsWidget{
 	
 	void inTaskList();
 	
+	void inProjectList();
+	
 	void onStartUp();
 	
-	//
+	//Desktop events
 	void scrollToBottom();
 	
 	void updateHeaderInfo();

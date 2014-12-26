@@ -2,6 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
+	@external .SlideBar-Obj1, .SlideBar-Obj2;
 	.SlideBar-Obj1 {
 		text-align: center;
 		line-height: 45px;
@@ -10,9 +11,24 @@
 		border-bottom: 1px silver solid;
 		background: #48b512;
 	}
+	
+	.SlideBar-Obj2 {
+		text-align: center;
+		line-height: 45px;
+		cursor: pointer;
+		border-radius: 0px;
+		border-bottom: 1px silver solid;
+		background: #3A910E;
+		font-weight: bold;
+	}
 	</ui:style>
-	<g:HTMLPanel styleName="background-softBlue" width="80px" height="100%">
-		<g:Label height="45px" styleName="{style.SlideBar-Obj1} button-greenStyle" text="Dự án"/>
-		<g:Label text="Công việc" styleName="{style.SlideBar-Obj1} button-greenStyle" height="45px"/>
+	<g:HTMLPanel styleName="background-softBlue" width="80px"
+		height="100%">
+		<g:Label height="45px" styleName="{style.SlideBar-Obj2} button-greenStyle"
+			text="Dự án" ui:field="projectTab" />
+		<g:Label text="Công việc" styleName="{style.SlideBar-Obj1} button-greenStyle"
+			height="45px" ui:field="taskTab" />
+		<g:Label text="Sự kiện" styleName="{style.SlideBar-Obj1} button-greenStyle"
+			height="45px" ui:field="eventTab" />
 	</g:HTMLPanel>
 </ui:UiBinder> 

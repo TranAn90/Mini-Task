@@ -68,9 +68,19 @@ public class Container extends Composite implements ContainerInf {
 	@Override
 	public void inTaskList() {
 		clearContent();
+		slideBar.setTaskTab();
 		container.addNorth(header, headerHeight);
 		container.addWest(slideBar, 80);
 		container.add(MiniTask.clientFactory.getTaskList());
+	}
+
+	@Override
+	public void inProjectList() {
+		clearContent();
+		slideBar.setProjectTab();
+		container.addNorth(header, headerHeight);
+		container.addWest(slideBar, 80);
+		container.add(MiniTask.clientFactory.getProjectList());
 	}
 
 	@Override

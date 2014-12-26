@@ -6,7 +6,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.MiniTask;
-import com.softlink.minitask.client.events.InTaskListEvent;
 import com.softlink.minitask.client.place.OrganizationPlace;
 import com.softlink.minitask.client.place.TaskListPlace;
 import com.softlink.minitask.client.view.TaskListInf;
@@ -25,7 +24,8 @@ public class TaskListActivity extends AbstractActivity implements TaskListInf.Pr
 			MiniTask.clientFactory.getPlaceController().goTo(new OrganizationPlace(null));
 		} 
 		else {
-			eventBus.fireEvent(new InTaskListEvent());
+//			eventBus.fireEvent(new InTaskListEvent());
+			MiniTask.clientFactory.getContainer().inTaskList();
 			taskList = MiniTask.clientFactory.getTaskList(); 
 			taskList.setPresenter(this);
 			taskList.activityStart();

@@ -17,6 +17,8 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.softlink.minitask.client.AppConstants;
+import com.softlink.minitask.client.activity.ui.CreateProjectDialogActivity;
+import com.softlink.minitask.shared.Task_Project;
 
 public class CreateProjectDialog extends DialogBox {
 
@@ -68,25 +70,24 @@ public class CreateProjectDialog extends DialogBox {
 	@UiField
 	Label lbEndDate;
 
-	public interface Listener {
-
+	public interface Presenter {
+		void createProject(Task_Project project);
 	}
 
-	private Listener listener;
+	private Presenter presenter;
 
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 
-	public CreateProjectDialog(Listener listener) {
+	public CreateProjectDialog() {
 		setWidget(uiBinder.createAndBindUi(this));
-		this.listener = listener;
-		setStyleName("frame_dialogBoxClean");
+		
 		SetTextForm();
+		setStyleName("frame_dialogBoxClean");
 		disclosurePanel.setOpen(false);
 		setGlassEnabled(true);
-		this.listener = listener;
-		center();
-		show();
-
+		setAnimationEnabled(true);
+		
+		presenter = new CreateProjectDialogActivity();
 	}
 
 	@UiHandler("btZoomOut")
@@ -110,6 +111,9 @@ public class CreateProjectDialog extends DialogBox {
 
 	@UiHandler("btSave")
 	void onBtSaveClick(ClickEvent event) {
+		Task_Project project = new Task_Project();
+		project.setName(name.getText());
+		presenter.createProject(project);
 	}
 
 	@UiHandler("btSaveContinue")
@@ -121,6 +125,11 @@ public class CreateProjectDialog extends DialogBox {
 		ClearData();
 	}
 
+	@UiHandler("btClose")
+	void onBtCloseClick(ClickEvent event) {
+		hide();
+	}
+
 	private void ClearData() {
 		name.setText(null);
 		description.setText(null);
@@ -128,11 +137,6 @@ public class CreateProjectDialog extends DialogBox {
 		startDate.setValue(null);
 		endDate.setValue(null);
 		tableMember.clear();
-	}
-
-	@UiHandler("btClose")
-	void onBtCloseClick(ClickEvent event) {
-		hide();
 	}
 
 	private void SetTextForm() {

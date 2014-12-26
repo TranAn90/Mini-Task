@@ -2,7 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
 	<ui:style>
-	.TaskList-Obj1 {
+	.ProjectList-Obj1 {
 		float: left;
 		position: relative;
 		left: 15px;
@@ -10,7 +10,7 @@
 		height: 70%;
 	}
 	
-	.TaskList-Obj2 {
+	.ProjectList-Obj2 {
 		float: right;
 		position: relative;
 		right: 20px;
@@ -18,20 +18,21 @@
 		height: 70%;
 	}
 	
-	.TaskList-Obj3 {
+	.ProjectList-Obj3 {
 		line-height: 30px;
 		text-align: center;
 	}
 	</ui:style>
-	<g:HTMLPanel ui:field="htmlTaskList">
-		<g:HTMLPanel height="46px" styleName="background-softGray" ui:field="htmlMenu">
-			<g:HorizontalPanel styleName="{style.TaskList-Obj1}">
-				<g:Label text="Thêm công việc" width="120px" height="100%" styleName="{style.TaskList-Obj3} button-greenStyle" ui:field="btnAddTask"/>
+
+	<g:HTMLPanel>
+		<g:HTMLPanel height="46px" styleName="background-softGray">
+			<g:HorizontalPanel styleName="{style.ProjectList-Obj1}">
+				<g:Label text="Thêm dự án" width="100px" height="100%"
+					styleName="{style.ProjectList-Obj3} button-greenStyle" ui:field="btnAddTask" />
 			</g:HorizontalPanel>
-			<g:HorizontalPanel styleName="{style.TaskList-Obj2}"/>
+			<g:HorizontalPanel styleName="{style.ProjectList-Obj2}" />
 		</g:HTMLPanel>
-	<g:HorizontalPanel width="100%" height=""
-		ui:field="horMain">
-	</g:HorizontalPanel>
+		<p1:DataGrid ui:field="gridProjects" />
 	</g:HTMLPanel>
+
 </ui:UiBinder> 

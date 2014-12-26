@@ -39,7 +39,7 @@ public class Header extends Composite {
 	Label lbLanguage;
 	@UiField
 	HorizontalPanel horOrganizationName;
-
+	
 	UserProfileDialog userDialog;
 
 	interface HeaderUiBinder extends UiBinder<Widget, Header> {
@@ -47,12 +47,7 @@ public class Header extends Composite {
 
 	protected void SetTextForm() {
 		lbNameApp.setText(CONSTANTS.AppNameMiniTask());
-		String href = Window.Location.getHref();
-		String local_en = OptionLanguage.local_en;
-		if (href.contains(local_en))
-			lbLanguage.setText(languageEN);
-		else
-			lbLanguage.setText(languageVN);
+		lbLanguage.setText(CONSTANTS.Language());
 	}
 
 	public Header() {

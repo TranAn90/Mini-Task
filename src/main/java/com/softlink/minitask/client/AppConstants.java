@@ -93,4 +93,5 @@ public interface AppConstants extends Constants {
 	String ViewTaskCcList();
 	String ProjectDetailHeader();
 	String ViewProjectCreator();
+	String ButtonTextNewTask();
 }

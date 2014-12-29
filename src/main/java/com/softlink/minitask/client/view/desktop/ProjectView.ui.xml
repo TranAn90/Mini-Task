@@ -53,7 +53,7 @@
 		padding-bottom: 5px;
 	}
 	
-	.ProjectList-Obj12 {
+	.ProjectDetail-Object12 {
 		float: left;
 		position: relative;
 		left: 15px;
@@ -61,7 +61,7 @@
 		height: 70%;
 	}
 	
-	.ProjectList-Obj13 {
+	.ProjectDetail-Object13 {
 		float: right;
 		position: relative;
 		right: 20px;
@@ -69,44 +69,52 @@
 		height: 70%;
 	}
 	
-	.ProjectList-Obj14 {
+	.ProjectDetail-Object14 {
 		line-height: 30px;
 		text-align: center;
 		margin-right: 10px;
+	}
+	
+	.ProjectDetil-Object15 {
+		float: right;
+		white-space: nowrap;
+		line-height: 1.4em;
+		margin-top: 5px;
+		padding-left: 10px;
+		font-size: 0.9em;
+	}
+	
+	.ProjectDetil-Object16 {
+		margin-left: 5px;
+		padding-top: 10px;
 	}
 	</ui:style>
 
 	<g:HTMLPanel>
 		<g:HTMLPanel height="46px" styleName="background-softGray"
 			ui:field="htmlMenu">
-			<g:HorizontalPanel styleName="{style.ProjectList-Obj12}">
+			<g:HorizontalPanel styleName="{style.ProjectDetail-Object12}">
 				<g:Label text="Quay lại" width="65px" height="100%"
-					styleName="{style.ProjectList-Obj14} button-whiteStyle" ui:field="btnBack" />
+					styleName="{style.ProjectDetail-Object14} button-whiteStyle"
+					ui:field="btnBack" />
 			</g:HorizontalPanel>
-			<g:HorizontalPanel styleName="{style.ProjectList-Obj13}" />
+			<g:HorizontalPanel styleName="{style.ProjectDetail-Object13}" />
 		</g:HTMLPanel>
 
 		<g:ScrollPanel ui:field="sclContent">
 			<g:HTMLPanel>
 				<g:VerticalPanel styleName="{style.ProjectDetail-Object6}">
 
-					<g:VerticalPanel width="100%" styleName="{style.ProjectDetail-Object4}" ui:field="verMainContent">
+					<g:VerticalPanel width="100%"
+						styleName="{style.ProjectDetail-Object4}" ui:field="verMainContent">
 						<g:HTML styleName="{style.ProjectDetail-Object5}">
 							<div>
 								<h3 style="margin-top: 0px; font-style: italic;" ui:field="name">
 								</h3>
 							</div>
 						</g:HTML>
-						<g:HorizontalPanel styleName="{style.ProjectDetail-Object11}">
-							<g:Label styleName="font-blackTitleNormal" ui:field="lblistMember"
-								width="110px" />
-							<g:HTML>
-								<div>
-									<div ui:field="listMember">
-									</div>
-								</div>
-							</g:HTML>
-						</g:HorizontalPanel>
+
+
 						<g:HTML>
 							<table class="{style.ProjectDetail-Obj1}">
 								<tr>
@@ -123,24 +131,52 @@
 									<th class="{style.ProjectDetail-Object2}" ui:field="dueDateth"></th>
 									<td class="{style.ProjectDetail-Object3}" ui:field="dueDate"></td>
 								</tr>
+								<th class="{style.ProjectDetail-Object2}" ui:field="listMemberth"></th>
+								<td class="{style.ProjectDetail-Object3}" ui:field="listMember">
+								</td>
+								<tr>
+								</tr>
 							</table>
 							<hr></hr>
 						</g:HTML>
 						<g:HTML>
-							<div>
-								<p>
-									<strong ui:field="descriptionth"></strong>
-								</p>
+							<div class="{style.ProjectDetail-Object5}">
+								<strong ui:field="descriptionth" style=""></strong>
 								<div>
 									<p ui:field="description"></p>
 								</div>
 							</div>
 							<hr />
 						</g:HTML>
+						<g:HTMLPanel styleName="{style.ProjectDetail-Object5}">
+							<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link"
+								addStyleNames="{style.ProjectDetil-Object15}" ui:field="btNewTask" />
+							<h3 style="margin-top: 0px; font-style: italic;" ui:field="nameSubProject" />
+						</g:HTMLPanel>
+						<g:HTML styleName="{style.ProjectDetail-Object5}">
+							<table class="{style.ProjectDetail-Obj1}">
+								<tr>
+									<th class="{style.ProjectDetail-Object2}" ui:field="initDateSubth">ngay tao</th>
+
+									<td class="{style.ProjectDetail-Object3}" ui:field="initDateSub">
+										21/01/1990
+									</td>
+									<th class="{style.ProjectDetail-Object2}" ui:field="dueDateSubth"> Due date
+									</th>
+									<td class="{style.ProjectDetail-Object3}" ui:field="dueDateSub">hehe</td>
+
+								</tr>
+							</table>
+						</g:HTML>
+						<g:HTMLPanel styleName="{style.ProjectDetil-Object16}">
+							<p1:CellTable ui:field="gridTasks"></p1:CellTable>
+							<hr></hr>
+						</g:HTMLPanel>
+
 					</g:VerticalPanel>
 
 				</g:VerticalPanel>
-				
+
 			</g:HTMLPanel>
 		</g:ScrollPanel>
 	</g:HTMLPanel>

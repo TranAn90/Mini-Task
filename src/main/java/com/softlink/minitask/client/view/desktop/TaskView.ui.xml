@@ -70,7 +70,6 @@
 		<g:VerticalPanel styleName="{style.TaskDetail-Object6}">
 			<g:HTMLPanel height="40px">
 				<g:HorizontalPanel styleName="{style.TaskDetail-Object10}">
-
 					<g:Label text="Edit"
 						styleName="{style.TaskDetail-Object9} button-greenStyle" width="60px"
 						horizontalAlignment="ALIGN_CENTER" height="25px" ui:field="btEdit" />

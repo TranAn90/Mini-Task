@@ -5,6 +5,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class MiniTask implements EntryPoint {
+	private static final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 
 	public static final ClientFactory clientFactory = GWT.create(ClientFactory.class);
 

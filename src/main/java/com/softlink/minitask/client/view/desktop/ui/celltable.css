@@ -1,0 +1,82 @@
+.cellTableHeader {
+	color: #4c4c4c !important;
+	border-bottom: 2px solid gray !important;
+	padding: 3px 4px !important;
+	border-right: 1px solid gray;
+	background: lightgray;
+	font-family: "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.cellTableFooter {
+	border-top: none;
+	background: white;
+	padding: 3px 15px;
+	text-align: left;
+	color: #4b4a4a;
+	text-shadow: #ddf 1px 1px 0;
+	height: 20px;
+	background: white;
+}
+
+.cellTableFirstColumnHeader {
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+}
+
+.cellTableLastColumnHeader {
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+
+.cellTableCell {
+	overflow: hidden;
+	font-size: 12px;
+	font-family: arial, sans-serif;
+	border-bottom: solid 1px #CFCFCF;
+	/* border-left: solid 1px #CFCFCF; */
+	border-right: solid 1px #CFCFCF;
+	padding: 6px 7px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.cellTableEvenRow {
+	/* background-color: rgba(243, 243, 243, .85); */
+}
+
+.cellTableOddRow {
+	/* background-color: rgba(243, 243, 243, .85); */
+}
+
+.cellTableSelectedRow {
+	background-color: #ffffcc !important;
+}
+
+.cellTableSelectedRowCell {
+	border: none;
+	/* border-bottom: solid 1px #CFCFCF; */
+	border-top: 1px solid white;
+	color: black;
+}
+
+.cellTableHoveredRow {
+	 border-top: 1px solid silver; 
+}
+
+.cellTableHoveredRowCell {
+	
+}
+
+.cellTableKeyboardSelectedRow {
+	
+}
+
+.cellTableKeyboardSelectedRowCell {
+	
+}
+
+.cellTableKeyboardSelectedCell {
+	
+}

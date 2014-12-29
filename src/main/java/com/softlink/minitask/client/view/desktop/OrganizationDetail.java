@@ -169,9 +169,11 @@ public class OrganizationDetail extends Composite implements
 			htmlUserTable.add(htmlAddUser);
 			txbOrganizationName.setEnabled(true);
 			txbOrganizationDetail.setEnabled(true);
+			btnSave.setVisible(true);
 		} else {
 			txbOrganizationName.setEnabled(false);
 			txbOrganizationDetail.setEnabled(false);
+			btnSave.setVisible(false);
 		}
 		htmlUserTable.add(renderAdminRowUI(organization.getAdmin()));
 		if (organization.getUserList() != null) {

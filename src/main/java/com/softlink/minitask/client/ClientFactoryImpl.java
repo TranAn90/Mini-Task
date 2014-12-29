@@ -8,12 +8,14 @@ import com.softlink.minitask.client.view.LoginPageInf;
 import com.softlink.minitask.client.view.OrganizationDetailInf;
 import com.softlink.minitask.client.view.OrganizationPageInf;
 import com.softlink.minitask.client.view.ProjectListInf;
+import com.softlink.minitask.client.view.ProjectViewInf;
 import com.softlink.minitask.client.view.TaskListInf;
 import com.softlink.minitask.client.view.desktop.Container;
 import com.softlink.minitask.client.view.desktop.LoginPage;
 import com.softlink.minitask.client.view.desktop.OrganizationDetail;
 import com.softlink.minitask.client.view.desktop.OrganizationPage;
 import com.softlink.minitask.client.view.desktop.ProjectList;
+import com.softlink.minitask.client.view.desktop.ProjectView;
 import com.softlink.minitask.client.view.desktop.TaskList;
 
 /**
@@ -30,6 +32,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final OrganizationDetail organizationDetail = new OrganizationDetail();
 	private static final TaskList taskList = new TaskList();
 	private static final ProjectList projectList = new ProjectList();
+	private static final ProjectView projectView = new ProjectView();
 	
 	public ClientFactoryImpl() {}
 
@@ -71,6 +74,11 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public ProjectListInf getProjectList() {
 		return projectList;
+	}
+
+	@Override
+	public ProjectViewInf getProjectView() {
+		return projectView;
 	}
 
 }

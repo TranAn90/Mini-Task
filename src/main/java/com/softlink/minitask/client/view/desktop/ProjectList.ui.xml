@@ -21,18 +21,37 @@
 	.ProjectList-Obj3 {
 		line-height: 30px;
 		text-align: center;
+		margin-right: 10px;
+	}
+	
+	.footer {
+		box-shadow: 0 -3px 5px -5px #0e74af;
+		-webkit-box-shadow: 0 -3px 5px -5px #0e74af;
+		background: darkgrey;
+	}
+	
+	.footerTitle {
+		position: relative;
+		float:right;
+		top: 8px;
+		right: 10px;
+		font-size: 13px;
 	}
 	</ui:style>
 
 	<g:HTMLPanel>
-		<g:HTMLPanel height="46px" styleName="background-softGray">
+		<g:HTMLPanel height="46px" styleName="background-softGray" ui:field="htmlMenu">
 			<g:HorizontalPanel styleName="{style.ProjectList-Obj1}">
 				<g:Label text="Thêm dự án" width="100px" height="100%"
 					styleName="{style.ProjectList-Obj3} button-greenStyle" ui:field="btnAddTask" />
+				<g:Label text="Tải lại" width="65px" height="100%" styleName="{style.ProjectList-Obj3} button-whiteStyle" ui:field="btnRefresh"/>
 			</g:HorizontalPanel>
 			<g:HorizontalPanel styleName="{style.ProjectList-Obj2}" />
 		</g:HTMLPanel>
 		<p1:DataGrid ui:field="gridProjects" />
+		<g:HTMLPanel height="35px" ui:field="htmlFooter" styleName="{style.footer}">
+			<g:Label text="© Copyright 2014, Mini Task." styleName="{style.footerTitle} font-whiteTitle"/>
+		</g:HTMLPanel>
 	</g:HTMLPanel>
 
 </ui:UiBinder> 

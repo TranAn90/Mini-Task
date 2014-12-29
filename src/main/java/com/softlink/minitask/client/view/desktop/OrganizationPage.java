@@ -196,7 +196,7 @@ public class OrganizationPage extends Composite implements OrganizationPageInf {
 		HTMLPanel InviteRowUi = new HTMLPanel("");
 		InviteRowUi.setHeight("60px");
 		InviteRowUi.setStyleName("OrganizationDetail-Obj12");
-		Label inviteLabel = new Label(CONSTANTS.OrganizationPagelbInvite()
+		Label inviteLabel = new Label(CONSTANTS.OrganizationPagelbInvite() + " "
 				+ token.getOrganizationName() + " - "
 				+ token.getOrganizationAdmin());
 		inviteLabel.setWidth("70%");

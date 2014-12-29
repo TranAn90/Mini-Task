@@ -7,14 +7,21 @@ import java.util.List;
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.BrowserEvents;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.DataGrid;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.CellPreviewEvent;
+import com.google.gwt.view.client.CellPreviewEvent.Handler;
 import com.google.gwt.view.client.ListDataProvider;
 import com.softlink.minitask.client.AppConstants;
 import com.softlink.minitask.client.view.ProjectListInf;
@@ -22,8 +29,6 @@ import com.softlink.minitask.client.view.desktop.ui.CreateProjectDialog;
 import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
 import com.softlink.minitask.shared.CommonFunction;
 import com.softlink.minitask.shared.Task_Project;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 
 public class ProjectList extends Composite implements ProjectListInf{
 
@@ -34,23 +39,34 @@ public class ProjectList extends Composite implements ProjectListInf{
 
 	public final DataGrid.Resources dataGridCss = GWT
 			.create(CssDataGridResources.class);
+	
 	@UiField(provided = true)
 	DataGrid<Task_Project> gridProjects;
+	@UiField Label btnRefresh;
+	@UiField HTMLPanel htmlMenu;
+	@UiField HTMLPanel htmlFooter;
 
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 	private List<Task_Project> projects = new ArrayList<Task_Project>();
 	private ListDataProvider<Task_Project> dataProvider = new ListDataProvider<Task_Project>();
 	
-	CreateProjectDialog dialog = new CreateProjectDialog();
+	private Presenter presenter;
+	
+	public static final int menuHeight = 46;
+	public static final int footerHeight = 35;
+	
+	CreateProjectDialog createProjectDialog = new CreateProjectDialog();
 
 	public ProjectList() {
 		gridProjects = new DataGrid<Task_Project>(50, dataGridCss);
 		initWidget(uiBinder.createAndBindUi(this));
 		InitDataGrid();
+		htmlMenu.setHeight(menuHeight + "px");
+		htmlFooter.setHeight(footerHeight + "px");
+		gridProjects.setHeight(Window.getClientHeight() - Container.headerHeight - menuHeight - footerHeight + "px");
 	}
 
 	protected void InitDataGrid() {
-		gridProjects.setHeight("500px");
 		gridProjects.setWidth("100%");
 		Label lbEmtry = new Label(CONSTANTS.EmptryLabel());
 		gridProjects.setEmptyTableWidget(lbEmtry);
@@ -118,10 +134,47 @@ public class ProjectList extends Composite implements ProjectListInf{
 			}
 		};
 		gridProjects.addColumn(clDueDate, CONSTANTS.ViewDueDate());
+		
+		gridProjects.addCellPreviewHandler(new Handler<Task_Project>() {
+			@Override
+			public void onCellPreview(CellPreviewEvent<Task_Project> event) {
+				if (BrowserEvents.CLICK.equals(event.getNativeEvent().getType())) {
+					Task_Project project = event.getValue();
+					if(presenter != null)
+						presenter.goToProjectView(project);
+				}
+			}
+		});
 	}
 
 	@UiHandler("btnAddTask")
 	void onBtnAddTaskClick(ClickEvent event) {
-		dialog.center();
+		createProjectDialog.getInfo();
+		createProjectDialog.clear();
+		createProjectDialog.center();
+	}
+	
+	@UiHandler("btnRefresh")
+	void onBtnRefreshClick(ClickEvent event) {
+		if(presenter != null)
+			presenter.desktopRefresh();
+	}
+
+	@Override
+	public void setProjectList(List<Task_Project> projectList) {
+		this.projects.clear();
+		this.projects.addAll(projectList);
+	}
+
+	@Override
+	public void activityStart() {
+		if(presenter != null)
+			presenter.desktopLoadData();
+	}
+
+	@Override
+	public void setPresenter(Presenter presenter) {
+		if(presenter != null)
+			this.presenter = presenter;
 	}
 }

@@ -37,5 +37,13 @@ public class LocalData implements Serializable {
 	public void setTaskList(List<Task_Data> taskList) {
 		this.taskList = taskList;
 	}
+	
+	public Task_Project findProject(Long projectId) {
+		for(Task_Project project: projectList) {
+			if(project.getId().equals(projectId))
+				return project;
+		}
+		return null;
+	}
 
 }

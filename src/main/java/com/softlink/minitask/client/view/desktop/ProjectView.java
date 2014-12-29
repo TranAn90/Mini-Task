@@ -6,24 +6,25 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.TableCellElement;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.softlink.minitask.client.AppConstants;
+import com.softlink.minitask.client.view.ProjectViewInf;
+import com.softlink.minitask.shared.Task_Project;
 
-public class ProjectDetail extends Composite {
+public class ProjectView extends Composite implements ProjectViewInf {
 
 	private static Binder uiBinder = GWT.create(Binder.class);
 
-	interface Binder extends UiBinder<Widget, ProjectDetail> {
+	interface Binder extends UiBinder<Widget, ProjectView> {
 	}
 
-	@UiField
-	HeadingElement header;
 	@UiField
 	HeadingElement name;
 	@UiField
@@ -50,35 +51,56 @@ public class ProjectDetail extends Composite {
 	Element descriptionth;
 	@UiField
 	ParagraphElement description;
-	@UiField
-	Label btEdit;
-	@UiField
-	Label btRemove;
+	@UiField Label btnBack;
+	@UiField ScrollPanel sclContent;
+	@UiField HTMLPanel htmlMenu;
+	
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
-	private final String spilit = TaskDetail.split;
+	private final String spilit = TaskView.split;
+	
+	private Presenter presenter;
+	
+	public static final int menuHeight = 46;
 
-	public ProjectDetail() {
+	public ProjectView() {
 		initWidget(uiBinder.createAndBindUi(this));
+		htmlMenu.setHeight(menuHeight + "px");
+		sclContent.setHeight(Window.getClientHeight() - Container.headerHeight - menuHeight + "px");
 		SetTextForm();
 	}
 
 	protected void SetTextForm() {
-		header.setInnerHTML(CONSTANTS.ProjectDetailHeader());
+//		header.setInnerHTML(CONSTANTS.ProjectDetailHeader());
 		lblistMember.setText(CONSTANTS.ViewProjectListMember() + spilit);
 		managerth.setInnerHTML(CONSTANTS.ViewProjectManager() + spilit);
 		creatorth.setInnerHTML(CONSTANTS.ViewProjectCreator() + spilit);
 		startDateth.setInnerHTML(CONSTANTS.ViewProjectStartDate() + spilit);
 		dueDateth.setInnerHTML(CONSTANTS.ViewDueDate() + spilit);
 		descriptionth.setInnerHTML(CONSTANTS.ViewDescription());
-		btEdit.setText(CONSTANTS.ButtonTextEdit());
-		btRemove.setText(CONSTANTS.ButtonTextRemove());
+//		btEdit.setText(CONSTANTS.ButtonTextEdit());
+//		btRemove.setText(CONSTANTS.ButtonTextRemove());
 	}
 
-	@UiHandler("btEdit")
-	void onBtEditClick(ClickEvent event) {
+	@Override
+	public void setProject(Task_Project project) {
+		name.setInnerText(project.getName());
+		creator.setInnerText("Tạo bởi " + project.getCreator());
+		listMember.setInnerText(project.getListMember().toString());
+		manager.setInnerText(project.getManager());
+		creator.setInnerText(project.getCreator());
+//		startDate.setInnerText(project.getStartDate().toString());
+		dueDate.setInnerText(project.getDueDate().toString());
+		description.setInnerText(project.getDescription());
 	}
 
-	@UiHandler("btRemove")
-	void onBtRemoveClick(ClickEvent event) {
+	@Override
+	public void activityStart() {
+		if(presenter != null)
+			presenter.desktopLoadData();
+	}
+
+	@Override
+	public void setPresenter(Presenter presenter) {
+		this.presenter = presenter;
 	}
 }

@@ -1,24 +1,38 @@
 package com.softlink.minitask.client.view.desktop.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.Event.NativePreviewEvent;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.RichTextArea;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.softlink.minilib.shared.System_Organization;
 import com.softlink.minitask.client.AppConstants;
+import com.softlink.minitask.client.AppController.Storage;
 import com.softlink.minitask.client.activity.ui.CreateProjectDialogActivity;
 import com.softlink.minitask.shared.Task_Project;
+import com.softlink.minitask.shared.UserProfiles;
 
 public class CreateProjectDialog extends DialogBox {
 
@@ -34,7 +48,7 @@ public class CreateProjectDialog extends DialogBox {
 	@UiField
 	DateBox dueDate;
 	@UiField
-	RichTextArea description;
+	TextArea description;
 	@UiField
 	Image btZoomOut;
 	@UiField
@@ -69,6 +83,10 @@ public class CreateProjectDialog extends DialogBox {
 	Label lbStartDate;
 	@UiField
 	Label lbEndDate;
+	@UiField
+	Label btnMemberAdd;
+	@UiField
+	HTMLPanel htmlMembersList;
 
 	public interface Presenter {
 		void createProject(Task_Project project);
@@ -78,31 +96,101 @@ public class CreateProjectDialog extends DialogBox {
 
 	private final AppConstants CONSTANTS = GWT.create(AppConstants.class);
 
+	private SelectMembers selectMembersDialog;
+	private List<String> organizationMembers = new ArrayList<String>();
+	private List<String> projectMembers = new ArrayList<String>();
+
+	private ZoomOutDescription zoomOut;
+
+	public void getInfo() {
+		UserProfiles profile = Storage.getUserProfiles();
+		System_Organization organization = profile.findOrganization(profile
+				.getOrganizationCurrently());
+		organizationMembers.clear();
+		manager.clear();
+		organizationMembers.add(organization.getAdmin());
+		manager.addItem(organization.getAdmin());
+		for (String user : organization.getUserList()) {
+			organizationMembers.add(user);
+			manager.addItem(user);
+		}
+		manager.setSelectedIndex(organizationMembers.indexOf(profile.getEmail()));
+	}
+
+	public void clear() {
+		name.setText(null);
+		description.setText(null);
+		dueDate.setValue(null);
+		startDate.setValue(null);
+		endDate.setValue(null);
+		tableMember.clear();
+		projectMembers.clear();
+		htmlMembersList.clear();
+	}
+
 	public CreateProjectDialog() {
 		setWidget(uiBinder.createAndBindUi(this));
-		
+
 		SetTextForm();
 		setStyleName("frame_dialogBoxClean");
 		disclosurePanel.setOpen(false);
 		setGlassEnabled(true);
 		setAnimationEnabled(true);
-		
+
 		presenter = new CreateProjectDialogActivity();
-	}
 
-	@UiHandler("btZoomOut")
-	void onBtZoomOutClick(ClickEvent event) {
-		ZoomOutDescription zommOut = new ZoomOutDescription(
-				description.getText(),
-				CONSTANTS.CreateProjectDialogHeaderZoomOutDes(),
+		selectMembersDialog = new SelectMembers(new SelectMembers.Listener() {
+			@Override
+			public void setListSelectMember(List<String> listMembers) {
+				projectMembers.clear();
+				projectMembers.addAll(listMembers);
+				htmlMembersList.clear();
+				for (String member : projectMembers)
+					htmlMembersList.add(renderMemberUI(member));
+				center();
+			}
+		});
+
+		manager.addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {
+				String manager1 = manager.getItemText(manager
+						.getSelectedIndex());
+				projectMembers.remove(manager1);
+				htmlMembersList.clear();
+				for (String member : projectMembers)
+					htmlMembersList.add(renderMemberUI(member));
+			}
+		});
+		
+		zoomOut = new ZoomOutDescription(description.getText(), CONSTANTS.CreateProjectDialogHeaderZoomOutDes(),
 				new ZoomOutDescription.Listener() {
-
 					@Override
-					public void onClickanSave(String description) {
-						// TODO Auto-generated method stub
-
+					public void onClickanSave(String description1) {
+						description.setText(description1);
 					}
 				});
+	}
+
+	@Override
+	protected void onPreviewNativeEvent(NativePreviewEvent event) {
+		super.onPreviewNativeEvent(event);
+		switch (event.getTypeInt()) {
+		case Event.ONKEYDOWN:
+			if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_ESCAPE) {
+				hide();
+			}
+			break;
+		}
+	}
+	
+	@UiHandler("btZoomOut")
+	void onBtZoomOutClick(ClickEvent event) {
+		int top = 10;
+		int left = this.getAbsoluteLeft() + 625;
+		zoomOut.setPopupPosition(left, top);
+		zoomOut.setDescription(description.getText());
+		zoomOut.show();
 	}
 
 	@UiHandler("btAddMember")
@@ -113,7 +201,13 @@ public class CreateProjectDialog extends DialogBox {
 	void onBtSaveClick(ClickEvent event) {
 		Task_Project project = new Task_Project();
 		project.setName(name.getText());
+		project.setDescription(description.getText());
+		project.setCreator(Storage.getUserProfiles().getEmail());
+		project.setManager(manager.getItemText(manager.getSelectedIndex()));
+		project.setDueDate(dueDate.getValue());
+		project.setListMember(projectMembers);
 		presenter.createProject(project);
+		hide();
 	}
 
 	@UiHandler("btSaveContinue")
@@ -122,7 +216,7 @@ public class CreateProjectDialog extends DialogBox {
 
 	@UiHandler("btReload")
 	void onBtReloadClick(ClickEvent event) {
-		ClearData();
+		clear();
 	}
 
 	@UiHandler("btClose")
@@ -130,13 +224,16 @@ public class CreateProjectDialog extends DialogBox {
 		hide();
 	}
 
-	private void ClearData() {
-		name.setText(null);
-		description.setText(null);
-		dueDate.setValue(null);
-		startDate.setValue(null);
-		endDate.setValue(null);
-		tableMember.clear();
+	@UiHandler("btnMemberAdd")
+	void onBtnMemberAddClick(ClickEvent event) {
+		int top = this.getAbsoluteTop();
+		int left = this.getAbsoluteLeft() + 625;
+		selectMembersDialog.setPopupPosition(left, top);
+		selectMembersDialog.show();
+		List<String> cMembers = new ArrayList<String>();
+		cMembers.addAll(organizationMembers);
+		cMembers.remove(manager.getItemText(manager.getSelectedIndex()));
+		selectMembersDialog.setListMembers(cMembers, projectMembers);
 	}
 
 	private void SetTextForm() {
@@ -156,4 +253,32 @@ public class CreateProjectDialog extends DialogBox {
 		btClose.setTitle(CONSTANTS.ButtonTitleClose());
 		btZoomOut.setTitle(CONSTANTS.ButtonTitleZoomOutDes());
 	}
+
+	private HTMLPanel renderMemberUI(final String member) {
+		final HTMLPanel memberUI = new HTMLPanel("");
+		memberUI.setHeight("25px");
+		memberUI.setStyleName("createProjectDialog_Obj11");
+		Label memberName = new Label(member);
+		memberName.setStyleName("createProjectDialog_Obj13");
+		memberUI.add(memberName);
+		AbsolutePanel absClose = new AbsolutePanel();
+		absClose.setSize("20px", "100%");
+		absClose.setStyleName("createProjectDialog_Obj12");
+		memberUI.add(absClose);
+		Label lbClose = new Label("X");
+		Label btnClose = new Label();
+		btnClose.setSize("100%", "100%");
+		absClose.add(lbClose, 5, 3);
+		absClose.add(btnClose, 0, 0);
+		btnClose.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				htmlMembersList.remove(memberUI);
+				projectMembers.remove(member);
+				center();
+			}
+		});
+		return memberUI;
+	}
+
 }

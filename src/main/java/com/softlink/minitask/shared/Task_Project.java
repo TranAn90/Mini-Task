@@ -18,12 +18,13 @@ import com.googlecode.objectify.condition.IfNotNull;
 @SuppressWarnings("serial")
 @Entity(name = "task_project")
 public class Task_Project implements Serializable {
+	
 	@Id
 	Long id;
 	@Unindex
-	List<Long> listTaskId;
+	List<Long> listTaskId = new ArrayList<Long>();
 	@Unindex
-	List<Long> listChildId;
+	List<Long> listChildId = new ArrayList<Long>();
 	@Index
 	String name;
 	@Unindex

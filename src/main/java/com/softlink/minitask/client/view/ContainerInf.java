@@ -15,6 +15,8 @@ public interface ContainerInf extends IsWidget{
 	
 	void inProjectList();
 	
+	void inProjectView();
+	
 	void onStartUp();
 	
 	//Desktop events

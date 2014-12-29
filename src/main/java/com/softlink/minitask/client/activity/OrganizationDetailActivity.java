@@ -79,8 +79,10 @@ public class OrganizationDetailActivity extends AbstractActivity implements Orga
 					MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
 					MiniTask.clientFactory.getContainer().updateHeaderInfo();
 				}
-				else
+				else {
 					Window.alert("Error: can't find organization!");
+					MiniTask.clientFactory.getPlaceController().goTo(new OrganizationPlace(null));
+				}
 			}
 			@Override
 			public void onFailure(Throwable caught) {

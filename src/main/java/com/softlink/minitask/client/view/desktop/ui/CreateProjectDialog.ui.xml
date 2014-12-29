@@ -2,6 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.datepicker.client">
 	<ui:style>
+	@external .createProjectDialog_Obj11, .createProjectDialog_Obj12, .createProjectDialog_Obj13;
 	.createProjectDialog_Obj1 {
 		padding: 0 !important;
 		width: 100%;
@@ -18,112 +19,220 @@
 	.createProjectDialog_Obj4 {
 		margin-top: 5px;
 	}
+	
+	.createProjectDialog_Obj5 {
+		position: relative;
+		float: left;
+		top: 5px;
+		left: 10px;
+		text-align: center;
+		line-height: 30px;
+	}
+	
+	.createProjectDialog_Obj6 {
+		position: relative;
+		float: left;
+		top: 5px;
+		left: 20px;
+		font-size: 14px;
+	}
+	
+	.createProjectDialog_Obj7 {
+		margin-bottom: 40px;
+	}
+	
+	.createProjectDialog_Obj8 {
+		position: relative;
+		float: left;
+		top: 0px;
+		left: 24px;
+	}
+	
+	.createProjectDialog_Obj9 {
+		position: relative;
+		float: left;
+		top: -2px;
+		left: 46px;
+	}
+	
+	.createProjectDialog_Obj10 {
+		position: relative;
+		float: left;
+		top: 0px;
+		left: 65px;
+	}
+	
+	.createProjectDialog_Obj11 {
+		position: relative;
+		float: left;
+		background: #fff;
+		border: 1px solid #e3e3e3;
+		border-bottom-color: #c2c2c2;
+		border-radius: 3px;
+		cursor: pointer;
+		color: black;
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.createProjectDialog_Obj12 {
+		position: relative;
+		float: right;
+		border-left: 1px solid silver;
+		color: silver;
+		font-weight: 600;
+	}
+	
+	.createProjectDialog_Obj12:hover {
+		color: black;
+	}
+	
+	.createProjectDialog_Obj13 {
+		position: relative;
+		float: left;
+		margin-right: 6px;
+		margin-left: 6px;
+		line-height: 22px;
+	}
+	
+	.createProjectDialog_Obj14 {
+		margin-top: 10px;
+	}
+	
+	.img {
+		cursor: pointer;
+	}
 	</ui:style>
 	<g:HTMLPanel styleName="frame-grayDialog" width="600px">
 		<g:VerticalPanel styleName="{style.createProjectDialog_Obj1}">
 			<g:AbsolutePanel width="100%" height="50px"
 				styleName="background-softGray">
-				<g:at left="12" top="15">
+				<g:at left="12" top="10">
 					<g:Label styleName="font-blackNormalHeader" ui:field="header" />
 				</g:at>
-				<g:at left="530" top="20">
-					<g:Image width="22px" height="18px" url="resources/refresh.png" ui:field="btReload" />
+				<g:at left="540" top="12">
+					<g:Image width="22px" height="18px" url="resources/refresh.png"
+						ui:field="btReload" />
 				</g:at>
-				<g:at left="560" top="20">
-					<g:Image width="22px" height="18px" url="resources/close.png" ui:field="btClose" />
+				<g:at left="570" top="12">
+					<g:Image width="22px" height="18px" url="resources/close.png"
+						ui:field="btClose" />
 				</g:at>
 			</g:AbsolutePanel>
-			<g:ScrollPanel height="100%" width="100%">
-				<g:VerticalPanel height="100%" width="100%">
-					<g:AbsolutePanel height="160px">
-						<g:at left="25" top="20">
-							<g:Label styleName="font-blackTitleNormal"
-								width="90px" ui:field="lbNameProject" />
-						</g:at>
-						<g:at left="117" top="12">
-							<g:TextBox width="450px" styleName="textbox-normalEdit"
-								height="20px" ui:field="name" />
-						</g:at>
-						<g:at left="25" top="60">
-							<g:Label styleName="font-blackTitleNormal"
-								width="90px" ui:field="lbManager" />
-						</g:at>
-						<g:at left="117" top="52">
-							<g:ListBox visibleItemCount="0" width="200px"
-								styleName="textbox-normalEdit" height="25px" ui:field="manager" />
-						</g:at>
-						<g:at left="347" top="60">
-							<g:Label styleName="font-blackTitleNormal"
-								width="60px" ui:field="lbDueDate" />
-						</g:at>
-						<g:at left="417" top="52">
-							<p1:DateBox width="150px" styleName="textbox-normalEdit"
-								height="20px" ui:field="dueDate" />
-						</g:at>
+			<g:VerticalPanel width="100%">
+				<g:AbsolutePanel height="180px">
+					<g:at left="24" top="28">
+						<g:Label styleName="font-blackTitleNormal" width="90px"
+							ui:field="lbNameProject" />
+					</g:at>
+					<g:at left="116" top="20">
+						<g:TextBox width="450px"
+							styleName="textbox-normalEdit"
+							height="23px" ui:field="name" />
+					</g:at>
+					<g:at left="24" top="68">
+						<g:Label styleName="font-blackTitleNormal" width="90px"
+							ui:field="lbManager" />
+					</g:at>
+					<g:at left="116" top="60">
+						<g:ListBox visibleItemCount="0" width="200px"
+							styleName="textbox-normalEdit"
+							height="27px" ui:field="manager" />
+					</g:at>
+					<g:at left="346" top="68">
+						<g:Label styleName="font-blackTitleNormal" width="60px"
+							ui:field="lbDueDate" />
+					</g:at>
+					<g:at left="416" top="60">
+						<p1:DateBox width="150px" styleName="textbox-normalEdit"
+							height="23px" ui:field="dueDate" />
+					</g:at>
 
-						<g:at left="25" top="100">
-							<g:Label styleName="font-blackTitleNormal"
-								width="90px" ui:field="lbDescription" />
-						</g:at>
-						<g:at left="117" top="92">
-							<g:RichTextArea width="448px" height="50px"
-								styleName="textbox-normalEdit" ui:field="description" />
-						</g:at>
-						<g:at left="570" top="110">
-							<g:Image width="20px" height="20px"
-								url="resources/zoom_out.png" ui:field="btZoomOut" />
-						</g:at>
-					</g:AbsolutePanel>
-					<g:DisclosurePanel open="true" width="100%"
-						height="100%" ui:field="disclosurePanel">
-						<g:header></g:header>
-
-						<g:VerticalPanel width="100%" height="100%"
-							spacing="5">
-							<g:AbsolutePanel width="100%" height="40px">
-								<g:at left="0" top="10">
-									<g:Label styleName="font-blackTitleNormal" width="90px" ui:field="lbStartDate" />
+					<g:at left="24" top="108">
+						<g:Label styleName="font-blackTitleNormal" width="90px"
+							ui:field="lbDescription" />
+					</g:at>
+					<g:at left="116" top="100">
+						<g:TextArea width="446px" height="55px"
+							styleName="textbox-normalEdit" ui:field="description" />
+					</g:at>
+					<g:at left="574" top="119">
+						<g:Image width="20px" height="20px" url="resources/arrow-maximise.png"
+							ui:field="btZoomOut" styleName="{style.img}" />
+					</g:at>
+				</g:AbsolutePanel>
+				<g:HTMLPanel height="" styleName="{style.createProjectDialog_Obj7}">
+					<g:Label text="Thành viên" styleName="{style.createProjectDialog_Obj8} font-blackTitleNormal" />
+					<g:Label text="Thêm" styleName="{style.createProjectDialog_Obj9} button-link" ui:field="btnMemberAdd" />
+					<g:HTMLPanel styleName="{style.createProjectDialog_Obj10}" width="400px" ui:field="htmlMembersList">
+					
+						<!-- <g:HTMLPanel styleName="{style.createProjectDialog_Obj11}" height="25px">
+							<g:Label text="antp@itpro.vn" styleName="{style.createProjectDialog_Obj13}"/>
+							<g:AbsolutePanel styleName="{style.createProjectDialog_Obj12}" height="100%" width="20px">
+								<g:at left="5" top="3">
+									<g:Label text="X"/>
 								</g:at>
-								<g:at left="300" top="10">
-									<g:Label width="90px" styleName="font-blackTitleNormal" ui:field="lbEndDate" />
+								<g:at left="0" top="0">
+									<g:Label width="100%" height="100%"/>
 								</g:at>
-
-								<g:at left="0" top="90">
-									<g:Label text="Công việc cha" styleName="Csstask_lb"
-										visible="false" />
-								</g:at>
-								<g:at left="96" top="2">
-									<p1:DateBox width="150px" height="20px"
-										styleName="textbox-normalEdit" ui:field="startDate" />
-								</g:at>
-								<g:at left="400" top="2">
-									<p1:DateBox width="145px" height="20px"
-										styleName="textbox-normalEdit" ui:field="endDate" />
-								</g:at>
-
-
-
-
 							</g:AbsolutePanel>
-							<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link" ui:field="btAddMember" />
+						</g:HTMLPanel> -->
+						
+					</g:HTMLPanel>
+				</g:HTMLPanel>
+				<g:DisclosurePanel open="true" width="100%"
+					height="100%" ui:field="disclosurePanel" visible="false">
+					<g:header></g:header>
 
-							<g:FlowPanel width="90%" height="100%" ui:field="tableMember" />
-						</g:VerticalPanel>
+					<g:VerticalPanel width="100%" height="100%"
+						spacing="5">
+						<g:AbsolutePanel width="100%" height="40px">
+							<g:at left="0" top="10">
+								<g:Label styleName="font-blackTitleNormal" width="90px"
+									ui:field="lbStartDate" />
+							</g:at>
+							<g:at left="300" top="10">
+								<g:Label width="90px" styleName="font-blackTitleNormal"
+									ui:field="lbEndDate" />
+							</g:at>
+
+							<g:at left="0" top="90">
+								<g:Label text="Công việc cha" styleName="Csstask_lb"
+									visible="false" />
+							</g:at>
+							<g:at left="96" top="2">
+								<p1:DateBox width="150px" height="20px" styleName="textbox-normalEdit"
+									ui:field="startDate" />
+							</g:at>
+							<g:at left="400" top="2">
+								<p1:DateBox width="145px" height="20px" styleName="textbox-normalEdit"
+									ui:field="endDate" />
+							</g:at>
 
 
-					</g:DisclosurePanel>
-				</g:VerticalPanel>
-			</g:ScrollPanel>
-			<g:AbsolutePanel width="100%" height="40px"
-				styleName="background-softGray">
-				<g:at left="10" top="5">
+
+
+						</g:AbsolutePanel>
+						<g:Anchor horizontalAlignment="ALIGN_CENTER" styleName="button-link"
+							ui:field="btAddMember" />
+
+						<g:FlowPanel width="90%" height="100%" ui:field="tableMember" />
+					</g:VerticalPanel>
+
+
+				</g:DisclosurePanel>
+			</g:VerticalPanel>
+			<g:AbsolutePanel width="100%" height="60px"
+				styleName="{style.createProjectDialog_Obj14} background-softGray">
+				<g:at left="10" top="15">
 					<g:Label styleName="{style.createProjectDialog_Obj2} button-greenStyle"
-						width="60px" height="30px" horizontalAlignment="ALIGN_CENTER" ui:field="btSave"></g:Label>
+						width="60px" height="30px" horizontalAlignment="ALIGN_CENTER"
+						ui:field="btSave"></g:Label>
 				</g:at>
-				<g:at left="85" top="5">
+				<g:at left="80" top="13">
 					<g:Label styleName="{style.createProjectDialog_Obj2} button-whiteStyle"
-						width="100px" height="30px"
-						horizontalAlignment="ALIGN_CENTER" ui:field="btSaveContinue"></g:Label>
+						width="100px" height="30px" horizontalAlignment="ALIGN_CENTER"
+						ui:field="btSaveContinue"></g:Label>
 				</g:at>
 				<!-- <g:at left="232" top="20"> <g:Label visible="false">Hoặc</g:Label> 
 					</g:at> <g:at left="268" top="16"> <g:Anchor horizontalAlignment="ALIGN_CENTER" 

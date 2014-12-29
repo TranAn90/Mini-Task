@@ -37,14 +37,15 @@
 }
 
 .dataGridHeader {
-	padding: 2px 3px;
+	height: 25px;
+	border-radius: 0px;
 	text-align: left;
 	text-shadow: #ddf 1px 1px 0;
 	overflow: hidden;
 	white-space: nowrap;
 	color: #4c4c4c !important;
 	border-bottom: 2px solid gray !important;
-	border-left: 1px solid gray;
+	border-right: 1px solid gray;
 	background: lightgray;
 	font-family: "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
 	font-size: 13px;
@@ -53,15 +54,13 @@
 
 .dataGridCell {
 	overflow: hidden;
-	font-size: 12px;
+	font-size: 13px;
 	font-family: arial, sans-serif;
 	border-bottom: solid 1px #CFCFCF !important;
 	border-right: solid 1px #CFCFCF !important;
 	border-top: none;
-	padding: 2px 3px;
 	cursor: pointer;
-	height: 20px;
-	max-height: 50px;
+	height: 25px;
 }
 
 .dataGridFirstColumnFooter {
@@ -116,11 +115,11 @@
 }
 
 .dataGridHoveredRow {
-	border-top: 2px solid gray;
+	background-color: #ffffcc;
 }
 
 .dataGridHoveredRowCell {
-	border: selectionBorderWidth solid #eee;
+	background-color: #ffffcc
 }
 
 .dataGridKeyboardSelectedRow {

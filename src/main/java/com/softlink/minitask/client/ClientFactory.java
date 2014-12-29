@@ -7,6 +7,7 @@ import com.softlink.minitask.client.view.LoginPageInf;
 import com.softlink.minitask.client.view.OrganizationDetailInf;
 import com.softlink.minitask.client.view.OrganizationPageInf;
 import com.softlink.minitask.client.view.ProjectListInf;
+import com.softlink.minitask.client.view.ProjectViewInf;
 import com.softlink.minitask.client.view.TaskListInf;
 
 public interface ClientFactory {
@@ -26,5 +27,7 @@ public interface ClientFactory {
 	TaskListInf getTaskList();
 	
 	ProjectListInf getProjectList();
+	
+	ProjectViewInf getProjectView();
 	
 }

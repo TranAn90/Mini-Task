@@ -46,6 +46,7 @@
 	.OrganizationDetail-Obj9 {
 		margin-bottom: 10px;
 		max-width: 300px;
+		padding-top: 4px;
 	}
 	
 	.OrganizationDetail-Obj10 {

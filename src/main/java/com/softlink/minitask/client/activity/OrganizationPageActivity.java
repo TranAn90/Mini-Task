@@ -57,8 +57,10 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 								MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
 								MiniTask.clientFactory.getContainer().updateHeaderInfo();
 							}
-							else
+							else {
 								Window.alert("Error: can't find organization!");
+								MiniTask.clientFactory.getPlaceController().goTo(new OrganizationPlace(null));
+							}
 						}
 						@Override
 						public void onFailure(Throwable caught) {
@@ -87,6 +89,7 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 				Storage.getUserProfiles().getInviteTokenList().remove(token);
 				if(result != null) {
 					Storage.getUserProfiles().getOrganizationList().add(result);
+					Storage.getUserProfiles().setOrganizationCurrently(result.getId());
 					MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
 					MiniTask.clientFactory.getContainer().updateHeaderInfo();
 				}
@@ -110,8 +113,10 @@ public class OrganizationPageActivity extends AbstractActivity implements Organi
 					MiniTask.clientFactory.getPlaceController().goTo(new TaskListPlace());
 					MiniTask.clientFactory.getContainer().updateHeaderInfo();
 				}
-				else
+				else {
 					Window.alert("Error: can't find organization!");
+					MiniTask.clientFactory.getPlaceController().goTo(new OrganizationPlace(null));
+				}
 			}
 			@Override
 			public void onFailure(Throwable caught) {

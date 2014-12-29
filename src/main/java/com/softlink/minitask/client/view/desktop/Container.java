@@ -84,6 +84,15 @@ public class Container extends Composite implements ContainerInf {
 	}
 
 	@Override
+	public void inProjectView() {
+		clearContent();
+		slideBar.setProjectTab();
+		container.addNorth(header, headerHeight);
+		container.addWest(slideBar, 80);
+		container.add(MiniTask.clientFactory.getProjectView());
+	}
+
+	@Override
 	public void scrollToBottom() {
 		scrollAbleContent.scrollToBottom();
 	}

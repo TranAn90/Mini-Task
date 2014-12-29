@@ -35,11 +35,11 @@ import com.softlink.minitask.client.view.desktop.ui.CssDataGridResources;
 import com.softlink.minitask.shared.CommonFunction;
 import com.softlink.minitask.shared.Task_Data;
 
-public class TaskDetail extends Composite {
+public class TaskView extends Composite {
 
 	private static Binder uiBinder = GWT.create(Binder.class);
 
-	interface Binder extends UiBinder<Widget, TaskDetail> {
+	interface Binder extends UiBinder<Widget, TaskView> {
 	}
 
 	@UiField
@@ -114,7 +114,7 @@ public class TaskDetail extends Composite {
 	private List<Task_Data> recipients;
 	private CommonFunction fun = new CommonFunction();
 
-	public TaskDetail() {
+	public TaskView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		SetTextForm();
 		InitGridSubTasks();

@@ -110,6 +110,7 @@ public class CreateTaskDialog extends DialogBox {
 	public void getInfo() {
 		UserProfiles profile = Storage.getUserProfiles();
 		System_Organization organization = profile.findOrganization(profile.getOrganizationCurrently());
+		recipient.clear();
 		recipient.addItem(organization.getAdmin());
 		for(String user: organization.getUserList())
 			recipient.addItem(user);
